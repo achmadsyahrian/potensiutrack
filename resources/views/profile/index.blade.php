@@ -46,7 +46,7 @@
                         </div>
                         @if (Auth::user()->photo)
                            <div class="col-auto">
-                              <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm">
+                              <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ Auth::id() }}">
                                  Hapus foto
                                </a>
                            </div>
@@ -105,6 +105,6 @@
 </div>
 
 {{-- Modal Confirm --}}
-<x-confirm-modal route="{{ route('profilephoto.delete') }}" method='patch'></x-confirm-modal>
+<x-confirm-modal route="{{ route('profilephoto.delete') }}" method='patch' id='{{ Auth::id() }}'></x-confirm-modal>
 
 @endsection

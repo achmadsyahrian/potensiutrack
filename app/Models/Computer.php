@@ -9,6 +9,8 @@ class Computer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'lab_id'];
+    
     public function lab()
     {
         return $this->belongsTo(Lab::class);

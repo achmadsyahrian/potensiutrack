@@ -9,6 +9,7 @@ return [
         'new_password' => 'password baru',
         'confirm_password' => 'konfirmasi password',
         'role_id' => 'level',
+        'lab_id' => 'lab',
         'photo' => 'foto',
     ],
     'regex' => 'Kolom :attribute harus memenuhi format yang benar.',

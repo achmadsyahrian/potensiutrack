@@ -137,7 +137,11 @@
                        prev
                    </a>
                </li>
-               @for ($i = 1; $i <= $users->lastPage(); $i++)
+               @php
+                   $start = max(1, min($users->currentPage() - 2, $users->lastPage() - 4));
+                   $end = min($start + 4, $users->lastPage());
+               @endphp
+               @for ($i = $start; $i <= $end; $i++)
                    <li class="page-item {{ $i == $users->currentPage() ? 'active' : '' }}">
                        <a class="page-link" href="{{ $users->url($i) }}">{{ $i }}</a>
                    </li>
@@ -153,7 +157,7 @@
                        </svg>
                    </a>
                </li>
-           </ul>           
+           </ul>       
          </div>
       </div>
    </div>

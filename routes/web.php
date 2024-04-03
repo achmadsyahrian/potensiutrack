@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/users', \App\Http\Controllers\UserController::class)->names('users');
+    Route::resource('/computers', \App\Http\Controllers\ComputerController::class)->names('computers');
 });
 
 // Guest

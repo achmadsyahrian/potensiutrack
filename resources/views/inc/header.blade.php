@@ -163,7 +163,7 @@
                         </div> --}}
                       </div>
                       <div class="dropdown-menu-column">
-                        <a class="dropdown-item" href="./placeholder.html">
+                        <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}" href="{{ route('computers.index') }}">
                           Komputer
                         </a>
                       </div>
