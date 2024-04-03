@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Computer;
 use App\Models\Lab;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class LabController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Lab::query();
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where('name', 'like', "%$search%");
+        }
+
+        $labs = $query->paginate(10);
+        return view('administrator.labs.index', compact('labs'));
     }
 
     /**
@@ -28,7 +38,17 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'min:3',
+                Rule::unique('labs')->ignore($request->id),
+            ],    
+        ]);
+
+        Lab::create($validatedData);
+    
+        return redirect()->route('labs.index')->with('success', 'Lab berhasil ditambahkan!');
     }
 
     /**
@@ -60,6 +80,16 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        //
+        try {
+            $lab->computers()->delete();
+        
+            $lab->delete();
+            
+            return redirect()->route('labs.index')->with('success', 'Lab berhasil dihapus!');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', 'Terjadi kesalahan. Lab tidak dapat dihapus.');
+        }
     }
+
 }

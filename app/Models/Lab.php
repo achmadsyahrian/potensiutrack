@@ -9,8 +9,10 @@ class Lab extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+    
     public function computers()
     {
-        return $this->hasMany(Lab::class);
+        return $this->hasMany(Computer::class);
     }
 }

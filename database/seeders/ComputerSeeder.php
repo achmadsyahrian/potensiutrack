@@ -17,7 +17,7 @@ class ComputerSeeder extends Seeder
             for ($computer_num = 1; $computer_num <= 41; $computer_num++) {
                 Computer::create([
                     'lab_id' => $lab_id,
-                    'name' => 'Computer ' . $computer_num,
+                    'name' => 'Komputer ' . $computer_num,
                 ]);
             }
         }

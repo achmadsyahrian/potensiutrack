@@ -140,7 +140,7 @@
                         <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                           Akun
                         </a>
-                        <a class="dropdown-item" href="./blank.html">
+                        <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}" href="{{ route('labs.index') }}">
                           Lab
                         </a>
                         {{-- <div class="dropend">

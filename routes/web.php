@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
 Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/users', \App\Http\Controllers\UserController::class)->names('users');
     Route::resource('/computers', \App\Http\Controllers\ComputerController::class)->names('computers');
+    Route::resource('/labs', \App\Http\Controllers\LabController::class)->names('labs');
 });
 
 // Guest
