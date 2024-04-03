@@ -16,14 +16,20 @@ class LabController extends Controller
     {
         $query = Lab::query();
 
+        // Filter berdasarkan pencarian
         if ($request->has('search')) {
             $search = $request->search;
             $query->where('name', 'like', "%$search%");
         }
 
         $labs = $query->paginate(10);
+
+        // Menambahkan parameter pencarian ke URL halaman berikutnya
+        $labs->appends(['search' => $request->search]);
+
         return view('administrator.labs.index', compact('labs'));
     }
+
 
     /**
      * Show the form for creating a new resource.

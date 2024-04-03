@@ -22,7 +22,6 @@ class UserController extends Controller
         
         $query = User::whereNotIn('id', [$loggedInUserId]);
 
-        // Filter berdasarkan pencarian
         if ($request->has('search')) {
             $search = $request->search;
             $query->where(function ($query) use ($search) {
@@ -33,9 +32,13 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->paginate(10);
+        $users = $query->paginate(2);
+
+        $users->appends(['search' => $request->search]);
+
         return view('administrator.users.index', compact('role', 'users'));
     }
+
 
 
 

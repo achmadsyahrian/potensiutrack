@@ -15,7 +15,7 @@ class ComputerController extends Controller
     {
         $labs = Lab::all();
         
-        $query = Computer::query(); // Menggunakan model Computer
+        $query = Computer::query();
 
         // Filter berdasarkan pencarian
         if ($request->has('search')) {
@@ -23,9 +23,13 @@ class ComputerController extends Controller
             $query->where('name', 'like', "%$search%");
         }
 
-        $computers = $query->paginate(10); // Menggunakan paginate() pada model Computer
+        $computers = $query->paginate(10); 
+
+        $computers->appends(['search' => $request->search]);
+
         return view('administrator.computers.index', compact('labs', 'computers'));
     }
+
 
 
     /**
