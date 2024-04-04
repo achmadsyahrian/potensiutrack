@@ -84,7 +84,7 @@ class ComputerController extends Controller
 
         $computer->update($validatedData);
 
-        return redirect()->route('computers.index')->with('success', 'Komputer berhasil diubah!');
+        return redirect()->route('computers.index')->with('success', 'Komputer berhasil diperbarui!');
     }
 
 

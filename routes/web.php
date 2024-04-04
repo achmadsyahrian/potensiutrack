@@ -18,10 +18,17 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+// Administrator
 Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/users', \App\Http\Controllers\UserController::class)->names('users');
     Route::resource('/computers', \App\Http\Controllers\ComputerController::class)->names('computers');
     Route::resource('/labs', \App\Http\Controllers\LabController::class)->names('labs');
+});
+
+// Asisten Lab
+Route::group(['middleware' => 'checkRole:3'], function () {
+    Route::resource('/labdailychecks', \App\Http\Controllers\LabDailyCheckController::class)->names('labdailychecks');
+    Route::get('/pilih-lab/{id}', [\App\Http\Controllers\LabDailyCheckController::class, 'pilihLab'])->name('pilih-lab');
 });
 
 // Guest

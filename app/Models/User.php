@@ -43,4 +43,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function mandatoryLabDailyChecks()
+    {
+        return $this->hasMany(LabDailyCheck::class, 'mandatory_user_id');
+    }
+
+    public function optionalLabDailyChecks()
+    {
+        return $this->hasMany(LabDailyCheck::class, 'optional_user_id');
+    }
 }

@@ -6,7 +6,8 @@
       </button>
       <div class="navbar-brand d-flex align-items-center justify-content-between pe-0 pe-md-3">
          <a href="." class="d-flex align-items-center">
-            <img src="{{ asset('image/Logopotensiutama.png') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image me-3">
+            <img src="{{ asset('image/Logopotensiutama.png') }}" width="110" height="32" alt="Tabler"
+               class="navbar-brand-image me-3">
             {{-- <h2 class="page-title mb-0 text-light">PotensiuTrack</h2> --}}
          </a>
       </div>
@@ -82,10 +83,12 @@
          <div class="nav-item dropdown">
             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                aria-label="Open user menu">
-               @if (!Auth::user()->photo) 
-                  <span class="avatar avatar-sm" style="background-image: url({{ asset('image/avatar/defaul-profile.jpg') }})"></span> 
+               @if (!Auth::user()->photo)
+               <span class="avatar avatar-sm"
+                  style="background-image: url({{ asset('image/avatar/defaul-profile.jpg') }})"></span>
                @else
-                  <span class="avatar avatar-sm" style="background-image: url({{ asset('storage/' . Auth::user()->photo) }})"></span> 
+               <span class="avatar avatar-sm"
+                  style="background-image: url({{ asset('storage/' . Auth::user()->photo) }})"></span>
                @endif
                <div class="d-none d-xl-block ps-2">
                   <div>{{ Auth::user()->name }}</div>
@@ -99,9 +102,10 @@
                <a href="./settings.html" class="dropdown-item">Settings</a>
                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
-              </form>
-              
-              <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>              
+               </form>
+
+               <a href="#" class="dropdown-item"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
             </div>
          </div>
       </div>
@@ -125,51 +129,100 @@
                      </span>
                   </a>
                </li>
-               <li class="nav-item dropdown {{ Request::is('users*') || Request::is('computers*') ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg>
-                    </span>
-                    <span class="nav-link-title">
-                      Manajemen
-                    </span>
+               <li class="nav-item dropdown {{ Request::is('users*') || Request::is('computers*') | Request::is('labs*') ? 'active' : '' }}">
+                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                     data-bs-auto-close="outside" role="button" aria-expanded="false">
+                     <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                           stroke-linejoin="round">
+                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                           <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                           <path d="M12 12l8 -4.5" />
+                           <path d="M12 12l0 9" />
+                           <path d="M12 12l-8 -4.5" />
+                           <path d="M16 5.25l-8 4.5" />
+                        </svg>
+                     </span>
+                     <span class="nav-link-title">
+                        Manajemen
+                     </span>
                   </a>
                   <div class="dropdown-menu">
-                    <div class="dropdown-menu-columns">
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                          Akun
-                        </a>
-                        <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}" href="{{ route('labs.index') }}">
-                          Lab
-                        </a>
-                        {{-- <div class="dropend">
-                          <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                            Cards
-                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                          </a>
-                          <div class="dropdown-menu">
-                            <a href="./cards.html" class="dropdown-item">
-                              Sample cards
-                            </a>
-                            <a href="./card-actions.html" class="dropdown-item">
-                              Card actions
-                              <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                            </a>
-                            <a href="./cards-masonry.html" class="dropdown-item">
-                              Cards Masonry
-                            </a>
-                          </div>
-                        </div> --}}
-                      </div>
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}" href="{{ route('computers.index') }}">
-                          Komputer
-                        </a>
-                      </div>
-                    </div>
+                     <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}"
+                              href="{{ route('users.index') }}">
+                              Akun
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
+                              href="{{ route('labs.index') }}">
+                              Lab
+                           </a>
+                           {{-- <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown"
+                                 data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                 Cards
+                                 <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a href="./cards.html" class="dropdown-item">
+                                    Sample cards
+                                 </a>
+                                 <a href="./card-actions.html" class="dropdown-item">
+                                    Card actions
+                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+                                 </a>
+                                 <a href="./cards-masonry.html" class="dropdown-item">
+                                    Cards Masonry
+                                 </a>
+                              </div>
+                           </div> --}}
+                        </div>
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
+                              href="{{ route('computers.index') }}">
+                              Komputer
+                           </a>
+                        </div>
+                     </div>
                   </div>
-                </li>
+               </li>
+               <li class="nav-item dropdown {{ Request::is('labdailychecks*') || Request::is('usages*') ? 'active' : '' }}">
+                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                     data-bs-auto-close="outside" role="button" aria-expanded="false">
+                     <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                           stroke-linejoin="round">
+                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                           <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                           <path d="M12 12l8 -4.5" />
+                           <path d="M12 12l0 9" />
+                           <path d="M12 12l-8 -4.5" />
+                           <path d="M16 5.25l-8 4.5" />
+                        </svg>
+                     </span>
+                     <span class="nav-link-title">
+                        Lab
+                     </span>
+                  </a>
+                  <div class="dropdown-menu">
+                     <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*labdailychecks*') ? 'active' : '' }}"
+                              href="{{ route('labdailychecks.index') }}">
+                              Pemeriksaan Harian
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
+                              href="{{ route('labs.index') }}">
+                              Penggunaan
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
             </ul>
          </div>
       </div>

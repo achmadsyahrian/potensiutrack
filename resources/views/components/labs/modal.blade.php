@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                    <a href="#" class="btn link-secondary" data-bs-dismiss="modal">
                         Kembali
                     </a>
                     <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">

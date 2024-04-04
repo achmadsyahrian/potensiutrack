@@ -114,7 +114,7 @@ class UserController extends Controller
 
             $user->update($validatedData);
         
-            return redirect()->route('users.index')->with('success', 'Akun berhasil diubah!');
+            return redirect()->route('users.index')->with('success', 'Akun berhasil diperbarui!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }

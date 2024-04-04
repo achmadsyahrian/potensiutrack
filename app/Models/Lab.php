@@ -15,4 +15,8 @@ class Lab extends Model
     {
         return $this->hasMany(Computer::class);
     }
+    public function labDailyChecks()
+    {
+        return $this->hasMany(LabDailyCheck::class);
+    }
 }
