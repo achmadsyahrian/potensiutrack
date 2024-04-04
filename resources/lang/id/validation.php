@@ -24,4 +24,5 @@ return [
         'file' => 'Ukuran file :attribute tidak boleh melebihi :max kilobyte.', 
     ],
     'unique' => 'Data :attribute sudah terdaftar dalam sistem.',
+    'image' => 'Kolom :attribute harus berupa file gambar.',
 ];

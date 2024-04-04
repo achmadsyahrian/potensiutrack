@@ -52,7 +52,7 @@
                             <label class="form-label required">Asisten Lab 1</label>
                             <select type="text" class="form-select @error('mandatory_user_id') is-invalid @enderror"
                                     name="mandatory_user_id" id="select-aslab">
-                                <option disabled selected>Pilih lab</option>
+                                <option disabled selected>Pilih asisten lab</option>
                                 @foreach ($lab_assistants as $item)
                                     <option value="{{ $item->id }}" @if($item->id == $labDailyCheck->mandatory_user_id) selected @endif>{{ $item->name }}</option>
                                 @endforeach
@@ -63,7 +63,7 @@
                             <label class="form-label required">Asisten Lab 2</label>
                             <select type="text" class="form-select @error('optional_user_id') is-invalid @enderror"
                                     name="optional_user_id" id="select-aslab" value="">
-                                <option selected disabled>Pilih lab</option>
+                                <option selected disabled>Pilih asisten lab</option>
                                 @foreach ($lab_assistants as $item)
                                  <option value="{{ $item->id }}" @if($item->id == $labDailyCheck->optional_user_id) selected @endif>{{ $item->name }}</option>
                                 @endforeach
@@ -106,7 +106,6 @@
    
    window.onload = function() {
       var computers = {!! $labDailyCheck->results !!};
-
       var table = document.querySelector('#computer-table'); // Ambil tabel
       var numberOfDevices = 4; // Karena Anda memiliki 4 perangkat tetap
 
@@ -127,7 +126,10 @@
             tbody += '<tr><td></td><td>' + getDeviceName(i) + '</td>';
             Object.entries(computers).forEach(([computerId, device]) => {
                var isChecked = device[getDeviceName(i)] === 'on' ? 'checked' : ''; // Atur properti checked berdasarkan nilai dari JSON results
-               tbody += '<td><input class="form-check-input m-0 align-middle" type="checkbox" name="results[' + computerId + '][' + getDeviceName(i) + ']" ' + isChecked + '></td>';
+
+               // Tambahkan input tersembunyi dengan nilai default 'off'
+               tbody += '<td><input type="hidden" name="results[' + computerId + '][' + getDeviceName(i) + ']" value="off">';
+               tbody += '<input class="form-check-input m-0 align-middle" type="checkbox" name="results[' + computerId + '][' + getDeviceName(i) + ']" ' + isChecked + '></td>';
             });
 
             var descriptions = JSON.parse('{!! addslashes($labDailyCheck->descriptions) !!}'); // Mengonversi JSON menjadi objek JavaScript
@@ -139,8 +141,8 @@
 
             // Menambahkan textarea dengan nilai deskripsi dari database
             tbody += '<td><textarea name="descriptions[' + getDeviceName(i) + ']" id="" cols="" rows="1" class="form-control" style="width: 200px;">' + description + '</textarea></td>';
-
          }
+
 
       tbody += '</tbody>';
       table.innerHTML += tbody;

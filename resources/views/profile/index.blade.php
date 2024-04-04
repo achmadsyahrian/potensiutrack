@@ -38,11 +38,9 @@
                               <span class="avatar avatar-xl" style="background-image: url({{ asset('storage/' . Auth::user()->photo) }})"></span> 
                            @endif
                         </div>
-                        <div class="col-auto">
-                           <a href="#" class="btn">
-                              <input type="file" name="photo" class="@error('photo') is-invalid @enderror">
-                              <x-invalid-feedback field='photo'></x-invalid-feedback>
-                           </a>
+                        <div class="col-auto mt-4">
+                           <input type="file" name="photo" accept="image/jpeg,image/jpg,image/png" class="form-control @error('photo') is-invalid @enderror">
+                           <x-invalid-feedback field='photo'></x-invalid-feedback>
                         </div>
                         @if (Auth::user()->photo)
                            <div class="col-auto">

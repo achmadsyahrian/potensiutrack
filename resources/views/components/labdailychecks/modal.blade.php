@@ -41,7 +41,7 @@
                                 <label class="form-label required">Asisten Lab 1</label>
                                 <select type="text" class="form-select @error('mandatory_user_id') is-invalid @enderror"
                                     name="mandatory_user_id" id="select-aslab" value="">
-                                    <option selected disabled>Pilih lab</option>
+                                    <option selected disabled>Pilih asisten lab</option>
                                     @foreach ($lab_assistants as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
@@ -54,7 +54,7 @@
                                 <label class="form-label required">Asisten Lab 2</label>
                                 <select type="text" class="form-select @error('optional_user_id') is-invalid @enderror"
                                     name="optional_user_id" id="select-aslab" value="">
-                                    <option selected disabled>Pilih lab</option>
+                                    <option selected disabled>Pilih asisten lab</option>
                                     @foreach ($lab_assistants as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
@@ -120,13 +120,18 @@
 
                 // Tambahkan kolom untuk setiap perangkat di tbody (sekarang ditampilkan secara vertikal)
                 var tbody = '<tbody>';
-                for (let i = 0; i < numberOfDevices; i++) {
-                    tbody += '<tr><td></td><td>' + getDeviceName(i) + '</td>';
-                    computers.forEach(function(computer) {
-                        tbody += '<td><input class="form-check-input m-0 align-middle" type="checkbox" name="results[' + computer.id + '][' + getDeviceName(i) + ']" checked></td>';
-                    });
-                    tbody += '<td><textarea name="descriptions[' + getDeviceName(i) + ']" id="" cols="" rows="1" class="form-control" style="width: 200px;"></textarea></td></tr>';
-                }
+                    for (let i = 0; i < numberOfDevices; i++) {
+                        tbody += '<tr><td></td><td>' + getDeviceName(i) + '</td>';
+                        computers.forEach(function(computer) {
+                            let isChecked = computer.results && computer.results[getDeviceName(i)] === 'on';
+                            let checkboxValue = isChecked ? 'on' : 'off'; // Tentukan nilai checkbox berdasarkan status perangkat
+                            tbody += '<td><input type="hidden" name="results[' + computer.id + '][' + getDeviceName(i) + ']" value="off">';
+                            tbody += '<input class="form-check-input m-0 align-middle" value="on" type="checkbox" checked name="results[' + computer.id + '][' + getDeviceName(i) + ']"' + (isChecked ? ' checked' : '') + '></td>';
+                        });
+                        tbody += '<td><textarea name="descriptions[' + getDeviceName(i) + ']" id="" cols="" rows="1" class="form-control" style="width: 200px;"></textarea></td></tr>';
+
+                    }
+
                 tbody += '</tbody>';
                 table.innerHTML += tbody;
 

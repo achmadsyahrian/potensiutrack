@@ -22,17 +22,12 @@
                </li>
             </ul>
          </div> --}}
-         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+         <div class="col-12 col-md-auto mt-3">
             <ul class="list-inline list-inline-dots mb-0">
                <li class="list-inline-item">
                   Copyright &copy; 2024
                   <a href="https://instagram.com/_achrian" target="_blank" class="link-secondary">Achmad Syahrian</a>.
                   All rights reserved.
-               </li>
-               <li class="list-inline-item">
-                  <a href="./changelog.html" class="link-secondary" rel="noopener">
-                     v1.0.0-beta
-                  </a>
                </li>
             </ul>
          </div>
