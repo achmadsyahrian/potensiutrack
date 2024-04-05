@@ -70,7 +70,7 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        //
+        return view('administrator.labs.edit', compact('lab'));
     }
 
     /**
@@ -78,7 +78,13 @@ class LabController extends Controller
      */
     public function update(Request $request, Lab $lab)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:3',  
+        ]);
+
+        $lab->update($validatedData);
+    
+        return redirect()->route('labs.index')->with('success', 'Lab berhasil diperbarui!');
     }
 
     /**
