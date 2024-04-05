@@ -129,7 +129,7 @@
                      </span>
                   </a>
                </li>
-               <li class="nav-item dropdown {{ Request::is('users*') || Request::is('computers*') || Request::is('labs*') || Request::is('roles*') ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -160,6 +160,10 @@
                               href="{{ route('labs.index') }}">
                               Lab
                            </a>
+                           <a class="dropdown-item {{ Request::is('*divisions*') ? 'active' : '' }}"
+                              href="{{ route('divisions.index') }}">
+                              Divisi
+                           </a>
                         </div>
                         <div class="dropdown-menu-column">
                            <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
@@ -174,7 +178,7 @@
                      </div>
                   </div>
                </li>
-               <li class="nav-item dropdown {{ Request::is('labdailychecks*') || Request::is('usages*') ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['labdailychecks*', 'usages*']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">

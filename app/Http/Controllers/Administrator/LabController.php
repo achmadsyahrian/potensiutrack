@@ -80,7 +80,7 @@ class LabController extends Controller
     public function update(Request $request, Lab $lab)
     {
         $validatedData = $request->validate([
-            'name' => 'required|min:3',  
+            'name' => 'required|unique:labs,name,' . $lab->id . '|max:255|min:3',
         ]);
 
         $lab->update($validatedData);
@@ -100,7 +100,6 @@ class LabController extends Controller
             
             return redirect()->route('labs.index')->with('success', 'Lab berhasil dihapus!');
         } catch (\Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Lab tidak dapat dihapus.');
         }
     }

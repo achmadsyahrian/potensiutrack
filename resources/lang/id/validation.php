@@ -22,6 +22,7 @@ return [
     'same' => 'Kolom :attribute harus sama dengan :other.',
     'max' => [
         'file' => 'Ukuran file :attribute tidak boleh melebihi :max kilobyte.', 
+        'string' => 'Panjang karakter :attribute tidak boleh melebihi :max karakter.', 
     ],
     'unique' => 'Data :attribute sudah terdaftar dalam sistem.',
     'image' => 'Kolom :attribute harus berupa file gambar.',
