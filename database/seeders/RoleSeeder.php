@@ -32,5 +32,10 @@ class RoleSeeder extends Seeder
             'name' => 'Teknisi',
             'description' => 'Teknisi bertanggung jawab untuk menangani perbaikan dan pemeliharaan teknis.'
         ]);
+
+        Role::create([
+            'name' => 'Karyawan',
+            'description' => 'Karyawan hanya bertugas melihat dan memverifikasi daftar permohonan perawatan perangkat.'
+        ]);
     }
 }

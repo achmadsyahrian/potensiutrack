@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(LabDailyCheck::class, 'optional_user_id');
     }
+
+    public function repairRequests()
+    {
+        return $this->hasMany(RepairRequest::class, 'requested_by');
+    }
+    
+    public function repairRequestsAsTechnician()
+    {
+        return $this->hasMany(RepairRequest::class, 'technician_id');
+    }
 }

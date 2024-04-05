@@ -176,7 +176,7 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*iteminventories*') ? 'active' : '' }}"
                               href="{{ route('iteminventories.index') }}">
-                              Barang Inventory
+                              Barang Inventaris
                            </a>
                         </div>
                      </div>
