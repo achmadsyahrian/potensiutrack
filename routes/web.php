@@ -25,12 +25,18 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/labs', \App\Http\Controllers\Administrator\LabController::class)->names('labs');
     Route::resource('/roles', \App\Http\Controllers\Administrator\RoleController::class)->names('roles');
     Route::resource('/divisions', \App\Http\Controllers\Administrator\DivisionController::class)->names('divisions');
+    Route::resource('/item-inventories', \App\Http\Controllers\Administrator\ItemInventoryController::class)->names('iteminventories');
 });
 
 // Asisten Lab
 Route::group(['middleware' => 'checkRole:3'], function () {
     Route::resource('/labdailychecks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labdailychecks');
     Route::get('/pilih-lab/{id}', [\App\Http\Controllers\LabAssistant\LabDailyCheckController::class, 'pilihLab'])->name('pilih-lab');
+});
+
+// Teknisi
+Route::group(['middleware' => 'checkRole:4'], function () {
+    Route::resource('/repair-requests', \App\Http\Controllers\Technician\RepairRequestController::class)->names('repairrequests');
 });
 
 // Guest

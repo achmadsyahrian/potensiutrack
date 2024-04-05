@@ -9,7 +9,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Manajemen</a></li>
-                  <li class="breadcrumb-item active"><a href="#">Level</a></li>
+                  <li class="breadcrumb-item active"><a href="#">Barang Inventaris</a></li>
                </ol>
             </div>
             <h2 class="page-title">
@@ -26,7 +26,7 @@
                      <path d="M12 5l0 14" />
                      <path d="M5 12l14 0" />
                   </svg>
-                  Tambah level
+                  Tambah barang
                </a>
                <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                   data-bs-target="#modal-report" aria-label="Create new report">
@@ -47,11 +47,11 @@
    <div class="container-xl">
       <div class="card">
          <div class="card-header">
-            <h3 class="card-title">Data Level</h3>
+            <h3 class="card-title">Data Barang</h3>
             <div class="ms-auto text-muted">
                Cari:
                <div class="ms-2 d-inline-block">
-                  <form action="{{ route('roles.index') }}" method="GET">
+                  <form action="{{ route('iteminventories.index') }}" method="GET">
                      <input type="text" class="form-control form-control-sm" name="search" aria-label="Search invoice"
                         value="{{ request('search') }}">
                   </form>
@@ -63,26 +63,26 @@
                <thead>
                   <tr>
                      <th class="w-1">No.</th>
+                     <th>Kode Inventaris</th>
                      <th>Nama</th>
-                     <th>Keterangan</th>
                      <th></th>
                   </tr>
                </thead>
                <tbody>
-                  @forelse ($roles as $item)
+                  @forelse ($itemInventories as $item)
                   <tr>
                      </td>
-                     <td><span class="text-muted">{{ ($roles->currentPage() - 1) * $roles->perPage() +
+                     <td><span class="text-muted">{{ ($itemInventories->currentPage() - 1) * $itemInventories->perPage() +
                            $loop->iteration }}</span></td>
+                     <td class="text-muted">
+                        {{ $item->code ?? '---' }}
+                     </td>
                      <td>
                         {{ $item->name }}
                      </td>
                      <td>
-                        {{ $item->description ?? '---'}}
-                     </td>
-                     <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('roles.edit', ['role' => $item->id]) }}"
+                           <a href="{{ route('iteminventories.edit', ['item_inventory' => $item->id]) }}"
                               class="btn btn-outline-info">
                               Edit
                            </a>
@@ -92,7 +92,7 @@
                            </a>
                         </div>
                      </td>
-                     <x-confirm-modal route="{{ route('roles.destroy', ['role' => $item->id]) }}"
+                     <x-confirm-modal route="{{ route('iteminventories.destroy', ['item_inventory' => $item->id]) }}"
                         method='delete' id='{{ $item->id }}'></x-confirm-modal>
                   </tr>
                   @empty
@@ -114,11 +114,11 @@
             </table>
          </div>
          <div class="card-footer d-flex align-items-center">
-            <p class="m-0 text-muted">Showing <span>{{ $roles->firstItem() }}</span> to <span>{{
-                  $roles->lastItem() }}</span> of <span>{{ $roles->total() }}</span> entries</p>
+            <p class="m-0 text-muted">Showing <span>{{ $itemInventories->firstItem() }}</span> to <span>{{
+                  $itemInventories->lastItem() }}</span> of <span>{{ $itemInventories->total() }}</span> entries</p>
             <ul class="pagination m-0 ms-auto">
-               <li class="page-item {{ $roles->previousPageUrl() ? '' : 'disabled' }}">
-                  <a class="page-link" href="{{ $roles->previousPageUrl() ?? '#' }}" tabindex="-1"
+               <li class="page-item {{ $itemInventories->previousPageUrl() ? '' : 'disabled' }}">
+                  <a class="page-link" href="{{ $itemInventories->previousPageUrl() ?? '#' }}" tabindex="-1"
                      aria-disabled="true">
                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -130,16 +130,16 @@
                   </a>
                </li>
                @php
-               $start = max(1, min($roles->currentPage() - 2, $roles->lastPage() - 4));
-               $end = min($start + 4, $roles->lastPage());
+               $start = max(1, min($itemInventories->currentPage() - 2, $itemInventories->lastPage() - 4));
+               $end = min($start + 4, $itemInventories->lastPage());
                @endphp
                @for ($i = $start; $i <= $end; $i++) <li
-                  class="page-item {{ $i == $roles->currentPage() ? 'active' : '' }}">
-                  <a class="page-link" href="{{ $roles->url($i) }}">{{ $i }}</a>
+                  class="page-item {{ $i == $itemInventories->currentPage() ? 'active' : '' }}">
+                  <a class="page-link" href="{{ $itemInventories->url($i) }}">{{ $i }}</a>
                   </li>
                   @endfor
-                  <li class="page-item {{ $roles->nextPageUrl() ? '' : 'disabled' }}">
-                     <a class="page-link" href="{{ $roles->nextPageUrl() ?? '#' }}">
+                  <li class="page-item {{ $itemInventories->nextPageUrl() ? '' : 'disabled' }}">
+                     <a class="page-link" href="{{ $itemInventories->nextPageUrl() ?? '#' }}">
                         next
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -155,6 +155,5 @@
    </div>
 </div>
 
-@include('components.roles.modal')
-
+@include('components.itemInventories.modal')
 @endsection
