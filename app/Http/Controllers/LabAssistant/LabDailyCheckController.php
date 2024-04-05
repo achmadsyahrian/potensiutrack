@@ -17,13 +17,21 @@ class LabDailyCheckController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {  
-        $labDailyCheck = LabDailyCheck::paginate(10);
+    public function index(Request $request)
+    {
+        $query = LabDailyCheck::query();
+
+        $this->applySearchFilters($query, $request);
+
+        $labDailyChecks = $query->paginate(10);
+        $labDailyChecks->appends(request()->query());
+
         $lab_assistants = User::where('role_id', 3)->get();
         $labs = Lab::all();
-        return view('lab_assistant.dailychecks.index', compact('labDailyCheck', 'lab_assistants', 'labs'));
+
+        return view('lab_assistant.dailychecks.index', compact('labDailyChecks', 'lab_assistants', 'labs'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -137,5 +145,25 @@ class LabDailyCheckController extends Controller
             throw new \InvalidArgumentException('Laporan dengan lab dan tanggal yang sama telah tercatat sebelumnya.');
         }
     }
+
+    private function applySearchFilters($query, $request)
+    {
+        // Filter berdasarkan tanggal
+        if ($request->filled('search_date')) {
+            $query->whereDate('date', $request->search_date);
+        }
+
+        // Filter berdasarkan lab
+        if ($request->filled('search_lab')) {
+            $query->where('lab_id', $request->search_lab);
+        }
+
+        // Filter berdasarkan user mandatory atau optional
+        if ($request->filled('search_mandatory_user_id')) {
+            $query->where('mandatory_user_id', $request->search_mandatory_user_id)
+                ->orWhere('optional_user_id', $request->search_mandatory_user_id);
+        }
+    }
+
     
 }

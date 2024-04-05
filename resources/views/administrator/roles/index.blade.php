@@ -48,7 +48,7 @@
       <div class="card">
          <div class="card-header">
             <h3 class="card-title">Data Level</h3>
-            <div class="ms-auto text-muted">
+            {{-- <div class="ms-auto text-muted">
                Cari:
                <div class="ms-2 d-inline-block">
                   <form action="{{ route('roles.index') }}" method="GET">
@@ -56,7 +56,7 @@
                         value="{{ request('search') }}">
                   </form>
                </div>
-            </div>
+            </div> --}}
          </div>
          <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap datatable" id="my-table">

@@ -18,7 +18,10 @@ class ItemInventoryController extends Controller
 
         if ($request->has('search')) {
             $search = $request->search;
-            $query->where('name', 'like', "%$search%");
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%")
+                      ->orWhere('code', 'like', "%$search%");
+            });
         }
 
         $itemInventories = $query->paginate(10);
