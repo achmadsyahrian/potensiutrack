@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\LabAssistant;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LabDailyCheckStoreRequest;
 use App\Http\Requests\LabDailyCheckUpdateRequest;
 use App\Models\Computer;
