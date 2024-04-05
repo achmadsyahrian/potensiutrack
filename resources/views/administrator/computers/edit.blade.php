@@ -30,7 +30,7 @@
                @method('put')
                <div class="col d-flex flex-column">
                   <div class="card-body">
-                     <h2 class="mb-4">Akun Saya</h2>
+                     <h2 class="mb-4">Data Komputer</h2>
                      <div class="row g-3 mt-4">
                         <div class="col-md">
                            <div class="form-label required">Nama</div>

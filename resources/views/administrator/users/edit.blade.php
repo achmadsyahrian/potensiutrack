@@ -30,8 +30,8 @@
                @method('put')
                <div class="col d-flex flex-column">
                   <div class="card-body">
-                     <h2 class="mb-4">Akun Saya</h2>
-                     <h3 class="card-title">Detail Akun</h3>
+                     <h2 class="mb-4">Data Akun</h2>
+                     {{-- <h3 class="card-title">Detail Akun</h3> --}}
                      <div class="row align-items-center">
                         <div class="col-auto">
                            @if (!$user->photo)

@@ -129,7 +129,7 @@
                      </span>
                   </a>
                </li>
-               <li class="nav-item dropdown {{ Request::is('users*') || Request::is('computers*') | Request::is('labs*') ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ Request::is('users*') || Request::is('computers*') || Request::is('labs*') || Request::is('roles*') ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -160,30 +160,15 @@
                               href="{{ route('labs.index') }}">
                               Lab
                            </a>
-                           {{-- <div class="dropend">
-                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown"
-                                 data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                 Cards
-                                 <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                              </a>
-                              <div class="dropdown-menu">
-                                 <a href="./cards.html" class="dropdown-item">
-                                    Sample cards
-                                 </a>
-                                 <a href="./card-actions.html" class="dropdown-item">
-                                    Card actions
-                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                 </a>
-                                 <a href="./cards-masonry.html" class="dropdown-item">
-                                    Cards Masonry
-                                 </a>
-                              </div>
-                           </div> --}}
                         </div>
                         <div class="dropdown-menu-column">
                            <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
                               href="{{ route('computers.index') }}">
                               Komputer
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*roles*') ? 'active' : '' }}"
+                              href="{{ route('roles.index') }}">
+                              Level
                            </a>
                         </div>
                      </div>

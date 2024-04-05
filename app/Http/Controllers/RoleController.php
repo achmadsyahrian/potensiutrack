@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class RoleController extends Controller
 {
@@ -12,7 +13,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::paginate(10);
+        return view('administrator.roles.index', compact('roles'));
     }
 
     /**
@@ -28,8 +30,20 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|unique:roles|max:255',
+                'description' => 'nullable',
+            ]);
+
+            Role::create($validatedData);
+            
+            return redirect()->route('roles.index')->with('success', 'Level berhasil ditambahkan!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator->getMessageBag()->toArray());
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -44,7 +58,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('administrator.roles.edit', compact('role'));
     }
 
     /**
@@ -52,7 +66,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|unique:roles,name,' . $role->id . '|max:255',
+                'description' => 'nullable',
+            ]);
+    
+            $role->update($validatedData);
+        
+            return redirect()->route('roles.index')->with('success', 'Level berhasil diperbarui!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator->getMessageBag()->toArray());
+        }
     }
 
     /**
@@ -60,6 +85,16 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $users = $role->users;
+
+        foreach ($users as $user) {
+            $user->delete();
+        }
+
+        $role->delete();
+
+        return redirect()->route('roles.index')->with('success', 'Peran dan pengguna terkait berhasil dihapus!');
     }
+
+
 }

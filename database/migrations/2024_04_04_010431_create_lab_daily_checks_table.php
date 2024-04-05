@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
     
             $table->foreign('lab_id')->references('id')->on('labs');
-            $table->foreign('optional_user_id')->references('id')->on('users');
+            $table->foreign('optional_user_id')->references('id')->on('users')->onDelete('set null');;
             $table->foreign('mandatory_user_id')->references('id')->on('users');
         });
     

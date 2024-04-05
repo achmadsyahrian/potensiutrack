@@ -27,7 +27,7 @@
                            <path d="M12 5l0 14" />
                            <path d="M5 12l14 0" />
                        </svg>
-                       Tambah user
+                       Tambah akun
                    </a>
                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                        data-bs-target="#modal-report" aria-label="Create new report">

@@ -24,4 +24,5 @@ class LabDailyCheck extends Model
     {
         return $this->belongsTo(User::class, 'optional_user_id');
     }
+
 }

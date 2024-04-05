@@ -32,7 +32,7 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->paginate(2);
+        $users = $query->paginate(10);
 
         $users->appends(['search' => $request->search]);
 
