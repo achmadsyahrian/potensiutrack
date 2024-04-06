@@ -51,7 +51,7 @@
             <div class="ms-auto text-muted">
                Cari:
                <div class="ms-2 d-inline-block">
-                  <form action="{{ route('repairrequests.index') }}" method="GET">
+                  <form action="{{ route('technician.repairrequests.index') }}" method="GET">
                      <input type="text" class="form-control form-control-sm" name="search" aria-label="Search invoice"
                         value="{{ request('search') }}">
                   </form>
@@ -124,7 +124,7 @@
                      </td>                                     
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('repairrequests.edit', ['repair_request' => $item->id]) }}"
+                           <a href="{{ route('technician.repairrequests.edit', ['repair_request' => $item->id]) }}"
                               class="btn btn-outline-info">
                               Edit
                            </a>
@@ -134,7 +134,7 @@
                            </a>
                         </div>
                      </td>
-                     <x-confirm-modal route="{{ route('repairrequests.destroy', ['repair_request' => $item->id]) }}"
+                     <x-confirm-modal route="{{ route('technician.repairrequests.destroy', ['repair_request' => $item->id]) }}"
                         method='delete' id='{{ $item->id }}'></x-confirm-modal>
                   </tr>
                   @empty

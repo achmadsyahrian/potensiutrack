@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('repairrequests.index') }}">Perawatan &
+                        <li class="breadcrumb-item"><a href="{{ route('technician.repairrequests.index') }}">Perawatan &
                                 Perbaikan</a></li>
                         <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                     </ol>
@@ -26,7 +26,7 @@
     <div class="container-xl">
         <div class="card">
             <div class="row row-deck row-cards">
-                <form action="{{ route('repairrequests.update', ['repair_request' => $repairRequest]) }}" method="post">
+                <form action="{{ route('technician.repairrequests.update', ['repair_request' => $repairRequest]) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="col d-flex flex-column">
@@ -160,7 +160,7 @@
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
                                 <div class="btn-list justify-content-end">
-                                    <a href="{{ route('repairrequests.index') }}" class="btn">
+                                    <a href="{{ route('technician.repairrequests.index') }}" class="btn">
                                         Kembali
                                     </a>
                                     <button type="submit" class="btn btn-primary">

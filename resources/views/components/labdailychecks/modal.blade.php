@@ -5,7 +5,7 @@
                 <h5 class="modal-title">Full width modal</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('labdailychecks.store') }}" class="d-inline-block" method="post">
+            <form action="{{ route('labassistant.labdailychecks.store') }}" class="d-inline-block" method="post">
                 @csrf
                 @method('post')
                 <div class="modal-body">

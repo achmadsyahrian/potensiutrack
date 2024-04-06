@@ -62,7 +62,7 @@
                         <path d="M21 21l-6 -6" />
                      </svg>
                   </a>
-                  <a href="{{ route('labdailychecks.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
+                  <a href="{{ route('labassistant.labdailychecks.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
                      Reset Pencarian <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-reset ms-2">
@@ -107,7 +107,7 @@
                         </td>
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              <a href="{{ route('labdailychecks.edit', ['labdailycheck' => $item->id]) }}" class="btn btn-outline-info">
+                              <a href="{{ route('labassistant.labdailychecks.edit', ['labdailycheck' => $item->id]) }}" class="btn btn-outline-info">
                                  Edit
                              </a>
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
@@ -115,7 +115,7 @@
                               </a>
                            </div>
                         </td>
-                        <x-confirm-modal route="{{ route('labdailychecks.destroy', ['labdailycheck' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
+                        <x-confirm-modal route="{{ route('labassistant.labdailychecks.destroy', ['labdailycheck' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
                      </tr>
                   @empty
                      <tr>

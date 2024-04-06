@@ -182,7 +182,7 @@
                      </div>
                   </div>
                </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['labdailychecks*', 'usages*']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['*labdailychecks*', 'usages*']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -205,7 +205,7 @@
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
                            <a class="dropdown-item {{ Request::is('*labdailychecks*') ? 'active' : '' }}"
-                              href="{{ route('labdailychecks.index') }}">
+                              href="{{ route('labassistant.labdailychecks.index') }}">
                               Pemeriksaan Harian
                            </a>
                            <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
@@ -239,7 +239,7 @@
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
                            <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
-                              href="{{ route('repairrequests.index') }}">
+                              href="{{ route('technician.repairrequests.index') }}">
                               Perawatan & Perbaikan
                            </a>
                         </div>

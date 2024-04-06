@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="{{ route('repairrequests.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('technician.repairrequests.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="modal-content">

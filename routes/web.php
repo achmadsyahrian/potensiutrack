@@ -29,15 +29,21 @@ Route::group(['middleware' => 'checkRole:1'], function () {
 });
 
 // Asisten Lab
-Route::group(['middleware' => 'checkRole:3'], function () {
-    Route::resource('/labdailychecks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labdailychecks');
+Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
+    Route::resource('/labdailychecks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labassistant.labdailychecks');
     Route::get('/pilih-lab/{id}', [\App\Http\Controllers\LabAssistant\LabDailyCheckController::class, 'pilihLab'])->name('pilih-lab');
 });
 
 // Teknisi
-Route::group(['middleware' => 'checkRole:4'], function () {
-    Route::resource('/repair-requests', \App\Http\Controllers\Technician\RepairRequestController::class)->names('repairrequests');
+Route::prefix('technician')->middleware('checkRole:4')->group(function () {
+    Route::resource('/repair-requests', \App\Http\Controllers\Technician\RepairRequestController::class)->names('technician.repairrequests');
 });
+
+// Karyawan
+// Route::prefix('employee')->middleware('checkRole:5')->group(function () {
+//     Route::resource('/repair-requests', \App\Http\Controllers\Employee\RepairRequestController::class)->names('employee.repairrequests');
+// });
+
 
 // Guest
 Route::middleware(['guest'])->group(function () {

@@ -10,7 +10,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Lab</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('labdailychecks.index') }}">Pemeriksaan Harian</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('labassistant.labdailychecks.index') }}">Pemeriksaan Harian</a></li>
                   <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                </ol>
             </div>
@@ -26,7 +26,7 @@
    <div class="container-xl">
       <div class="card">
          <div class="row row-deck row-cards">
-            <form action="{{ route('labdailychecks.update', ['labdailycheck' => $labDailyCheck]) }}" method="post">
+            <form action="{{ route('labassistant.labdailychecks.update', ['labdailycheck' => $labDailyCheck]) }}" method="post">
                @csrf
                @method('put')
                <div class="col d-flex flex-column">
@@ -86,7 +86,7 @@
                   </div>
                   <div class="card-footer bg-transparent mt-auto">
                      <div class="btn-list justify-content-end">
-                        <a href="{{ route('labdailychecks.index') }}" class="btn">
+                        <a href="{{ route('labassistant.labdailychecks.index') }}" class="btn">
                            Kembali
                         </a>
                         <button type="submit" class="btn btn-primary">

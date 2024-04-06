@@ -51,7 +51,7 @@ class RepairRequestController extends Controller
 
             RepairRequest::create($validatedData);
         
-            return redirect()->route('repairrequests.index')->with('success', 'Permohonan berhasil ditambahkan!');
+            return redirect()->route('technician.repairrequests.index')->with('success', 'Permohonan berhasil ditambahkan!');
         } catch (\Exception $e) {
             dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
@@ -91,7 +91,7 @@ class RepairRequestController extends Controller
             }
             $repairRequest->update($validatedData);
         
-            return redirect()->route('repairrequests.index')->with('success', 'Permohonan berhasil diperbarui!');
+            return redirect()->route('technician.repairrequests.index')->with('success', 'Permohonan berhasil diperbarui!');
         } catch (\Exception $e) {
             dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
@@ -107,7 +107,7 @@ class RepairRequestController extends Controller
         try {
             $repairRequest->delete();
             
-            return redirect()->route('repairrequests.index')->with('success', 'Permohonan berhasil dihapus!');
+            return redirect()->route('technician.repairrequests.index')->with('success', 'Permohonan berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Permohonan tidak dapat dihapus.');
         }

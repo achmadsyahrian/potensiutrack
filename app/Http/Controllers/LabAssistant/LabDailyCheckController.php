@@ -60,7 +60,7 @@ class LabDailyCheckController extends Controller
             LabDailyCheck::create($validatedData);
 
             // Respon dengan pesan sukses
-            return redirect()->route('labdailychecks.index')->with('success', 'Laporan berhasil ditambahkan!');
+            return redirect()->route('labassistant.labdailychecks.index')->with('success', 'Laporan berhasil ditambahkan!');
         } catch (\Illuminate\Validation\ValidationException | \InvalidArgumentException $e) {
             return redirect()->back()->with('error', $e->getMessage());
         } catch (\Exception $e) {
@@ -105,7 +105,7 @@ class LabDailyCheckController extends Controller
             
             $labDailyCheck->update($validatedData);
 
-            return redirect()->route('labdailychecks.index')->with('success', 'Laporan berhasil diperbarui!');
+            return redirect()->route('labassistant.labdailychecks.index')->with('success', 'Laporan berhasil diperbarui!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
@@ -122,7 +122,7 @@ class LabDailyCheckController extends Controller
         $labDailyCheck = LabDailyCheck::find($id);
         $labDailyCheck->delete();
 
-        return redirect()->route('labdailychecks.index')->with('success', 'Laporan berhasil dihapus!');
+        return redirect()->route('labassistant.labdailychecks.index')->with('success', 'Laporan berhasil dihapus!');
     }
 
     public function pilihLab($labId) {
