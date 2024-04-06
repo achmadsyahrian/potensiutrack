@@ -28,6 +28,14 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/item-inventories', \App\Http\Controllers\Administrator\ItemInventoryController::class)->names('iteminventories');
 });
 
+// Kabag
+Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
+    Route::get('/repair-requests', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'index'])->name('sectionhead.repairrequests.index');
+    Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('sectionhead.repairrequests.show');
+    Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('sectionhead.repairrequests.verify');
+    Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('sectionhead.repairrequests.reject');
+});
+
 // Asisten Lab
 Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
     Route::resource('/labdailychecks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labassistant.labdailychecks');

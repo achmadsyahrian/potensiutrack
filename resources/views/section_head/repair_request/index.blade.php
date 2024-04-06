@@ -109,7 +109,7 @@
                      </td>                                     
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('employee.repairrequests.show', ['id' => $item->id]) }}"
+                           <a href="{{ route('sectionhead.repairrequests.show', ['id' => $item->id]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
@@ -118,7 +118,7 @@
                   </tr>
                   @empty
                   <tr>
-                     <td colspan="6">
+                     <td colspan="7">
                         <p class="text-center text-muted">Data tidak tersedia <svg xmlns="http://www.w3.org/2000/svg"
                               width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

@@ -8,8 +8,8 @@
             <div class="col">
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
-                        <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('employee.repairrequests.index') }}">Perawatan &
+                        <li class="breadcrumb-item"><a href="#">Laporan</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('sectionhead.repairrequests.index') }}">Perawatan &
                                 Perbaikan</a></li>
                         <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
@@ -109,12 +109,17 @@
                         </div>
                         <div class="card-footer bg-transparent mt-auto">
                             <div class="btn-list justify-content-end">
-                                <a href="{{ route('employee.repairrequests.index') }}" class="btn">
+                                <a href="{{ route('sectionhead.repairrequests.index') }}" class="btn">
                                     Kembali
                                 </a>
-                                @if ($repairRequest->status == 2)
+                                <a class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modal-confirm-{{ $repairRequest->id }}">
+                                    Tolak
+                                </a>
+                                <x-confirm-modal route="{{ route('sectionhead.repairrequests.reject', ['id' => $repairRequest->id]) }}"
+                                    method='patch' id='{{ $repairRequest->id }}'></x-confirm-modal>
                                 <form
-                                    action="{{ route('employee.repairrequests.verify', ['id' => $repairRequest->id]) }}"
+                                    action="{{ route('sectionhead.repairrequests.verify', ['id' => $repairRequest->id]) }}"
                                     method="POST">
                                     @csrf
                                     @method('PATCH')
@@ -122,7 +127,6 @@
                                         Verifikasi
                                     </button>
                                 </form>
-                                @endif
                             </div>
                         </div>
                     </div>

@@ -124,10 +124,12 @@
                      </td>                                     
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('technician.repairrequests.edit', ['repair_request' => $item->id]) }}"
-                              class="btn btn-outline-info">
-                              Edit
-                           </a>
+                           @if ($item->status == 1 || $item->status == 2)
+                              <a href="{{ route('technician.repairrequests.edit', ['repair_request' => $item->id]) }}"
+                                 class="btn btn-outline-info">
+                                 Edit
+                              </a>
+                           @endif
                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
                               data-bs-target="#modal-confirm-{{ $item->id }}">
                               Hapus

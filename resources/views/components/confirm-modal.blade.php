@@ -31,7 +31,7 @@
                                 @csrf
                                 @method($method)
                                 <button type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                    Hapus
+                                    {{ Request::is('*sectionhead*') ? 'Tolak' : 'Hapus' }}
                                 </button>
                             </form>
                         </div>
