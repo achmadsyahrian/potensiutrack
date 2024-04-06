@@ -40,9 +40,11 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
 });
 
 // Karyawan
-// Route::prefix('employee')->middleware('checkRole:5')->group(function () {
-//     Route::resource('/repair-requests', \App\Http\Controllers\Employee\RepairRequestController::class)->names('employee.repairrequests');
-// });
+Route::prefix('employee')->middleware('checkRole:5')->group(function () {
+    Route::get('/repair-requests', [\App\Http\Controllers\Employee\RepairRequestController::class, 'index'])->name('employee.repairrequests.index');
+    Route::get('/repair-requests/{id}', [\App\Http\Controllers\Employee\RepairRequestController::class, 'show'])->name('employee.repairrequests.show');
+    Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\Employee\RepairRequestController::class, 'verify'])->name('employee.repairrequests.verify');
+});
 
 
 // Guest

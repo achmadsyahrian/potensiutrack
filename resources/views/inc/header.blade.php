@@ -129,123 +129,159 @@
                      </span>
                   </a>
                </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*']) ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                     data-bs-auto-close="outside" role="button" aria-expanded="false">
-                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                           <path d="M12 12l8 -4.5" />
-                           <path d="M12 12l0 9" />
-                           <path d="M12 12l-8 -4.5" />
-                           <path d="M16 5.25l-8 4.5" />
-                        </svg>
-                     </span>
-                     <span class="nav-link-title">
-                        Manajemen
-                     </span>
-                  </a>
-                  <div class="dropdown-menu">
-                     <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}"
-                              href="{{ route('users.index') }}">
-                              Akun
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
-                              href="{{ route('labs.index') }}">
-                              Lab
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*divisions*') ? 'active' : '' }}"
-                              href="{{ route('divisions.index') }}">
-                              Divisi
-                           </a>
-                        </div>
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
-                              href="{{ route('computers.index') }}">
-                              Komputer
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*roles*') ? 'active' : '' }}"
-                              href="{{ route('roles.index') }}">
-                              Level
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*iteminventories*') ? 'active' : '' }}"
-                              href="{{ route('iteminventories.index') }}">
-                              Barang Inventaris
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['*labdailychecks*', 'usages*']) ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                     data-bs-auto-close="outside" role="button" aria-expanded="false">
-                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                           <path d="M12 12l8 -4.5" />
-                           <path d="M12 12l0 9" />
-                           <path d="M12 12l-8 -4.5" />
-                           <path d="M16 5.25l-8 4.5" />
-                        </svg>
-                     </span>
-                     <span class="nav-link-title">
-                        Lab
-                     </span>
-                  </a>
-                  <div class="dropdown-menu">
-                     <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*labdailychecks*') ? 'active' : '' }}"
-                              href="{{ route('labassistant.labdailychecks.index') }}">
-                              Pemeriksaan Harian
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
-                              href="{{ route('labs.index') }}">
-                              Penggunaan
-                           </a>
+               @if (Auth::user()->role_id == 1)
+                  <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*']) ? 'active' : '' }}">
+                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                           <!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                              <path d="M12 12l8 -4.5" />
+                              <path d="M12 12l0 9" />
+                              <path d="M12 12l-8 -4.5" />
+                              <path d="M16 5.25l-8 4.5" />
+                           </svg>
+                        </span>
+                        <span class="nav-link-title">
+                           Manajemen
+                        </span>
+                     </a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}"
+                                 href="{{ route('users.index') }}">
+                                 Akun
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
+                                 href="{{ route('labs.index') }}">
+                                 Lab
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*divisions*') ? 'active' : '' }}"
+                                 href="{{ route('divisions.index') }}">
+                                 Divisi
+                              </a>
+                           </div>
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
+                                 href="{{ route('computers.index') }}">
+                                 Komputer
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*roles*') ? 'active' : '' }}"
+                                 href="{{ route('roles.index') }}">
+                                 Level
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*iteminventories*') ? 'active' : '' }}"
+                                 href="{{ route('iteminventories.index') }}">
+                                 Barang Inventaris
+                              </a>
+                           </div>
                         </div>
                      </div>
-                  </div>
-               </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                     data-bs-auto-close="outside" role="button" aria-expanded="false">
-                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                           <path d="M12 12l8 -4.5" />
-                           <path d="M12 12l0 9" />
-                           <path d="M12 12l-8 -4.5" />
-                           <path d="M16 5.25l-8 4.5" />
-                        </svg>
-                     </span>
-                     <span class="nav-link-title">
-                        Layanan
-                     </span>
-                  </a>
-                  <div class="dropdown-menu">
-                     <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
-                              href="{{ route('technician.repairrequests.index') }}">
-                              Perawatan & Perbaikan
-                           </a>
+                  </li>
+               @elseif (Auth::user()->role_id == 2)
+               @elseif (Auth::user()->role_id == 3)
+                  <li class="nav-item dropdown {{ request()->routeIs(['*labdailychecks*', 'usages*']) ? 'active' : '' }}">
+                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                              <path d="M12 12l8 -4.5" />
+                              <path d="M12 12l0 9" />
+                              <path d="M12 12l-8 -4.5" />
+                              <path d="M16 5.25l-8 4.5" />
+                           </svg>
+                        </span>
+                        <span class="nav-link-title">
+                           Lab
+                        </span>
+                     </a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*labdailychecks*') ? 'active' : '' }}"
+                                 href="{{ route('labassistant.labdailychecks.index') }}">
+                                 Pemeriksaan Harian
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
+                                 href="{{ route('labs.index') }}">
+                                 Penggunaan
+                              </a>
+                           </div>
                         </div>
                      </div>
-                  </div>
-               </li>
+                  </li>
+               @elseif (Auth::user()->role_id == 4)
+                  <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
+                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                              <path d="M12 12l8 -4.5" />
+                              <path d="M12 12l0 9" />
+                              <path d="M12 12l-8 -4.5" />
+                              <path d="M16 5.25l-8 4.5" />
+                           </svg>
+                        </span>
+                        <span class="nav-link-title">
+                           Layanan
+                        </span>
+                     </a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
+                                 href="{{ route('technician.repairrequests.index') }}">
+                                 Perawatan & Perbaikan
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+               @elseif (Auth::user()->role_id == 5)
+                  <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
+                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                              <path d="M12 12l8 -4.5" />
+                              <path d="M12 12l0 9" />
+                              <path d="M12 12l-8 -4.5" />
+                              <path d="M16 5.25l-8 4.5" />
+                           </svg>
+                        </span>
+                        <span class="nav-link-title">
+                           Layanan
+                        </span>
+                     </a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
+                                 href="{{ route('employee.repairrequests.index') }}">
+                                 Perawatan & Perbaikan
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+               @endif
             </ul>
          </div>
       </div>
