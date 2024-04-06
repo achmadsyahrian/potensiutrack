@@ -16,22 +16,19 @@
             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Aktifkan mode gelap"
                data-bs-toggle="tooltip" data-bs-placement="bottom">
                <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                  stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
                </svg>
             </a>
             <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Aktifkan mode terang"
                data-bs-toggle="tooltip" data-bs-placement="bottom">
                <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                  stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                  <path
-                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
-               </svg>
+               <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sun-high"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg>
             </a>
             <div class="nav-item dropdown d-none d-md-flex me-3">
                <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
@@ -130,20 +127,18 @@
                   </a>
                </li>
                @if (Auth::user()->role_id == 1)
-                  <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*', 'iteminventories.index']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                           <!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                              stroke-linejoin="round">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-category">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                              <path d="M12 12l8 -4.5" />
-                              <path d="M12 12l0 9" />
-                              <path d="M12 12l-8 -4.5" />
-                              <path d="M16 5.25l-8 4.5" />
+                              <path d="M4 4h6v6h-6z" />
+                              <path d="M14 4h6v6h-6z" />
+                              <path d="M4 14h6v6h-6z" />
+                              <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                            </svg>
                         </span>
                         <span class="nav-link-title">
@@ -184,7 +179,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 2)
-                  <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -249,19 +244,21 @@
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                              stroke-linejoin="round">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-report">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                              <path d="M12 12l8 -4.5" />
-                              <path d="M12 12l0 9" />
-                              <path d="M12 12l-8 -4.5" />
-                              <path d="M16 5.25l-8 4.5" />
+                              <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
+                              <path d="M18 14v4h4" />
+                              <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
+                              <path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                              <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                              <path d="M8 11h4" />
+                              <path d="M8 15h3" />
                            </svg>
                         </span>
                         <span class="nav-link-title">
-                           Lab
+                           Laporan
                         </span>
                      </a>
                      <div class="dropdown-menu">
@@ -280,19 +277,19 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 4)
-                  <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['technician.repairrequests.index', 'technician.repairrequests.edit', 'technician.repairrequests.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                              stroke-linejoin="round">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                              <path d="M12 12l8 -4.5" />
-                              <path d="M12 12l0 9" />
-                              <path d="M12 12l-8 -4.5" />
-                              <path d="M16 5.25l-8 4.5" />
+                              <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
+                              <path d="M7 20l10 0" />
+                              <path d="M9 16l0 4" />
+                              <path d="M15 16l0 4" />
+                              <path d="M8 12l3 -3l2 2l3 -3" />
                            </svg>
                         </span>
                         <span class="nav-link-title">
@@ -315,15 +312,15 @@
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                              stroke-linejoin="round">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                              <path d="M12 12l8 -4.5" />
-                              <path d="M12 12l0 9" />
-                              <path d="M12 12l-8 -4.5" />
-                              <path d="M16 5.25l-8 4.5" />
+                              <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
+                              <path d="M7 20l10 0" />
+                              <path d="M9 16l0 4" />
+                              <path d="M15 16l0 4" />
+                              <path d="M8 12l3 -3l2 2l3 -3" />
                            </svg>
                         </span>
                         <span class="nav-link-title">
