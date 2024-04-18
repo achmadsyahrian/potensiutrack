@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class LabUsage extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class);
+    }
+
+    public function lecturer()
+    {
+        return $this->belongsTo(User::class, 'lecturer_id');
+    }
 }

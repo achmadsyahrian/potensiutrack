@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('lab_usages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lab_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lecturer_id')->constrained('users')->onDelete('cascade');
+            $table->string('course'); //mata kuliah
+            $table->string('course_topic'); // materi kuliah
+            $table->string('course_credits'); //sks
+            $table->string('class');
+            $table->date('date');
+            $table->time('time');
+            $table->string('lecturer_signature')->nullable();
+            $table->string('lab_assistant_signature')->nullable();
             $table->timestamps();
         });
     }

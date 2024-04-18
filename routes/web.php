@@ -45,6 +45,7 @@ Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
 
     // Lab
     Route::resource('/lab-request', \App\Http\Controllers\LabAssistant\LabRequestController::class)->names('labassistant.labrequests');
+    Route::resource('/lab-usages', \App\Http\Controllers\LabAssistant\LabUsageController::class)->names('labassistant.labusages');
 });
 
 // Teknisi

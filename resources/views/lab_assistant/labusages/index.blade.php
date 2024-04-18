@@ -10,7 +10,7 @@
                <div class="page-pretitle">
                   <ol class="breadcrumb breadcrumb-arrows">
                      <li class="breadcrumb-item"><a href="#">Lab</a></li>
-                     <li class="breadcrumb-item active"><a href="#">Permohonan Penggunaan</a></li>
+                     <li class="breadcrumb-item active"><a href="#">Penggunaan</a></li>
                   </ol>
                </div>
                <h2 class="page-title">
@@ -28,7 +28,7 @@
                            <path d="M12 5l0 14" />
                            <path d="M5 12l14 0" />
                        </svg>
-                       Tambah Permohonan
+                       Tambah Penggunaan
                    </a>
                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                        data-bs-target="#modal-report" aria-label="Create new report">
@@ -50,7 +50,7 @@
    <div class="container-xl">
       <div class="card">
          <div class="card-header">
-            <h3 class="card-title">Data Permohonan</h3>
+            <h3 class="card-title">Data Penggunaan</h3>
             <div class="ms-auto text-muted">
                <div class="ms-2 d-inline-block">
                   <a href="#" class="btn btn-info btn-pill btn-sm me-1" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#modal-search">
@@ -90,10 +90,10 @@
                   </tr>
                </thead>
                <tbody>
-                  @forelse ($labRequests as $item)
+                  @forelse ($labUsages as $item)
                       <tr>
                         </td>
-                        <td><span class="text-muted">{{ ($labRequests->currentPage() - 1) * $labRequests->perPage() + $loop->iteration }}</span></td>
+                        <td><span class="text-muted">{{ ($labUsages->currentPage() - 1) * $labUsages->perPage() + $loop->iteration }}</span></td>
                         <td>
                            {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}
                         </td>                       
@@ -140,10 +140,10 @@
             </table>
          </div>
          <div class="card-footer d-flex align-items-center">
-            <p class="m-0 text-muted">Showing <span>{{ $labRequests->firstItem() }}</span> to <span>{{ $labRequests->lastItem() }}</span> of <span>{{ $labRequests->total() }}</span> entries</p>
+            <p class="m-0 text-muted">Showing <span>{{ $labUsages->firstItem() }}</span> to <span>{{ $labUsages->lastItem() }}</span> of <span>{{ $labUsages->total() }}</span> entries</p>
             <ul class="pagination m-0 ms-auto">
-               <li class="page-item {{ $labRequests->previousPageUrl() ? '' : 'disabled' }}">
-                   <a class="page-link" href="{{ $labRequests->previousPageUrl() ?? '#' }}" tabindex="-1" aria-disabled="true">
+               <li class="page-item {{ $labUsages->previousPageUrl() ? '' : 'disabled' }}">
+                   <a class="page-link" href="{{ $labUsages->previousPageUrl() ?? '#' }}" tabindex="-1" aria-disabled="true">
                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                            stroke-linejoin="round">
@@ -154,16 +154,16 @@
                    </a>
                </li>
                @php
-                   $start = max(1, min($labRequests->currentPage() - 2, $labRequests->lastPage() - 4));
-                   $end = min($start + 4, $labRequests->lastPage());
+                   $start = max(1, min($labUsages->currentPage() - 2, $labUsages->lastPage() - 4));
+                   $end = min($start + 4, $labUsages->lastPage());
                @endphp
                @for ($i = $start; $i <= $end; $i++)
-                   <li class="page-item {{ $i == $labRequests->currentPage() ? 'active' : '' }}">
-                       <a class="page-link" href="{{ $labRequests->url($i) }}">{{ $i }}</a>
+                   <li class="page-item {{ $i == $labUsages->currentPage() ? 'active' : '' }}">
+                       <a class="page-link" href="{{ $labUsages->url($i) }}">{{ $i }}</a>
                    </li>
                @endfor
-               <li class="page-item {{ $labRequests->nextPageUrl() ? '' : 'disabled' }}">
-                   <a class="page-link" href="{{ $labRequests->nextPageUrl() ?? '#' }}">
+               <li class="page-item {{ $labUsages->nextPageUrl() ? '' : 'disabled' }}">
+                   <a class="page-link" href="{{ $labUsages->nextPageUrl() ?? '#' }}">
                        next
                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -179,6 +179,6 @@
    </div>
 </div>
 
-@include('components.labrequests.modal')
-@include('components.labrequests.modal-search')
+@include('components.labusages.modal')
+@include('components.labusages.modal-search')
 @endsection

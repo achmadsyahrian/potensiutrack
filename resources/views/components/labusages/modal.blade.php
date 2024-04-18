@@ -1,11 +1,11 @@
-<div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade show d-block" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="{{ route('labassistant.labrequests.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Permohonan baru</h5>
+                    <h5 class="modal-title">Penggunaan baru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -50,7 +50,22 @@
                                 <x-invalid-feedback field='class'></x-invalid-feedback>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Jam</label>
+                                <input type="time" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" autocomplete="off">
+                                <x-invalid-feedback field='time'></x-invalid-feedback>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Jumlah SKS</label>
+                                <input type="number" min="1" class="form-control @error('course_credits') is-invalid @enderror" name="course_credits"
+                                    placeholder="Masukkan jumlah" value="{{ old('course_credits') }}" autocomplete="off">
+                                <x-invalid-feedback field='course_credits'></x-invalid-feedback>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label required">Mata Kuliah</label>
                                 <input type="text" class="form-control @error('course') is-invalid @enderror" name="course"
@@ -58,25 +73,17 @@
                                 <x-invalid-feedback field='course'></x-invalid-feedback>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="mb-3">
-                                <label class="form-label required">Waktu Rencana Penggunaan</label>
-                                <input type="datetime-local" class="form-control @error('scheduled_date') is-invalid @enderror" name="scheduled_date"
-                                    value="{{ old('scheduled_date') }}" autocomplete="off">
-                                <x-invalid-feedback field='scheduled_date'></x-invalid-feedback>
+                                <label class="form-label required">Materi Kuliah</label>
+                                <input type="text" class="form-control @error('course_topic') is-invalid @enderror" name="course_topic"
+                                    placeholder="Masukkan materi" value="{{ old('course_topic') }}" autocomplete="off">
+                                <x-invalid-feedback field='course_topic'></x-invalid-feedback>
                             </div>
                         </div>
-                        {{-- Paraf --}}
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <x-signature-canvas title="Paraf Aslab" name="lab_assistant_signture"></x-signature-canvas>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">Keterangan</label>
-                                <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini" class="form-control @error('description') is-invalid @enderror" name="description" id="" cols="" rows="7">{{ old('description') }}</textarea>
-                                <x-invalid-feedback field='name'></x-invalid-feedback>
                             </div>
                         </div>
                     </div>

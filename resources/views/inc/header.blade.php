@@ -276,7 +276,7 @@
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labrequests.index']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -303,8 +303,8 @@
                                  href="{{ route('labassistant.labrequests.index') }}">
                                  Permohonan
                               </a>
-                              <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}"
-                                 href="{{ route('labs.index') }}">
+                              <a class="dropdown-item {{ request()->routeIs(['labassistant.labusages.index']) ? 'active' : '' }}"
+                                 href="{{ route('labassistant.labusages.index') }}">
                                  Penggunaan
                               </a>
                            </div>

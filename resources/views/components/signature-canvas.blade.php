@@ -1,4 +1,5 @@
-<!-- Content -->
+@props(['title', 'name'])
+
 <style>
     #sig-canvas {
         width: 100%;
@@ -11,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <label class="form-label required">Paraf Aslab</label>
+        <label class="form-label required">{{ $title }}</label>
     </div>
 </div>
 <div class="row">
@@ -19,12 +20,12 @@
         <canvas id="sig-canvas">
            
         </canvas>
-        <input type="hidden" id="sig-input" name="lab_assistant_signature" value="">
+        <input type="hidden" id="sig-input" name="{{ $name }}" value="">
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <button type="button" class="btn btn-primary mt-2" id="sig-submitBtn">Masukkan</button>
+        <button type="button" class="btn btn-info mt-2" id="sig-submitBtn">Masukkan</button>
         <button type="button" class="btn btn-default mt-2" id="sig-clearBtn">Bersihkan</button>
     </div>
 </div>
