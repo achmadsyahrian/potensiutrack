@@ -28,7 +28,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label required">Tanggal</label>
-                                <input type="datetime-local" class="form-control @error('date') is-invalid @enderror"
+                                <input type="date" class="form-control @error('date') is-invalid @enderror"
                                     name="date" value="{{ old('date') }}"
                                     autocomplete="off">
                                 <x-invalid-feedback field='date'></x-invalid-feedback>

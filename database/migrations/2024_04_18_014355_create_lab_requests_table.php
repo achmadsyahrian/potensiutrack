@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('lab_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lab_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lecturer_id')->constrained('users')->onDelete('cascade');
+            $table->string('course');
+            $table->string('class');
+            $table->date('date');
+            $table->datetime('scheduled_date');
+            $table->string('lab_assistant_signature')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**

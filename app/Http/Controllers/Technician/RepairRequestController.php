@@ -53,7 +53,6 @@ class RepairRequestController extends Controller
         
             return redirect()->route('technician.repairrequests.index')->with('success', 'Permohonan berhasil ditambahkan!');
         } catch (\Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
     }
@@ -116,10 +115,28 @@ class RepairRequestController extends Controller
 
     private function applySearchFilter(Request $request, $query)
     {
-        if ($request->has('search')) {
-            $search = $request->search;
-            $query->where('name', 'like', "%$search%");
+        if ($request->filled('search_date')) {
+            $query->whereDate('date', $request->search_date);
         }
-        return $query;
+
+        if ($request->filled('search_inventory_code')) {
+            $query->where('inventory_code', 'like', '%' . $request->search_inventory_code . '%');
+        }
+
+        if ($request->filled('search_division')) {
+            $query->where('division_id', $request->search_division);
+        }
+
+        if ($request->filled('search_employee')) {
+            $query->where('requested_by', $request->search_employee);
+        }
+
+        if ($request->filled('search_technician')) {
+            $query->where('technician_id', $request->search_technician);
+        }
+
+        if ($request->filled('search_status')) {
+            $query->where('status', $request->search_status);
+        }
     }
 }

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('fault_description')->nullable(); // Deskripsi kerusakan barang
             $table->text('repair_solution')->nullable(); // Solusi perbaikan
             $table->date('date');
-            $table->date('requested_date')->nullable(); // Tanggal permohonan
             $table->date('return_date')->nullable(); // Tanggal pengembalian
             $table->enum('status', [1, 2, 3, 4, 5])->default(1);
             // 1 = Baru
