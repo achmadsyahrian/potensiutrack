@@ -13,23 +13,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class LecturerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
-        $roles = Role::whereNotIn('id', [6])->get();
         $loggedInUserId = Auth::id();
         
-        $query = User::whereNotIn('id', [$loggedInUserId]);
+        $query = User::whereNotIn('id', [$loggedInUserId])
+                        ->where('role_id', 6);
 
         if ($request->has('search')) {
             $search = $request->search;
             $query->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%$search%")
                     ->orWhere('username', 'like', "%$search%")
+                    ->orWhere('nip', 'like', "%$search%")
                     ->orWhere('email', 'like', "%$search%")
                     ->orWhere('phone', 'like', "%$search%");
             });
@@ -39,8 +41,9 @@ class UserController extends Controller
 
         $users->appends(['search' => $request->search]);
 
-        return view('administrator.users.index', compact('roles', 'users'));
+        return view('administrator.lecturers.index', compact('users'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,11 +56,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserStoreRequest $request)
+
+    public function store(LectureStoreRequest $request)
     {
         try {
             $validatedData = $request->validated();
             $validatedData['password'] = bcrypt('potensiutama');
+            $validatedData['role_id'] = 6;
             
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo');
@@ -67,7 +72,7 @@ class UserController extends Controller
 
             User::create($validatedData);
         
-            return redirect()->route('users.index')->with('success', 'Akun berhasil ditambahkan!');
+            return redirect()->route('lecturers.index')->with('success', 'Dosen berhasil ditambahkan!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
@@ -84,18 +89,22 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    
+    public function edit(User $lecturer)
     {
-        return view('administrator.users.edit', compact('user'));
+        $user = $lecturer;
+        return view('administrator.lecturers.edit', compact('user'));
     }
     
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserUpdateRequest $request, User $user)
+
+    public function update(LectureUpdateRequest $request, User $lecturer)
     {
         try {
             $validatedData = $request->validated();
+            $user = $lecturer;
 
             if (empty($validatedData['password'])) {
                 unset($validatedData['password']);
@@ -114,7 +123,7 @@ class UserController extends Controller
 
             $user->update($validatedData);
         
-            return redirect()->route('users.index')->with('success', 'Akun berhasil diperbarui!');
+            return redirect()->route('lecturers.index')->with('success', 'Akun berhasil diperbarui!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
@@ -123,13 +132,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    
+    public function destroy(User $lecturer)
     {
+        $user = $lecturer;
+
         if ($user->photo) {
             Storage::disk('public')->delete($user->photo);
         }
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Akun berhasil dihapus!');
+        return redirect()->route('lecturers.index')->with('success', 'Dosen berhasil dihapus!');
     }
 
 }

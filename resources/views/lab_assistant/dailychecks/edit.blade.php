@@ -26,7 +26,7 @@
    <div class="container-xl">
       <div class="card">
          <div class="row row-deck row-cards">
-            <form action="{{ route('labassistant.labdailychecks.update', ['labdailycheck' => $labDailyCheck]) }}" method="post">
+            <form action="{{ route('labassistant.labdailychecks.update', ['lab_daily_check' => $labDailyCheck]) }}" method="post">
                @csrf
                @method('put')
                <div class="col d-flex flex-column">

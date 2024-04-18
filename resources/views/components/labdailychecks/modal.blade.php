@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-full-width modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Full width modal</h5>
+                <h5 class="modal-title">Data Laporan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('labassistant.labdailychecks.store') }}" class="d-inline-block" method="post">
@@ -28,7 +28,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label required">Tanggal</label>
-                                <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                <input type="datetime-local" class="form-control @error('date') is-invalid @enderror"
                                     name="date" value="{{ old('date') }}"
                                     autocomplete="off">
                                 <x-invalid-feedback field='date'></x-invalid-feedback>
@@ -100,7 +100,7 @@
 
         // Mengirim request AJAX ke server
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/pilih-lab/' + labId, true);
+        xhr.open('GET', '/labassistant/pilih-lab/' + labId, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var computers = JSON.parse(xhr.responseText); // Respons dari server dalam bentuk JSON

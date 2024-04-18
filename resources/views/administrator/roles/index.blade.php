@@ -16,7 +16,7 @@
                Potensi Utama Track
             </h2>
          </div>
-         <div class="col-auto ms-auto d-print-none">
+         {{-- <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
                <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                   data-bs-target="#modal-report">
@@ -38,7 +38,7 @@
                   </svg>
                </a>
             </div>
-         </div>
+         </div> --}}
       </div>
    </div>
 </div>
@@ -86,10 +86,10 @@
                               class="btn btn-outline-info">
                               Edit
                            </a>
-                           <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
+                           {{-- <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
                               data-bs-target="#modal-confirm-{{ $item->id }}">
                               Hapus
-                           </a>
+                           </a> --}}
                         </div>
                      </td>
                      <x-confirm-modal route="{{ route('roles.destroy', ['role' => $item->id]) }}"

@@ -26,6 +26,9 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/roles', \App\Http\Controllers\Administrator\RoleController::class)->names('roles');
     Route::resource('/divisions', \App\Http\Controllers\Administrator\DivisionController::class)->names('divisions');
     Route::resource('/item-inventories', \App\Http\Controllers\Administrator\ItemInventoryController::class)->names('iteminventories');
+
+    // Dosen
+    Route::resource('/lecturers', \App\Http\Controllers\Administrator\LecturerController::class)->names('lecturers');
 });
 
 // Kabag
@@ -38,8 +41,12 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
 
 // Asisten Lab
 Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
-    Route::resource('/labdailychecks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labassistant.labdailychecks');
+    // Laporan
+    Route::resource('/lab-daily-checks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labassistant.labdailychecks');
     Route::get('/pilih-lab/{id}', [\App\Http\Controllers\LabAssistant\LabDailyCheckController::class, 'pilihLab'])->name('pilih-lab');
+
+    // Lab
+    Route::resource('/lab-request', \App\Http\Controllers\LabAssistant\LabRequestController::class)->names('labassistant.labrequest');
 });
 
 // Teknisi

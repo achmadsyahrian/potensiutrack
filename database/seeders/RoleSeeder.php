@@ -37,5 +37,10 @@ class RoleSeeder extends Seeder
             'name' => 'Karyawan',
             'description' => 'Karyawan hanya bertugas melihat dan memverifikasi daftar permohonan perawatan perangkat.'
         ]);
+
+        Role::create([
+            'name' => 'Dosen',
+            'description' => 'Dosen hanya bertugas melihat dan memverifikasi daftar permohonan penggunaan lab komputer.'
+        ]);
     }
 }

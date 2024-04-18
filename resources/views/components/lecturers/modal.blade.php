@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('lecturers.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="modal-content">
@@ -10,6 +10,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label required">NIP</label>
+                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip"
+                                    placeholder="Masukkan nip" value="{{ old('nip') }}" autocomplete="off">
+                                <x-invalid-feedback field='nip'></x-invalid-feedback>
+                            </div>
+                        </div>
                         <div class="col-lg-7">
                             <div class="mb-3">
                                 <label class="form-label required">Nama</label>
@@ -25,34 +33,6 @@
                                 <x-invalid-feedback field='username'></x-invalid-feedback>
                             </div>
                         </div>
-                    </div>
-                    <label class="form-label required">Level</label>
-                    <div class="form-selectgroup-boxes row mb-3">
-                        @forelse ($roles as $item)
-                        <div class="col-lg-6 mb-3">
-                            <label class="form-selectgroup-item">
-                                <input type="radio" name="role_id" value="{{ $item->id }}"
-                                    class="form-selectgroup-input @error('role_id') is-invalid @enderror"
-                                    {{ old('role_id') == $item->id ? 'checked' : '' }}>
-                                <span class="form-selectgroup-label d-flex align-items-center p-3 @error('role_id') border-danger @enderror">
-                                    <span class="me-3">
-                                        <span class="form-selectgroup-check"></span>
-                                    </span>
-                                    <span class="form-selectgroup-label-content">
-                                        <span class="form-selectgroup-title strong mb-1">{{ $item->name }}</span>
-                                        <span class="d-block text-muted">{{ $item->description }}</span>
-                                    </span>
-                                </span>
-                                <x-invalid-feedback field='role_id'></x-invalid-feedback>
-                            </label>
-                        </div>
-                        @empty
-                        <p class="text-warning text-center">Data level tidak tersedia</p>
-                        @endforelse
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Email</label>

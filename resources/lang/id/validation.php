@@ -4,6 +4,7 @@ return [
     'required' => 'Kolom :attribute harus diisi.',
     'attributes' => [
         'name' => 'nama',
+        'nip' => 'nip',
         'phone' => 'No handphone',
         'old_password' => 'password lama',
         'new_password' => 'password baru',
@@ -32,4 +33,5 @@ return [
     ],
     'unique' => 'Data :attribute sudah terdaftar dalam sistem.',
     'image' => 'Kolom :attribute harus berupa file gambar.',
+    'numeric' => 'Kolom :attribute hanya boleh berisi angka.',
 ];
