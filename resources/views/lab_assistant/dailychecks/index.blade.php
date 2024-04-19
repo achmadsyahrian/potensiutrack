@@ -94,7 +94,7 @@
                         </td>
                         <td><span class="text-muted">{{ ($labDailyChecks->currentPage() - 1) * $labDailyChecks->perPage() + $loop->iteration }}</span></td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}
+                           {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                        </td>                       
                         <td>
                            {{ $item->lab->name }}

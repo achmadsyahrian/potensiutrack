@@ -62,7 +62,7 @@
                         <path d="M21 21l-6 -6" />
                      </svg>
                   </a>
-                  <a href="{{ route('labassistant.labrequests.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
+                  <a href="{{ route('labassistant.labusages.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
                      Reset Pencarian <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-reset ms-2">
@@ -85,7 +85,7 @@
                      <th>Lab</th>
                      <th>Dosen</th>
                      <th>Kelas</th>
-                     <th>Waktu Rencana Penggunaan</th>
+                     <th>Waktu Penggunaan</th>
                      <th></th>
                   </tr>
                </thead>
@@ -95,8 +95,8 @@
                         </td>
                         <td><span class="text-muted">{{ ($labUsages->currentPage() - 1) * $labUsages->perPage() + $loop->iteration }}</span></td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}
-                        </td>                       
+                           {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                       </td>                                             
                         <td>
                            <span class="badge bg-success me-1"></span> {{ $item->lab->name }}
                         </td>
@@ -107,12 +107,12 @@
                            {{ $item->class }}
                         </td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->scheduled_date)->isoFormat('DD MMMM YYYY') }}
-                           <span class="badge bg-success me-1">{{ \Carbon\Carbon::parse($item->scheduled_date)->isoFormat(' HH:mm') }}</span>
+                           {{ \Carbon\Carbon::parse($item->time)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                           <span class="badge bg-success me-1">{{ \Carbon\Carbon::parse($item->time)->isoFormat(' HH:mm') }}</span>
                         </td>                        
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              {{-- <a href="{{ route('labassistant.labrequests.edit', ['lab_request' => $item->id]) }}" class="btn btn-outline-info">
+                              {{-- <a href="{{ route('labassistant.labusages.edit', ['lab_usage' => $item->id]) }}" class="btn btn-outline-info">
                                  Edit
                               </a> --}}
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
@@ -120,7 +120,7 @@
                               </a>
                            </div>
                         </td>
-                        <x-confirm-modal route="{{ route('labassistant.labrequests.destroy', ['lab_request' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
+                        <x-confirm-modal route="{{ route('labassistant.labusages.destroy', ['lab_usage' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
                      </tr>
                   @empty
                      <tr>

@@ -95,7 +95,7 @@
                         </td>
                         <td><span class="text-muted">{{ ($labRequests->currentPage() - 1) * $labRequests->perPage() + $loop->iteration }}</span></td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}
+                           {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                         </td>                       
                         <td>
                            <span class="badge bg-success me-1"></span> {{ $item->lab->name }}
@@ -107,7 +107,7 @@
                            {{ $item->class }}
                         </td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->scheduled_date)->isoFormat('DD MMMM YYYY') }}
+                           {{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                            <span class="badge bg-success me-1">{{ \Carbon\Carbon::parse($item->scheduled_date)->isoFormat(' HH:mm') }}</span>
                         </td>                        
                         <td>

@@ -1,6 +1,6 @@
-<div class="modal modal-blur fade show d-block" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="{{ route('labassistant.labrequests.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('labassistant.labusages.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="modal-content">
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <x-signature-canvas title="Paraf Aslab" name="lab_assistant_signture"></x-signature-canvas>
+                                <x-signature-canvas title="Paraf Aslab" name="lab_assistant_signature"></x-signature-canvas>
                             </div>
                         </div>
                     </div>

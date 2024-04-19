@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('labassistant.labrequests.index') }}" method="get">
+        <form action="{{ route('labassistant.labusages.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <label class="form-label">Tanggal Permohonan</label>
+                                <label class="form-label">Tanggal Penggunaan</label>
                                 <input type="date" class="form-control" name="search_date" value="{{ request('search_date') }}" autocomplete="off">
                             </div>                            
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <label class="form-label">Tanggal Rencana Penggunaan</label>
-                                <input type="date" class="form-control" name="search_scheduled_date" value="{{ request('search_scheduled_date') }}" autocomplete="off">
+                                <label class="form-label">Waktu</label>
+                                <input type="time" class="form-control" name="search_time" value="{{ request('search_time') }}" autocomplete="off">
                             </div>                            
                         </div>
                         <div class="col-lg-12">
@@ -49,7 +49,7 @@
                         <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label">Kelas</label>
-                                <input type="input" class="form-control" name="search_class" value="{{ request('search_class') }}" autocomplete="off">
+                                <input type="input" class="form-control" name="search_class" placeholder="Masukkan kelas" value="{{ request('search_class') }}" autocomplete="off">
                             </div>                            
                         </div>
                     </div>
