@@ -78,7 +78,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Kerusakan</label>
                                 <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini" class="form-control @error('fault_description') is-invalid @enderror" name="fault_description" id="" cols="" rows="1">{{ old('fault_description') }}</textarea>
-                                <x-invalid-feedback field='name'></x-invalid-feedback>
+                                <x-invalid-feedback field='fault_description'></x-invalid-feedback>
                             </div>
                         </div>
                         {{-- <div class="col-lg-4">

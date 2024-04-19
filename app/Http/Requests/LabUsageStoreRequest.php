@@ -30,7 +30,7 @@ class LabUsageStoreRequest extends FormRequest
             'class' => 'required',
             'date' => 'required|date',
             'time' => 'required',
-            'lab_assistant_signature' => 'nullable',
+            'lab_assistant_signature' => 'required',
         ];
     }
 }

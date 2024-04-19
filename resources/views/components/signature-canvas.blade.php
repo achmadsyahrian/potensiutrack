@@ -1,7 +1,7 @@
 @props(['title', 'name'])
 
 <style>
-    #sig-canvas {
+    .sig-canvas {
         width: 100%;
         border: 2px dotted #CCCCCC;
         border-radius: 15px;
@@ -17,7 +17,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <canvas id="sig-canvas">
+        <canvas id="{{ $name }}" class="sig-canvas">
            
         </canvas>
         <input type="hidden" id="sig-input" name="{{ $name }}" value="">
@@ -33,6 +33,7 @@
 
 <script>
     (function() {
+      var title = "{{ $name }}";
   window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
@@ -44,7 +45,7 @@
       };
   })();
 
-  var canvas = document.getElementById("sig-canvas");
+  var canvas = document.getElementById(title);
   var ctx = canvas.getContext("2d");
   ctx.strokeStyle = "#222222";
   ctx.lineWidth = 4;
@@ -150,19 +151,21 @@
   }
 
   // Set up the UI
-  var sigText = document.getElementById("sig-input");
-  var sigImage = document.getElementById("sig-image");
-  var clearBtn = document.getElementById("sig-clearBtn");
-  var submitBtn = document.getElementById("sig-submitBtn");
+  var newCan = document.querySelector("#" + title);
+  var parentDiv = newCan.closest('.row');
+  var nextRow = parentDiv.nextElementSibling; 
+  var clearBtn = nextRow.querySelector("#sig-clearBtn");
   clearBtn.addEventListener("click", function(e) {
     clearCanvas();
-    sigText.innerHTML = "Data URL for your signature will go here!";
-    sigImage.setAttribute("src", "");
+    sigText.value = '';
   }, false);
+
+  var submitBtn = nextRow.querySelector("#sig-submitBtn");
+  var sigText = newCan.nextElementSibling;
+  console.log(sigText)
   submitBtn.addEventListener("click", function(e) {
     var dataUrl = canvas.toDataURL();
     sigText.value = dataUrl;
-    sigImage.setAttribute("src", dataUrl);
   }, false);
 
 })();

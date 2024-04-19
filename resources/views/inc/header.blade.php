@@ -312,7 +312,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 4)
-                  <li class="nav-item dropdown {{ request()->routeIs(['technician.repairrequests.index', 'technician.repairrequests.edit', 'technician.repairrequests.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['technician.repairrequests.index', 'technician.repairrequests.edit', 'technician.repairrequests.show', 'technician.employeepcdailychecks.index']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -337,6 +337,10 @@
                               <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
                                  href="{{ route('technician.repairrequests.index') }}">
                                  Perawatan & Perbaikan
+                              </a>
+                              <a class="dropdown-item {{ request()->routeIs(['technician.employeepcdailychecks.index']) ? 'active' : '' }}"
+                                 href="{{ route('technician.employeepcdailychecks.index') }}">
+                                 Pemeriksaan Harian
                               </a>
                            </div>
                         </div>
