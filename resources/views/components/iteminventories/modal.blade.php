@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             <div class="mb-3">
                                 <label class="form-label required">Kode</label>
                                 <div class="input-group input-group-flat">
@@ -21,8 +21,8 @@
                                   </div>
                                 <x-invalid-feedback field='code'></x-invalid-feedback>
                             </div>
-                        </div>
-                        <div class="col-lg-8">
+                        </div> --}}
+                        <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label required">Nama</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"

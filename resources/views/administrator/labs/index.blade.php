@@ -82,10 +82,10 @@
                               class="btn btn-outline-info">
                               Edit
                            </a>
-                           <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
+                           {{-- <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
                               data-bs-target="#modal-confirm-{{ $item->id }}">
                               Hapus
-                           </a>
+                           </a> --}}
                         </div>
                      </td>
                      <x-confirm-modal route="{{ route('labs.destroy', ['lab' => $item->id]) }}"

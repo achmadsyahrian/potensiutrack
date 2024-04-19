@@ -46,11 +46,11 @@ class ItemInventoryController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'code' => 'nullable',
+                // 'code' => 'nullable',
                 'name' => 'required|unique:item_inventories|max:255'
             ]);
 
-            $validatedData['code'] = $this->generateItemCode($request);
+            // $validatedData['code'] = $this->generateItemCode($request);
 
             ItemInventory::create($validatedData);
             
@@ -73,7 +73,7 @@ class ItemInventoryController extends Controller
      */
     public function edit(ItemInventory $itemInventory)
     {
-        //
+        return view('administrator.item_inventories.edit', compact('itemInventory'));
     }
 
     /**
@@ -81,7 +81,17 @@ class ItemInventoryController extends Controller
      */
     public function update(Request $request, ItemInventory $itemInventory)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|unique:item_inventories,name,' . $itemInventory->id . '|max:255',
+            ]);
+            
+            $itemInventory->update($validatedData);
+        
+            return redirect()->route('iteminventories.index')->with('success', 'Barang berhasil diperbarui!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator->getMessageBag()->toArray());
+        }
     }
 
     /**
@@ -98,13 +108,13 @@ class ItemInventoryController extends Controller
         }
     }
 
-    private function generateItemCode(Request $request)
-    {
-        if ($request->filled('code')) {
-            return 'PU/' . $request->code;
-        }
+    // private function generateItemCode(Request $request)
+    // {
+    //     if ($request->filled('code')) {
+    //         return 'PU/' . $request->code;
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
 }

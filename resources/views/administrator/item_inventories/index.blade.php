@@ -63,7 +63,7 @@
                <thead>
                   <tr>
                      <th class="w-1">No.</th>
-                     <th>Kode Inventaris</th>
+                     {{-- <th>Kode Inventaris</th> --}}
                      <th>Nama</th>
                      <th></th>
                   </tr>
@@ -74,9 +74,9 @@
                      </td>
                      <td><span class="text-muted">{{ ($itemInventories->currentPage() - 1) * $itemInventories->perPage() +
                            $loop->iteration }}</span></td>
-                     <td class="text-muted">
+                     {{-- <td class="text-muted">
                         {{ $item->code ?? '---' }}
-                     </td>
+                     </td> --}}
                      <td>
                         {{ $item->name }}
                      </td>
