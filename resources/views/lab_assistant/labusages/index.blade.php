@@ -107,14 +107,13 @@
                            {{ $item->class }}
                         </td>
                         <td>
-                           {{ \Carbon\Carbon::parse($item->time)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                            <span class="badge bg-success me-1">{{ \Carbon\Carbon::parse($item->time)->isoFormat(' HH:mm') }}</span>
                         </td>                        
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              {{-- <a href="{{ route('labassistant.labusages.edit', ['lab_usage' => $item->id]) }}" class="btn btn-outline-info">
-                                 Edit
-                              </a> --}}
+                              <a href="{{ route('labassistant.labusages.show', ['lab_usage' => $item->id]) }}" class="btn btn-outline-info">
+                                 Lihat
+                              </a>
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
                                  Hapus
                               </a>

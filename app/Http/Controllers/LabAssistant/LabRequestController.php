@@ -87,7 +87,7 @@ class LabRequestController extends Controller
      */
     public function show(LabRequest $labRequest)
     {
-        //
+        return view('lab_assistant.labrequests.show', compact('labRequest'));
     }
 
     /**

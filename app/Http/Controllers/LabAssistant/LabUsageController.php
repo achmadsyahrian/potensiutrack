@@ -71,7 +71,7 @@ class LabUsageController extends Controller
      */
     public function show(LabUsage $labUsage)
     {
-        //
+        return view('lab_assistant.labusages.show', compact('labUsage'));
     }
 
     /**

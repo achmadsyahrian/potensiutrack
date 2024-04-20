@@ -112,9 +112,9 @@
                         </td>                        
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              {{-- <a href="{{ route('labassistant.labrequests.edit', ['lab_request' => $item->id]) }}" class="btn btn-outline-info">
-                                 Edit
-                              </a> --}}
+                              <a href="{{ route('labassistant.labrequests.show', ['lab_request' => $item->id]) }}" class="btn btn-outline-info">
+                                 Lihat
+                              </a>
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
                                  Hapus
                               </a>
