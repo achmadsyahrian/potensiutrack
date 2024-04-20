@@ -34,8 +34,8 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'Karyawan',
-            'description' => 'Karyawan hanya bertugas melihat dan memverifikasi daftar permohonan perawatan perangkat.'
+            'name' => 'Pegawai',
+            'description' => 'Pegawai hanya bertugas melihat dan memverifikasi daftar permohonan perawatan perangkat.'
         ]);
 
         Role::create([

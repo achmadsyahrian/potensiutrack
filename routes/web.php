@@ -26,7 +26,14 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/roles', \App\Http\Controllers\Administrator\RoleController::class)->names('roles');
     Route::resource('/divisions', \App\Http\Controllers\Administrator\DivisionController::class)->names('divisions');
     Route::resource('/item-inventories', \App\Http\Controllers\Administrator\ItemInventoryController::class)->names('iteminventories');
-    Route::resource('/lecturers', \App\Http\Controllers\Administrator\LecturerController::class)->names('lecturers');
+
+    // Akun
+    Route::resource('/accounts/lecturers', \App\Http\Controllers\Administrator\LecturerController::class)->names('lecturers');
+    Route::resource('/accounts/administrator', \App\Http\Controllers\Administrator\AdministratorController::class)->names('accounts.administrator');
+    Route::resource('/accounts/employee', \App\Http\Controllers\Administrator\EmployeeController::class)->names('accounts.employee');
+    Route::resource('/accounts/technician', \App\Http\Controllers\Administrator\TechnicianController::class)->names('accounts.technician');
+    Route::resource('/accounts/lab-assistant', \App\Http\Controllers\Administrator\LabAssistantController::class)->names('accounts.labassistant');
+    Route::resource('/accounts/section-head', \App\Http\Controllers\Administrator\SectionHeadController::class)->names('accounts.sectionhead');
 });
 
 // Kabag
@@ -40,10 +47,10 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
 // Asisten Lab
 Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
     // Laporan
+    
+    // Lab
     Route::resource('/lab-daily-checks', \App\Http\Controllers\LabAssistant\LabDailyCheckController::class)->names('labassistant.labdailychecks');
     Route::get('/pilih-lab/{id}', [\App\Http\Controllers\LabAssistant\LabDailyCheckController::class, 'pilihLab'])->name('pilih-lab');
-
-    // Lab
     Route::resource('/lab-request', \App\Http\Controllers\LabAssistant\LabRequestController::class)->names('labassistant.labrequests');
     Route::resource('/lab-usages', \App\Http\Controllers\LabAssistant\LabUsageController::class)->names('labassistant.labusages');
 });
@@ -54,7 +61,7 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
     Route::resource('/employee-pc-daily-checks', \App\Http\Controllers\Technician\EmployeePcDailyCheckController::class)->names('technician.employeepcdailychecks');
 });
 
-// Karyawan
+// Pegawai
 Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::get('/repair-requests', [\App\Http\Controllers\Employee\RepairRequestController::class, 'index'])->name('employee.repairrequests.index');
     Route::get('/repair-requests/{id}', [\App\Http\Controllers\Employee\RepairRequestController::class, 'show'])->name('employee.repairrequests.show');

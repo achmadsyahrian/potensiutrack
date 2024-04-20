@@ -160,10 +160,6 @@
                                  href="{{ route('divisions.index') }}">
                                  Divisi
                               </a>
-                              <a class="dropdown-item {{ Request::is('*lecturer*') ? 'active' : '' }}"
-                                 href="{{ route('lecturers.index') }}">
-                                 Dosen
-                              </a>
                            </div>
                            <div class="dropdown-menu-column">
                               <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}"
@@ -177,6 +173,63 @@
                               <a class="dropdown-item {{ Request::is('*iteminventories*') ? 'active' : '' }}"
                                  href="{{ route('iteminventories.index') }}">
                                  Barang Inventaris
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="nav-item dropdown {{ request()->routeIs(['*administrator*', '*employee*', '*lecturers*', '*technician*', 'accounts.labassistant.index', 'accounts.labassistant.edit', 'accounts.sectionhead.index', 'accounts.sectionhead.edit']) ? 'active' : '' }}">
+                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                              class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                              <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                              <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                              <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                           </svg>
+                        </span>
+                        <span class="nav-link-title">
+                           Akun
+                        </span>
+                     </a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*administrator*') ? 'active' : '' }}"
+                                 href="{{ route('accounts.administrator.index') }}">
+                                 Administrator
+                              </a>
+                              <a class="dropdown-item {{ Request::is('') ? 'active' : '' }}"
+                                 href="{{ route('lecturers.index') }}">
+                                 Wakil Rektor
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*section-head*') ? 'active' : '' }}"
+                                 href="{{ route('accounts.sectionhead.index') }}">
+                                 Kabag
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*employee*') ? 'active' : '' }}"
+                                 href="{{ route('accounts.employee.index') }}">
+                                 Pegawai
+                              </a>
+                           </div>
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*lecturer*') ? 'active' : '' }}"
+                                 href="{{ route('lecturers.index') }}">
+                                 Dosen
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*technician*') ? 'active' : '' }}"
+                                 href="{{ route('accounts.technician.index') }}">
+                                 Teknisi
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*lab-assistant*') ? 'active' : '' }}"
+                                 href="{{ route('accounts.labassistant.index') }}">
+                                 Assisten Lab
                               </a>
                            </div>
                         </div>
@@ -244,7 +297,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 3)
-                  <li class="nav-item dropdown {{ request()->routeIs(['*labdailychecks*']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -268,15 +321,15 @@
                      <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                            <div class="dropdown-menu-column">
-                              <a class="dropdown-item {{ Request::is('*lab-daily-checks*') ? 'active' : '' }}"
+                              {{-- <a class="dropdown-item {{ Request::is('*lab-daily-checks*') ? 'active' : '' }}"
                                  href="{{ route('labassistant.labdailychecks.index') }}">
                                  Pemeriksaan Harian
-                              </a>
+                              </a> --}}
                            </div>
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labusages.index']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labusages.index', 'labassistant.labdailychecks.index', 'labassistant.labdailychecks.edit']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -299,6 +352,10 @@
                      <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                            <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*lab-daily-checks*') ? 'active' : '' }}"
+                                 href="{{ route('labassistant.labdailychecks.index') }}">
+                                 Pemeriksaan Harian
+                              </a>
                               <a class="dropdown-item {{ request()->routeIs(['labassistant.labrequests.index']) ? 'active' : '' }}"
                                  href="{{ route('labassistant.labrequests.index') }}">
                                  Permohonan

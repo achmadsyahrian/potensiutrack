@@ -41,4 +41,5 @@ return [
     'unique' => 'Data :attribute sudah terdaftar dalam sistem.',
     'image' => 'Kolom :attribute harus berupa file gambar.',
     'numeric' => 'Kolom :attribute hanya boleh berisi angka.',
+    'uploaded' => 'Ukuran file yang diunggah pada kolom :attribute terlalu besar. Harap unggah file dengan ukuran maksimum 2MB.',
 ];
