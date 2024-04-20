@@ -170,7 +170,7 @@
                                  href="{{ route('roles.index') }}">
                                  Level
                               </a>
-                              <a class="dropdown-item {{ Request::is('*iteminventories*') ? 'active' : '' }}"
+                              <a class="dropdown-item {{ Request::is('*item-inventories*') ? 'active' : '' }}"
                                  href="{{ route('iteminventories.index') }}">
                                  Barang Inventaris
                               </a>
@@ -329,7 +329,7 @@
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labusages.index', 'labassistant.labdailychecks.index', 'labassistant.labdailychecks.edit']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labrequests.show', 'labassistant.labusages.index', 'labassistant.labusages.show', 'labassistant.labdailychecks.index', 'labassistant.labdailychecks.edit']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -356,11 +356,11 @@
                                  href="{{ route('labassistant.labdailychecks.index') }}">
                                  Pemeriksaan Harian
                               </a>
-                              <a class="dropdown-item {{ request()->routeIs(['labassistant.labrequests.index']) ? 'active' : '' }}"
+                              <a class="dropdown-item {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labrequests.show',]) ? 'active' : '' }}"
                                  href="{{ route('labassistant.labrequests.index') }}">
                                  Permohonan
                               </a>
-                              <a class="dropdown-item {{ request()->routeIs(['labassistant.labusages.index']) ? 'active' : '' }}"
+                              <a class="dropdown-item {{ request()->routeIs(['labassistant.labusages.index', 'labassistant.labusages.show',]) ? 'active' : '' }}"
                                  href="{{ route('labassistant.labusages.index') }}">
                                  Penggunaan
                               </a>

@@ -109,44 +109,7 @@
                </tbody>
             </table>
          </div>
-         <div class="card-footer d-flex align-items-center">
-            <p class="m-0 text-muted">Showing <span>{{ $labs->firstItem() }}</span> to <span>{{
-                  $labs->lastItem() }}</span> of <span>{{ $labs->total() }}</span> entries</p>
-            <ul class="pagination m-0 ms-auto">
-               <li class="page-item {{ $labs->previousPageUrl() ? '' : 'disabled' }}">
-                  <a class="page-link" href="{{ $labs->previousPageUrl() ?? '#' }}" tabindex="-1"
-                     aria-disabled="true">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M15 6l-6 6l6 6" />
-                     </svg>
-                     prev
-                  </a>
-               </li>
-               @php
-               $start = max(1, min($labs->currentPage() - 2, $labs->lastPage() - 4));
-               $end = min($start + 4, $labs->lastPage());
-               @endphp
-               @for ($i = $start; $i <= $end; $i++) <li
-                  class="page-item {{ $i == $labs->currentPage() ? 'active' : '' }}">
-                  <a class="page-link" href="{{ $labs->url($i) }}">{{ $i }}</a>
-                  </li>
-                  @endfor
-                  <li class="page-item {{ $labs->nextPageUrl() ? '' : 'disabled' }}">
-                     <a class="page-link" href="{{ $labs->nextPageUrl() ?? '#' }}">
-                        next
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M9 6l6 6l-6 6" />
-                        </svg>
-                     </a>
-                  </li>
-            </ul>
-         </div>
+         <x-pagination :data="$labs"/>
       </div>
    </div>
 </div>
