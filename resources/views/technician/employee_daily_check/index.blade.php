@@ -99,12 +99,10 @@
                      </td>                                  
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           @if ($item->status == 1 || $item->status == 2)
-                              <a href="{{ route('technician.employeepcdailychecks.edit', ['employee_pc_daily_check' => $item->id]) }}"
-                                 class="btn btn-outline-info">
-                                 Edit
-                              </a>
-                           @endif
+                           <a href="{{ route('technician.employeepcdailychecks.show', ['employee_pc_daily_check' => $item->id]) }}"
+                              class="btn btn-outline-info">
+                              Lihat
+                           </a>
                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
                               data-bs-target="#modal-confirm-{{ $item->id }}">
                               Hapus

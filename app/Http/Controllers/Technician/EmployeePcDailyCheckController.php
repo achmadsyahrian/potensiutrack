@@ -48,6 +48,7 @@ class EmployeePcDailyCheckController extends Controller
             $validatedData['monitor_inventory_code'] = "PU/A-011/" . $division->name;
             $validatedData['cpu_inventory_code'] = "PU/A-001/" . $division->name;
 
+            $this->checkDuplicateRecord($validatedData['division_id'], $validatedData['date']);
             $this->setCheckboxValues($request, $validatedData);
 
             $validatedData['employee_signature'] = $this->saveSignature($validatedData['employee_signature']);
@@ -56,8 +57,10 @@ class EmployeePcDailyCheckController extends Controller
             EmployeePcDailyCheck::create($validatedData);
         
             return redirect()->route('technician.employeepcdailychecks.index')->with('success', 'Laporan berhasil ditambahkan!');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
+        } catch (\Illuminate\Validation\ValidationException | \InvalidArgumentException $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menyimpan data.');
         }
     }
 
@@ -66,7 +69,7 @@ class EmployeePcDailyCheckController extends Controller
      */
     public function show(EmployeePcDailyCheck $employeePcDailyCheck)
     {
-        //
+        return view('technician.employee_daily_check.show', compact('employeePcDailyCheck'));
     }
 
     /**
@@ -143,6 +146,14 @@ class EmployeePcDailyCheckController extends Controller
 
         foreach ($checkboxes as $checkbox) {
             $validatedData[$checkbox] = $request->has($checkbox) ? true : false;
+        }
+    }
+
+    protected function checkDuplicateRecord($divisionId, $date)
+    {
+        $query = EmployeePcDailyCheck::where('division_id', $divisionId)->where('date', $date);
+        if ($query->exists()) {
+            throw new \InvalidArgumentException('Laporan dengan bagian dan tanggal yang sama telah tercatat sebelumnya.');
         }
     }
 }
