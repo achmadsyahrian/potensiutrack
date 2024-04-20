@@ -21,6 +21,8 @@ class RepairRequestController extends Controller
 
         $this->applySearchFilter($request, $query);
 
+        $query->orderBy('date', 'desc');
+        
         $employees = User::where('role_id', 5)->get();
         $technicians = User::where('role_id', 4)->get();
         $divisions = Division::all();

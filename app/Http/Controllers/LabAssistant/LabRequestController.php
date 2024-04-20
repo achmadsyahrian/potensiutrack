@@ -20,6 +20,7 @@ class LabRequestController extends Controller
         $query = LabRequest::query();
 
         $this->applySearchFilters($query, $request);
+        $query->orderBy('date', 'desc');
 
         $labRequests = $query->paginate(10);
         $labRequests->appends(request()->query());

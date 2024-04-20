@@ -20,7 +20,8 @@ class LabUsageController extends Controller
         $query = LabUsage::query();
 
         $this->applySearchFilters($query, $request);
-
+        $query->orderBy('date', 'desc');
+        
         $labUsages = $query->paginate(10);
         $labUsages->appends(request()->query());
 

@@ -17,13 +17,12 @@ class EmployeePcDailyCheckController extends Controller
     public function index(Request $request)
     {
         $query = EmployeePcDailyCheck::query();
-
         $this->applySearchFilter($request, $query);
 
+        $query->orderBy('date', 'desc');
         $divisions = Division::all();
         
         $employeePcDailyCheck = $query->paginate(10);
-
         $employeePcDailyCheck->appends(['search' => $request->search]);
         
         return view('technician.employee_daily_check.index', compact('employeePcDailyCheck', 'divisions'));

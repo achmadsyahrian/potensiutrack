@@ -23,6 +23,8 @@ class LabDailyCheckController extends Controller
 
         $this->applySearchFilters($query, $request);
 
+        $query->orderBy('date', 'desc');
+        
         $labDailyChecks = $query->paginate(10);
         $labDailyChecks->appends(request()->query());
 
