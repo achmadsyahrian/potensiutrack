@@ -404,7 +404,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 5)
-                  <li class="nav-item dropdown {{ request()->routeIs(['employee.repairrequests.index', 'employee.repairrequests.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['employee.repairrequests.index', 'employee.repairrequests.show', 'employee.networkdev.index', 'employee.networkdev.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -429,6 +429,10 @@
                               <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
                                  href="{{ route('employee.repairrequests.index') }}">
                                  Perawatan & Perbaikan
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*network-development*') ? 'active' : '' }}"
+                                 href="{{ route('employee.networkdev.index') }}">
+                                 Pengembangan Koneksi Jaringan
                               </a>
                            </div>
                         </div>

@@ -63,9 +63,15 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
 
 // Pegawai
 Route::prefix('employee')->middleware('checkRole:5')->group(function () {
+    // Repair Request
     Route::get('/repair-requests', [\App\Http\Controllers\Employee\RepairRequestController::class, 'index'])->name('employee.repairrequests.index');
     Route::get('/repair-requests/{id}', [\App\Http\Controllers\Employee\RepairRequestController::class, 'show'])->name('employee.repairrequests.show');
     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\Employee\RepairRequestController::class, 'verify'])->name('employee.repairrequests.verify');
+
+    // Network Development
+    Route::get('/network-development', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'index'])->name('employee.networkdev.index');
+    Route::get('/network-development/{id}', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'show'])->name('employee.networkdev.show');
+    Route::patch('/network-development/{id}/verify', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'verify'])->name('employee.networkdev.verify');
 });
 
 // Puskom

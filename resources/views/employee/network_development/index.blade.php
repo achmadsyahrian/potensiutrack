@@ -9,7 +9,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                  <li class="breadcrumb-item active"><a href="#">Perawatan & Perbaikan</a></li>
+                  <li class="breadcrumb-item active"><a href="#">Permohonan Pengembangan Jaringan</a></li>
                </ol>
             </div>
             <h2 class="page-title">
@@ -40,40 +40,29 @@
                <thead>
                   <tr>
                      <th class="w-1">No.</th>
-                     <th>Kode Inventaris</th>
                      <th>Tanggal</th>
-                     <th>Jenis Barang</th>
-                     <th>Penanggung Jawab</th>
-                     <th>Tanggal Dikembalikan</th>
+                     <th>Divisi</th>
+                     <th>Alasan</th>
                      <th>Status</th>
+                     <th>Tanggal Selesai</th>
                      <th></th>
                   </tr>
                </thead>
                <tbody>
-                  @forelse ($repairRequests as $item)
+                  @forelse ($networkDevelopment as $item)
                   <tr>
                      </td>
-                     <td><span class="text-muted">{{ ($repairRequests->currentPage() - 1) * $repairRequests->perPage() +
+                     <td><span class="text-muted">{{ ($networkDevelopment->currentPage() - 1) * $networkDevelopment->perPage() +
                            $loop->iteration }}</span></td>
-                     <td class="text-muted">
-                        {{ $item->inventory_code }}
-                     </td>    
                      <td>
                         {{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}
                      </td> 
                      <td>
-                        {{ $item->itemInventory->name }}
+                        {{ $item->division->name }}
                      </td>   
-                     <td>
-                        {{ $item->technician->name }}
-                     </td>
-                     <td class="text-muted">
-                        @if($item->return_date)
-                            {{ \Carbon\Carbon::parse($item->return_date)->format('d F Y') }}
-                        @else
-                            Belum dikembalikan
-                        @endif
-                     </td>                                       
+                     <td style="max-width: 300px; text-wrap: wrap;">
+                        {{ $item->network_expansion_reason }}
+                     </td>                 
                      <td>
                         @php
                            $status = '';
@@ -85,15 +74,15 @@
                                  $badgeClass = 'warning';
                               break;
                               case 2:
-                                 $status = 'Sudah Diperbaiki';
+                                 $status = 'Sudah Selesai';
                                  $badgeClass = 'teal';
                               break;
                               case 3:
-                                 $status = 'Sudah Diterima';
+                                 $status = 'Sudah Dikonfirmasi';
                                  $badgeClass = 'cyan';
                                  break;
                               case 4:
-                                 $status = 'Sudah Disetujui';
+                                 $status = 'Sudah Disetujui Kabag';
                                  $badgeClass = 'success';
                               break;
                               case 5:
@@ -106,10 +95,17 @@
                            }
                         @endphp
                         <span class="badge bg-{{ $badgeClass }} me-1"></span> {{ $status }}
-                     </td>                                     
+                     </td>     
+                     <td>
+                        @if(isset($item->finish_date))
+                            {{ \Carbon\Carbon::parse($item->finish_date)->format('d F Y') }}
+                        @else
+                            --
+                        @endif
+                     </td>                                   
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('employee.repairrequests.show', ['id' => $item->id]) }}"
+                           <a href="{{ route('employee.networkdev.show', ['id' => $item->id]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
@@ -134,44 +130,7 @@
                </tbody>
             </table>
          </div>
-         <div class="card-footer d-flex align-items-center">
-            <p class="m-0 text-muted">Showing <span>{{ $repairRequests->firstItem() }}</span> to <span>{{
-                  $repairRequests->lastItem() }}</span> of <span>{{ $repairRequests->total() }}</span> entries</p>
-            <ul class="pagination m-0 ms-auto">
-               <li class="page-item {{ $repairRequests->previousPageUrl() ? '' : 'disabled' }}">
-                  <a class="page-link" href="{{ $repairRequests->previousPageUrl() ?? '#' }}" tabindex="-1"
-                     aria-disabled="true">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M15 6l-6 6l6 6" />
-                     </svg>
-                     prev
-                  </a>
-               </li>
-               @php
-               $start = max(1, min($repairRequests->currentPage() - 2, $repairRequests->lastPage() - 4));
-               $end = min($start + 4, $repairRequests->lastPage());
-               @endphp
-               @for ($i = $start; $i <= $end; $i++) <li
-                  class="page-item {{ $i == $repairRequests->currentPage() ? 'active' : '' }}">
-                  <a class="page-link" href="{{ $repairRequests->url($i) }}">{{ $i }}</a>
-                  </li>
-                  @endfor
-                  <li class="page-item {{ $repairRequests->nextPageUrl() ? '' : 'disabled' }}">
-                     <a class="page-link" href="{{ $repairRequests->nextPageUrl() ?? '#' }}">
-                        next
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M9 6l6 6l-6 6" />
-                        </svg>
-                     </a>
-                  </li>
-            </ul>
-         </div>
+         <x-pagination :data="$networkDevelopment" />
       </div>
    </div>
 </div>
