@@ -404,7 +404,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 5)
-                  <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['employee.repairrequests.index', 'employee.repairrequests.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -434,6 +434,37 @@
                         </div>
                      </div>
                   </li>
+               @elseif (Auth::user()->role_id == 7)
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show']) ? 'active' : '' }}">
+                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                     data-bs-auto-close="outside" role="button" aria-expanded="false">
+                     <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                           class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics">
+                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                           <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
+                           <path d="M7 20l10 0" />
+                           <path d="M9 16l0 4" />
+                           <path d="M15 16l0 4" />
+                           <path d="M8 12l3 -3l2 2l3 -3" />
+                        </svg>
+                     </span>
+                     <span class="nav-link-title">
+                        Layanan
+                     </span>
+                  </a>
+                  <div class="dropdown-menu">
+                     <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*network-development*') ? 'active' : '' }}"
+                              href="{{ route('puskom.networkdev.index') }}">
+                              Pengembangan Koneksi Jaringan
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
                @endif
             </ul>
          </div>

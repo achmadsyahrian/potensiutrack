@@ -68,6 +68,11 @@ Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\Employee\RepairRequestController::class, 'verify'])->name('employee.repairrequests.verify');
 });
 
+// Puskom
+Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
+    Route::resource('/network-development', \App\Http\Controllers\Puskom\NetworkConnectionDevelopmentController::class)->names('puskom.networkdev');
+    Route::patch('/network-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkConnectionDevelopmentController::class, 'markAsComplete'])->name('puskom.networkdev.markAsComplete');
+});
 
 // Guest
 Route::middleware(['guest'])->group(function () {

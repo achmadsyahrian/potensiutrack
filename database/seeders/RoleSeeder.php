@@ -42,5 +42,10 @@ class RoleSeeder extends Seeder
             'name' => 'Dosen',
             'description' => 'Dosen hanya bertugas melihat dan memverifikasi daftar permohonan penggunaan lab komputer.'
         ]);
+
+        Role::create([
+            'name' => 'Puskom',
+            'description' => 'Puskom bertanggung jawab mengelola layanan terkait dengan web, sistem informasi, dan jaringan.'
+        ]);
     }
 }

@@ -26,7 +26,7 @@
             <ul class="list-inline list-inline-dots mb-0">
                <li class="list-inline-item">
                   Copyright &copy; 2024
-                  <a href="https://instagram.com/_achrian" target="_blank" class="link-secondary">Achmad Syahrian</a>.
+                  <a href="https://instagram.com/_achrian" target="_blank" class="link-primary">Achmad Syahrian</a>.
                   All rights reserved.
                </li>
             </ul>
