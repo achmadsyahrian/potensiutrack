@@ -131,29 +131,6 @@ class NetworkConnectionDevelopmentController extends Controller
 
     }
 
-    private function saveSignature($base64Signature)
-    {
-        // Mengubah base64 menjadi data biner gambar
-        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Signature));
-
-        // Membuat nama file baru dengan ekstensi yang sesuai
-        $fileName = 'paraf_' . uniqid() . '.png';
-
-        // Mendapatkan path lengkap ke folder storage/public/signature
-        $directory = storage_path('app/public/signature');
-
-        // Membuat folder jika belum ada
-        if (!file_exists($directory)) {
-            mkdir($directory, 0755, true);
-        }
-
-        // Menyimpan file gambar ke dalam folder storage/public/signature
-        file_put_contents($directory . '/' . $fileName, $imageData);
-
-        // Mengembalikan path lengkap file yang disimpan
-        return 'signature/' . $fileName;
-    }
-
     public function markAsComplete(NetworkConnectionDevelopment $id, Request $request)
     {
         $validated = $request->validate([

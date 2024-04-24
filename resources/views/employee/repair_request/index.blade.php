@@ -26,12 +26,27 @@
          <div class="card-header">
             <h3 class="card-title">Data Permohonan</h3>
             <div class="ms-auto text-muted">
-               Cari:
                <div class="ms-2 d-inline-block">
-                  <form action="{{ route('technician.repairrequests.index') }}" method="GET">
-                     <input type="text" class="form-control form-control-sm" name="search" aria-label="Search invoice"
-                        value="{{ request('search') }}">
-                  </form>
+                  <a href="#" class="btn btn-info btn-pill btn-sm me-1" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#modal-search">
+                     Cari <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-search ms-2">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                        <path d="M21 21l-6 -6" />
+                     </svg>
+                  </a>
+                  <a href="{{ route('employee.repairrequests.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
+                     Reset Pencarian <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-reset ms-2">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M21 21l-6 -6" />
+                        <path
+                           d="M3.268 12.043a7.017 7.017 0 0 0 6.634 4.957a7.012 7.012 0 0 0 7.043 -6.131a7 7 0 0 0 -5.314 -7.672a7.021 7.021 0 0 0 -8.241 4.403" />
+                        <path d="M3 4v4h4" />
+                     </svg>
+                  </a>
                </div>
             </div>
          </div>
@@ -89,7 +104,7 @@
                                  $badgeClass = 'teal';
                               break;
                               case 3:
-                                 $status = 'Sudah Diterima';
+                                 $status = 'Sudah Anda Diterima';
                                  $badgeClass = 'cyan';
                                  break;
                               case 4:
@@ -134,46 +149,11 @@
                </tbody>
             </table>
          </div>
-         <div class="card-footer d-flex align-items-center">
-            <p class="m-0 text-muted">Showing <span>{{ $repairRequests->firstItem() }}</span> to <span>{{
-                  $repairRequests->lastItem() }}</span> of <span>{{ $repairRequests->total() }}</span> entries</p>
-            <ul class="pagination m-0 ms-auto">
-               <li class="page-item {{ $repairRequests->previousPageUrl() ? '' : 'disabled' }}">
-                  <a class="page-link" href="{{ $repairRequests->previousPageUrl() ?? '#' }}" tabindex="-1"
-                     aria-disabled="true">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M15 6l-6 6l6 6" />
-                     </svg>
-                     prev
-                  </a>
-               </li>
-               @php
-               $start = max(1, min($repairRequests->currentPage() - 2, $repairRequests->lastPage() - 4));
-               $end = min($start + 4, $repairRequests->lastPage());
-               @endphp
-               @for ($i = $start; $i <= $end; $i++) <li
-                  class="page-item {{ $i == $repairRequests->currentPage() ? 'active' : '' }}">
-                  <a class="page-link" href="{{ $repairRequests->url($i) }}">{{ $i }}</a>
-                  </li>
-                  @endfor
-                  <li class="page-item {{ $repairRequests->nextPageUrl() ? '' : 'disabled' }}">
-                     <a class="page-link" href="{{ $repairRequests->nextPageUrl() ?? '#' }}">
-                        next
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                           stroke-linejoin="round">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M9 6l6 6l-6 6" />
-                        </svg>
-                     </a>
-                  </li>
-            </ul>
-         </div>
+         <x-pagination :data="$repairRequests" />
       </div>
    </div>
 </div>
+
+@include('components.employee.repairrequests.modal-search')
 
 @endsection

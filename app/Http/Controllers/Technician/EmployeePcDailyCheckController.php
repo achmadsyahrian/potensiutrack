@@ -118,20 +118,6 @@ class EmployeePcDailyCheckController extends Controller
         }
     }
 
-    private function saveSignature($base64Signature)
-    {
-        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Signature));
-        $fileName = 'paraf_' . uniqid() . '.png';
-        $directory = storage_path('app/public/signature');
-
-        if (!file_exists($directory)) {
-            mkdir($directory, 0755, true);
-        }
-        file_put_contents($directory . '/' . $fileName, $imageData);
-
-        return 'signature/' . $fileName;
-    }
-
     private function setCheckboxValues(EmployeePcDailyCheckStoreRequest $request, &$validatedData)
     {
         $checkboxes = [

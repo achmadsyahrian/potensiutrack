@@ -82,19 +82,25 @@ class RepairRequestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RepairRequestStoreRequest $request, RepairRequest $repairRequest)
+    public function update(Request $request, RepairRequest $repairRequest)
     {
         try {
-            $validatedData = $request->validated();
+            $validated = $request->validate([
+                'technician_signature' => 'required',
+                'return_date' => 'required',
+                'repair_solution' => 'nullable',
+            ]);
 
-            if ($request->filled('return_date')) {
-                $validatedData['status'] = 2;
-            }
-            $repairRequest->update($validatedData);
+            $signaturePath = $this->saveSignature($validated['technician_signature']);
+            $repairRequest->status = 2;
+            $repairRequest->technician_signature = $signaturePath;
+            $repairRequest->repair_solution = $validated['repair_solution'];
+            $repairRequest->return_date = $validated['return_date'];
+
+            $repairRequest->save();
         
             return redirect()->route('technician.repairrequests.index')->with('success', 'Permohonan berhasil diperbarui!');
         } catch (\Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
     }
