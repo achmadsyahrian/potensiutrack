@@ -42,7 +42,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    @if ($networkDevelopment->status == 2)
+                                    @if ($networkDevelopment->status == 1)
+                                        <div class="mb-3">
+                                            <label class="form-label">Tanggal Selesai</label>
+                                            <input type="text" class="form-control"
+                                                value="Belum Selesai" readonly>
+                                        </div>
+                                    @else
                                         <div class="mb-3">
                                             <label class="form-label required">Tanggal Selesai</label>
                                             <div class="row g-2">
@@ -51,12 +57,6 @@
                                                     value="{{ \Carbon\Carbon::parse($networkDevelopment->finish_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @else
-                                        <div class="mb-3">
-                                            <label class="form-label">Tanggal Selesai</label>
-                                            <input type="text" class="form-control"
-                                                value="Belum Selesai" readonly>
                                         </div>
                                     @endif
                                 </div>

@@ -9,7 +9,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                  <li class="breadcrumb-item active"><a href="#">Permohonan Pengembangan Jaringan</a></li>
+                  <li class="breadcrumb-item active"><a href="#">Permohonan Penanganan Jaringan</a></li>
                </ol>
             </div>
             <h2 class="page-title">
@@ -105,7 +105,7 @@
                      </td>                                   
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('employee.networkdev.show', ['id' => $item->id]) }}"
+                           <a href="{{ route('employee.networktroubleshooting.show', ['id' => $item->id]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>

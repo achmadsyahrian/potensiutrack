@@ -74,9 +74,9 @@ Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::patch('/network-development/{id}/verify', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'verify'])->name('employee.networkdev.verify');
 
     // Network Troubleshooting
-    Route::get('/network-troubleshooting', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'index'])->name('employee.networkdev.index');
-    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'show'])->name('employee.networkdev.show');
-    Route::patch('/network-troubleshooting/{id}/verify', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'verify'])->name('employee.networkdev.verify');
+    Route::get('/network-troubleshooting', [\App\Http\Controllers\Employee\NetworkTroubleshootingController::class, 'index'])->name('employee.networktroubleshooting.index');
+    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\Employee\NetworkTroubleshootingController::class, 'show'])->name('employee.networktroubleshooting.show');
+    Route::patch('/network-troubleshooting/{id}/verify', [\App\Http\Controllers\Employee\NetworkTroubleshootingController::class, 'verify'])->name('employee.networktroubleshooting.verify');
 });
 
 // Puskom
