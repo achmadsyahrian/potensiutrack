@@ -31,6 +31,7 @@ return [
         'reported_by_id' => 'pelapor',
         'network_expansion_reason' => 'alasan',
         'finish_date' => 'tanggal selesai',
+        'fault_reason' => 'alasan',
     ],
     'regex' => 'Kolom :attribute harus memenuhi format yang benar.',
     'email' => 'Kolom :attribute harus berupa alamat email yang valid.',

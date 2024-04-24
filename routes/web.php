@@ -72,12 +72,22 @@ Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::get('/network-development', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'index'])->name('employee.networkdev.index');
     Route::get('/network-development/{id}', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'show'])->name('employee.networkdev.show');
     Route::patch('/network-development/{id}/verify', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'verify'])->name('employee.networkdev.verify');
+
+    // Network Troubleshooting
+    Route::get('/network-troubleshooting', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'index'])->name('employee.networkdev.index');
+    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'show'])->name('employee.networkdev.show');
+    Route::patch('/network-troubleshooting/{id}/verify', [\App\Http\Controllers\Employee\NetworkConnectionDevelopmentController::class, 'verify'])->name('employee.networkdev.verify');
 });
 
 // Puskom
 Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
+    // Network Development
     Route::resource('/network-development', \App\Http\Controllers\Puskom\NetworkConnectionDevelopmentController::class)->names('puskom.networkdev');
     Route::patch('/network-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkConnectionDevelopmentController::class, 'markAsComplete'])->name('puskom.networkdev.markAsComplete');
+
+    //Network Troubleshooting
+    Route::resource('/network-troubleshooting', \App\Http\Controllers\Puskom\NetworkTroubleshootingController::class)->names('puskom.networktroubleshooting');
+    Route::patch('/network-troubleshooting/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkTroubleshootingController::class, 'markAsComplete'])->name('puskom.networktroubleshooting.markAsComplete');
 });
 
 // Guest

@@ -23,6 +23,14 @@ class UserSeeder extends Seeder
             'role_id' => 1,
         ]);
         User::create([
+            'name' => 'Kepala Bagian Puskom',
+            'email' => null,
+            'username' => 'kabag',
+            'phone' => null,
+            'password' => Hash::make('kabag'),
+            'role_id' => 2,
+        ]);
+        User::create([
             'name' => 'Asisten Lab',
             'email' => null,
             'username' => 'aslab',
