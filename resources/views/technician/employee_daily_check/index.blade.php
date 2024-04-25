@@ -18,7 +18,43 @@
          </div>
          <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-               <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
+               <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-search">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                     <path d="M21 21l-6 -6" />
+                  </svg>
+                  Cari
+               </a>
+               <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-search" aria-label="Create new report">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                     <path d="M21 21l-6 -6" />
+                  </svg>
+               </a>
+            </div>
+         </div>
+         <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+               <a href="{{ route('technician.employeepcdailychecks.index') }}" class="btn btn-secondary d-none d-sm-inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+                  Reset Pencarian
+               </a>
+               <a href="{{ route('technician.employeepcdailychecks.index') }}" class="btn btn-secondary d-sm-none btn-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+               </a>
+            </div>
+         </div>
+         <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+               <a href="#" class="btn btn-teal d-none d-sm-inline-block" data-bs-toggle="modal"
                   data-bs-target="#modal-report">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -28,7 +64,7 @@
                   </svg>
                   Tambah laporan
                </a>
-               <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
+               <a href="#" class="btn btn-teal d-sm-none btn-icon" data-bs-toggle="modal"
                   data-bs-target="#modal-report" aria-label="Create new report">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -48,30 +84,6 @@
       <div class="card">
          <div class="card-header">
             <h3 class="card-title">Data Laporan</h3>
-            <div class="ms-auto text-muted">
-               <div class="ms-2 d-inline-block">
-                  <a href="#" class="btn btn-info btn-pill btn-sm me-1" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#modal-search">
-                     Cari <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-search ms-2">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                        <path d="M21 21l-6 -6" />
-                     </svg>
-                  </a>
-                  <a href="{{ route('technician.employeepcdailychecks.index') }}" class="btn btn-secondary btn-pill btn-sm" style="width: 150px;" >
-                     Reset Pencarian <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-zoom-reset ms-2">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M21 21l-6 -6" />
-                        <path
-                           d="M3.268 12.043a7.017 7.017 0 0 0 6.634 4.957a7.012 7.012 0 0 0 7.043 -6.131a7 7 0 0 0 -5.314 -7.672a7.021 7.021 0 0 0 -8.241 4.403" />
-                        <path d="M3 4v4h4" />
-                     </svg>
-                  </a>
-               </div>
-            </div>
          </div>
          <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap datatable" id="my-table">
