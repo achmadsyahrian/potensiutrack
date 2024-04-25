@@ -16,6 +16,12 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
+                                <label class="form-label">Tanggal Dikembalikan</label>
+                                <input type="date" class="form-control" name="search_return_date" value="{{ request('search_return_date') }}" autocomplete="off">
+                            </div>                            
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="mb-3">
                                 <label class="form-label">Kode Inventaris</label>
                                 <input type="text" class="form-control" name="search_inventory_code" value="{{ request('search_inventory_code') }}" placeholder="Masukkan kode" autocomplete="off">
                             </div>                            

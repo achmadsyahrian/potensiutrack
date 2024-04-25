@@ -12,11 +12,17 @@ class NetworkConnectionDevelopmentController extends Controller
 {
     public function index(Request $request)
     {
-        $logUserId = Auth::id();
-        $networkDevelopment = NetworkConnectionDevelopment::where('reported_by_id', $logUserId)->paginate(10);
+        $query = NetworkConnectionDevelopment::where('reported_by_id', Auth::id());
+
+        $this->applySearchFilters($query, $request);
+        $query->orderBy('date', 'desc');
+
+        $networkDevelopment = $query->paginate(10);
+        $networkDevelopment->appends(request()->query());
 
         return view('employee.network_development.index', compact('networkDevelopment'));
     }
+
 
     public function show(NetworkConnectionDevelopment $id)
     {
@@ -37,5 +43,23 @@ class NetworkConnectionDevelopmentController extends Controller
         
         $networkDevelopment->save();
         return redirect()->route('employee.networkdev.index')->with('success', 'Permohonan berhasil di verifikasi');
+    }
+
+
+    private function applySearchFilters($query, $request)
+    {
+        // Filter berdasarkan tanggal
+        if ($request->filled('search_date')) {
+            $query->whereDate('date', $request->search_date);
+        }
+
+        if ($request->filled('search_finish_date')) {
+            $query->whereDate('finish_date', $request->search_finish_date);
+        }
+
+        if ($request->filled('search_status')) {
+            $query->where('status', $request->search_status);
+        }
+
     }
 }

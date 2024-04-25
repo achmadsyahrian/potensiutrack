@@ -54,6 +54,10 @@ class RepairRequestController extends Controller
             $query->whereDate('date', $request->search_date);
         }
 
+        if ($request->filled('search_return_date')) {
+            $query->whereDate('return_date', $request->search_return_date);
+        }
+
         if ($request->filled('search_inventory_code')) {
             $query->where('inventory_code', 'like', '%' . $request->search_inventory_code . '%');
         }

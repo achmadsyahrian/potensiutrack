@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('employee.repairrequests.index') }}" method="get">
+        <form action="{{ route('employee.networktroubleshooting.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
@@ -16,14 +16,8 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <label class="form-label">Tanggal Dikembalikan</label>
-                                <input type="date" class="form-control" name="search_return_date" value="{{ request('search_return_date') }}" autocomplete="off">
-                            </div>                            
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label class="form-label">Kode Inventaris</label>
-                                <input type="text" class="form-control" name="search_inventory_code" value="{{ request('search_inventory_code') }}" placeholder="Masukkan kode" autocomplete="off">
+                                <label class="form-label">Tanggal Selesai</label>
+                                <input type="date" class="form-control" name="search_finish_date" value="{{ request('search_finish_date') }}" autocomplete="off">
                             </div>                            
                         </div>
                         <div class="col-lg-12">
@@ -32,8 +26,8 @@
                                 <select type="text" class="form-select" name="search_status">
                                     <option selected disabled>Pilih status</option>
                                     <option value="1" {{ request('search_status') == 1 ? 'selected' : '' }}>Baru</option>
-                                    <option value="2" {{ request('search_status') == 2 ? 'selected' : '' }}>Sudah diperbaiki</option>
-                                    <option value="3" {{ request('search_status') == 3 ? 'selected' : '' }}>Sudah diterima</option>
+                                    <option value="2" {{ request('search_status') == 2 ? 'selected' : '' }}>Sudah Selesai</option>
+                                    <option value="3" {{ request('search_status') == 3 ? 'selected' : '' }}>Sudah Dikonfirmasi</option>
                                     <option value="4" {{ request('search_status') == 4 ? 'selected' : '' }}>Disetujui kabag</option>
                                     <option value="5" {{ request('search_status') == 5 ? 'selected' : '' }}>Ditolak kabag</option>
                                 </select>

@@ -11,8 +11,13 @@ class NetworkTroubleshootingController extends Controller
 {
     public function index(Request $request)
     {
-        $logUserId = Auth::id();
-        $networkTroubleshootings = NetworkTroubleshooting::where('reported_by_id', $logUserId)->paginate(10);
+        $query = NetworkTroubleshooting::where('reported_by_id', Auth::id());
+
+        $this->applySearchFilters($query, $request);
+        $query->orderBy('date', 'desc');
+
+        $networkTroubleshootings = $query->paginate(10);
+        $networkTroubleshootings->appends(request()->query());
 
         return view('employee.network_troubleshooting.index', compact('networkTroubleshootings'));
     }
@@ -36,6 +41,23 @@ class NetworkTroubleshootingController extends Controller
         
         $networkTroubleshooting->save();
         return redirect()->route('employee.networktroubleshooting.index')->with('success', 'Permohonan berhasil di verifikasi');
+    }
+
+    private function applySearchFilters($query, $request)
+    {
+        // Filter berdasarkan tanggal
+        if ($request->filled('search_date')) {
+            $query->whereDate('date', $request->search_date);
+        }
+
+        if ($request->filled('search_finish_date')) {
+            $query->whereDate('finish_date', $request->search_finish_date);
+        }
+
+        if ($request->filled('search_status')) {
+            $query->where('status', $request->search_status);
+        }
+
     }
 
 }

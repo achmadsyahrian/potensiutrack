@@ -126,34 +126,6 @@
                                         <x-invalid-feedback field='name'></x-invalid-feedback>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label required">Tanggal Pengembalian</label>
-                                        <div class="row g-2">
-                                            <div class="col">
-                                                {{-- <input type="date" class="form-control @error('return_date') is-invalid @enderror"
-                                                    name="return_date" value="{{ $repairRequest->return_date }}" autocomplete="off"> --}}
-                                                <input type="text" class="form-control" value="{{ \Carbon\Carbon::parse($repairRequest->return_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" autocomplete="off" readonly>
-                                                <x-invalid-feedback field='return_date'></x-invalid-feedback>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Perbaikan</label>
-                                        <div class="row g-2">
-                                            <div class="col">
-                                                {{-- <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini"
-                                                    class="form-control @error('repair_solution') is-invalid @enderror"
-                                                    name="repair_solution" id="" cols=""
-                                                    rows="1">{{ $repairRequest->repair_solution }}</textarea> --}}
-                                                <input type="text" class="form-control" value="{{ $repairRequest->repair_solution ?? '--' }}" readonly>
-                                                <x-invalid-feedback field='repair_solution'></x-invalid-feedback>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 @if ($repairRequest->status == 1)
                                     <hr>
                                     <div class="col-lg-4">
@@ -197,6 +169,35 @@
                                             <x-signature-canvas title="Paraf Teknisi" name="technician_signature"></x-signature-canvas>
                                         </div>
                                     </div>
+                                @else
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label required">Tanggal Pengembalian</label>
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                {{-- <input type="date" class="form-control @error('return_date') is-invalid @enderror"
+                                                    name="return_date" value="{{ $repairRequest->return_date }}" autocomplete="off"> --}}
+                                                <input type="text" class="form-control" value="{{ \Carbon\Carbon::parse($repairRequest->return_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" autocomplete="off" readonly>
+                                                <x-invalid-feedback field='return_date'></x-invalid-feedback>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Perbaikan</label>
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                {{-- <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini"
+                                                    class="form-control @error('repair_solution') is-invalid @enderror"
+                                                    name="repair_solution" id="" cols=""
+                                                    rows="1">{{ $repairRequest->repair_solution }}</textarea> --}}
+                                                <input type="text" class="form-control" value="{{ $repairRequest->repair_solution ?? '--' }}" readonly>
+                                                <x-invalid-feedback field='repair_solution'></x-invalid-feedback>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
