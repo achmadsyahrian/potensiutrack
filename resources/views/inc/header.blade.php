@@ -443,7 +443,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 7)
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.troubleshooting.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show', 'puskom.webdevelopment.index', 'puskom.webdevelopment.show']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -472,6 +472,10 @@
                            <a class="dropdown-item {{ Request::is('*network-troubleshooting*') ? 'active' : '' }}"
                               href="{{ route('puskom.networktroubleshooting.index') }}">
                               Penanganan Gangguan
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*web-development*') ? 'active' : '' }}"
+                              href="{{ route('puskom.webdevelopment.index') }}">
+                              Pengembangan Web Aplikasi
                            </a>
                         </div>
                      </div>

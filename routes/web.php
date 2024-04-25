@@ -88,6 +88,10 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     //Network Troubleshooting
     Route::resource('/network-troubleshooting', \App\Http\Controllers\Puskom\NetworkTroubleshootingController::class)->names('puskom.networktroubleshooting');
     Route::patch('/network-troubleshooting/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkTroubleshootingController::class, 'markAsComplete'])->name('puskom.networktroubleshooting.markAsComplete');
+
+    //Network Troubleshooting
+    Route::resource('/web-development', \App\Http\Controllers\Puskom\WebDevelopmentRequestController::class)->names('puskom.webdevelopment');
+    Route::patch('/web-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebDevelopmentRequestController::class, 'markAsComplete'])->name('puskom.webdevelopment.markAsComplete');
 });
 
 // Guest

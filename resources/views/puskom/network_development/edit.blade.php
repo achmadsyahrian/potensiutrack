@@ -58,7 +58,7 @@
                                     </div>
                                     @else
                                         <div class="mb-3">
-                                            <label class="form-label">Tanggal</label>
+                                            <label class="form-label">Tanggal Selesai</label>
                                             <input type="text" class="form-control"
                                                 value="{{ \Carbon\Carbon::parse($network_development->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
                                         </div>

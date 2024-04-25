@@ -55,7 +55,6 @@ class NetworkTroubleshootingController extends Controller
             
             return redirect()->route('puskom.networktroubleshooting.index')->with('success', 'Permohonan berhasil ditambahkan!');
         } catch (\Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
     }

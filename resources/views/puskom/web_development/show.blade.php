@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('puskom.networktroubleshooting.index') }}">Permohonan Penanganan Jaringan</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('puskom.webdevelopment.index') }}">Permohonan Pengembangan Jaringan</a></li>
                         <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                     </ol>
                 </div>
@@ -25,7 +25,7 @@
     <div class="container-xl">
         <div class="card">
             <div class="row row-deck row-cards">
-                <form action="{{ route('puskom.networktroubleshooting.markAsComplete', ['id' => $networkTroubleshooting]) }}" method="post">
+                <form action="{{ route('puskom.webdevelopment.markAsComplete', ['id' => $webDevelopment]) }}" method="post">
                     @csrf
                     @method('patch')
                     <div class="col d-flex flex-column">
@@ -36,17 +36,17 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tanggal</label>
                                         <input type="text" class="form-control"
-                                            value="{{ \Carbon\Carbon::parse($networkTroubleshooting->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
+                                            value="{{ \Carbon\Carbon::parse($webDevelopment->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    @if ($networkTroubleshooting->status == 1)
+                                    @if ($webDevelopment->status == 1)
                                     <div class="mb-3">
                                         <label class="form-label required">Tanggal Selesai</label>
                                         <div class="row g-2">
                                             <div class="col">
                                                 <input type="date" class="form-control @error('finish_date') is-invalid @enderror"
-                                                    name="finish_date" value="{{ $networkTroubleshooting->finish_date }}" autocomplete="off">
+                                                    name="finish_date" value="{{ $webDevelopment->finish_date }}" autocomplete="off">
                                                 <x-invalid-feedback field='finish_date'></x-invalid-feedback>
                                             </div>
                                             <div class="col-auto align-self-center">
@@ -60,37 +60,37 @@
                                         <div class="mb-3">
                                             <label class="form-label">Tanggal Selesai</label>
                                             <input type="text" class="form-control"
-                                                value="{{ \Carbon\Carbon::parse($networkTroubleshooting->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
+                                                value="{{ \Carbon\Carbon::parse($webDevelopment->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
                                         </div>
                                     @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Divisi</label>
-                                        <input type="text" class="form-control" value="{{ $networkTroubleshooting->division->name }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $webDevelopment->division->name }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Pemohon</label>
-                                        <input type="text" class="form-control" value="{{ $networkTroubleshooting->reporter->name }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $webDevelopment->reporter->name }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Alasan Pengembangan</label>
                                         <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini"
-                                            class="form-control @error('network_expansion_reason') is-invalid @enderror" id="" cols=""
-                                            rows="1" readonly>{{ $networkTroubleshooting->fault_reason }}</textarea>
+                                            class="form-control @error('reason') is-invalid @enderror" id="" cols=""
+                                            rows="1" readonly>{{ $webDevelopment->reason }}</textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
                                 <div class="btn-list justify-content-end">
-                                    <a href="{{ route('puskom.networktroubleshooting.index') }}" class="btn">
+                                    <a href="{{ route('puskom.webdevelopment.index') }}" class="btn">
                                         Kembali
                                     </a>
-                                    @if ($networkTroubleshooting->status == 1)
+                                    @if ($webDevelopment->status == 1)
                                         <button type="submit" class="btn btn-success">
                                             Selesai
                                         </button>

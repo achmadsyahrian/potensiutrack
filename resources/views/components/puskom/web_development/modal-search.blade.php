@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('puskom.networktroubleshooting.index') }}" method="get">
+        <form action="{{ route('puskom.webdevelopment.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
