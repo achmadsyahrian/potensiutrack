@@ -438,6 +438,10 @@
                                  href="{{ route('employee.networktroubleshooting.index') }}">
                                  Penanganan Gangguan Jaringan
                               </a>
+                              <a class="dropdown-item {{ Request::is('*web-development*') ? 'active' : '' }}"
+                                 href="{{ route('employee.webdevelopment.index') }}">
+                                 Pengembangan Web Aplikasi
+                              </a>
                            </div>
                         </div>
                      </div>

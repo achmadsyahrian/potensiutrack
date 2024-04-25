@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('puskom.webdevelopment.index') }}">Permohonan Pengembangan Web Aplikasi</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('employee.webdevelopment.index') }}">Permohonan Pengembangan Web Aplikasi</a></li>
                         <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
                 </div>
@@ -25,9 +25,11 @@
     <div class="container-xl">
         <div class="card">
             <div class="row row-deck row-cards">
-                <form action="{{ route('puskom.webdevelopment.markAsComplete', ['id' => $webDevelopment]) }}" method="post">
+                <form
+                    action="{{ route('employee.webdevelopment.verify', ['id' => $webDevelopmentRequests->id]) }}"
+                    method="POST">
                     @csrf
-                    @method('patch')
+                    @method('PATCH')
                     <div class="col d-flex flex-column">
                         <div class="card-body">
                             <h2 class="mb-4">Data Permohonan</h2>
@@ -36,72 +38,73 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tanggal</label>
                                         <input type="text" class="form-control"
-                                            value="{{ \Carbon\Carbon::parse($webDevelopment->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
+                                            value="{{ \Carbon\Carbon::parse($webDevelopmentRequests->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    @if ($webDevelopment->status == 1)
-                                    <div class="mb-3">
-                                        <label class="form-label required">Tanggal Selesai</label>
-                                        <div class="row g-2">
-                                            <div class="col">
-                                                <input type="date" class="form-control @error('finish_date') is-invalid @enderror"
-                                                    name="finish_date" value="{{ $webDevelopment->finish_date }}" autocomplete="off">
-                                                <x-invalid-feedback field='finish_date'></x-invalid-feedback>
-                                            </div>
-                                            <div class="col-auto align-self-center">
-                                                <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
-                                                    data-bs-content="<p>Silakan isi kolom ini ketika sudah selesai menangani gangguan.</p>"
-                                                    data-bs-html="true">?</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @else
+                                    @if ($webDevelopmentRequests->status == 1)
                                         <div class="mb-3">
                                             <label class="form-label">Tanggal Selesai</label>
                                             <input type="text" class="form-control"
-                                                value="{{ \Carbon\Carbon::parse($webDevelopment->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
+                                                value="Belum Selesai" readonly>
+                                        </div>
+                                    @else
+                                        <div class="mb-3">
+                                            <label class="form-label">Tanggal Selesai</label>
+                                            <div class="row g-2">
+                                                <div class="col">
+                                                    <input type="text" class="form-control"
+                                                    value="{{ \Carbon\Carbon::parse($webDevelopmentRequests->finish_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Divisi</label>
-                                        <input type="text" class="form-control" value="{{ $webDevelopment->division->name }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $webDevelopmentRequests->division->name }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Pemohon</label>
-                                        <input type="text" class="form-control" value="{{ $webDevelopment->reporter->name }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $webDevelopmentRequests->reporter->name }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Alasan Pengembangan</label>
-                                        <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini"
+                                        <textarea data-bs-toggle="autosize"
                                             class="form-control @error('reason') is-invalid @enderror" id="" cols=""
-                                            rows="1" readonly>{{ $webDevelopment->reason }}</textarea>
+                                            rows="7" readonly>{{ $webDevelopmentRequests->reason }}</textarea>
                                     </div>
                                 </div>
+                                @if ($webDevelopmentRequests->status == 2)
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <x-signature-canvas title="Paraf Pegawai" name="reporter_signature"></x-signature-canvas>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
                                 <div class="btn-list justify-content-end">
-                                    <a href="{{ route('puskom.webdevelopment.index') }}" class="btn">
+                                    <a href="{{ route('employee.webdevelopment.index') }}" class="btn">
                                         Kembali
                                     </a>
-                                    @if ($webDevelopment->status == 1)
+                                    @if ($webDevelopmentRequests->status == 2)
                                         <button type="submit" class="btn btn-success">
-                                            Selesai
+                                            Verifikasi
                                         </button>
                                     @endif
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection
