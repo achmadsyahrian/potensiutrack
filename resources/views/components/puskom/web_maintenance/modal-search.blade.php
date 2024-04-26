@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('puskom.webdevelopment.index') }}" method="get">
+        <form action="{{ route('puskom.webmaintenance.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
@@ -19,6 +19,19 @@
                                 <label class="form-label">Tanggal Selesai</label>
                                 <input type="date" class="form-control" name="search_finish_date" value="{{ request('search_finish_date') }}" autocomplete="off">
                             </div>                            
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label class="form-label">Aplikasi</label>
+                                <select type="text" class="form-select" name="search_app">
+                                    <option selected disabled>Pilih aplikasi</option>
+                                    @foreach ($webApps as $item)
+                                        <option value="{{ $item->id }}" {{ request('search_app') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                  </select>
+                            </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">

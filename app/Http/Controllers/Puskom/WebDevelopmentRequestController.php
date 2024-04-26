@@ -54,7 +54,6 @@ class WebDevelopmentRequestController extends Controller
             
             return redirect()->route('puskom.webdevelopment.index')->with('success', 'Permohonan berhasil ditambahkan!');
         } catch (\Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Terjadi kesalahan. Data tidak dapat disimpan.');
         }
     }

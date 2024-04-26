@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="{{ route('puskom.webdevelopment.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('puskom.webmaintenance.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('post')
             <div class="modal-content">
@@ -10,12 +10,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label required">Tanggal</label>
                                 <input type="date" class="form-control @error('date') is-invalid @enderror" name="date"
                                     value="{{ old('date') }}" autocomplete="off">
                                 <x-invalid-feedback field='date'></x-invalid-feedback>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Aplikasi</label>
+                                <select type="text" class="form-select @error('web_app_id') is-invalid @enderror" name="web_app_id" id="select-optgroups" value="">
+                                    <option selected disabled>Pilih aplikasi</option>
+                                    @foreach ($webApps as $item)
+                                        <option value="{{ $item->id }}" {{ old('web_app_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                    @endforeach
+                                </select>                                
+                                <x-invalid-feedback field='web_app_id'></x-invalid-feedback>
                             </div>
                         </div>
                         <div class="col-lg-6">

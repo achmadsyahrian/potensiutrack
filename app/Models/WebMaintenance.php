@@ -20,5 +20,10 @@ class WebMaintenance extends Model
     {
         return $this->belongsTo(User::class, 'reported_by_id');
     }
+
+    public function application()
+    {
+        return $this->belongsTo(WebApp::class, 'web_app_id');
+    }
     
 }

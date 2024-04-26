@@ -92,7 +92,8 @@
                <thead>
                   <tr>
                      <th class="w-1">No.</th>
-                     <th>Tanggal Laporan</th>
+                     <th>Tanggal</th>
+                     <th>Aplikasi</th>
                      <th>Pelapor</th>
                      <th>Divisi</th>
                      <th>Status</th>
@@ -106,6 +107,9 @@
                         <td><span class="text-muted">{{ ($webMaintenances->currentPage() - 1) * $webMaintenances->perPage() + $loop->iteration }}</span></td>
                         <td>
                            {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                        </td>
+                        <td>
+                           {{ $item->application->name }}
                         </td>
                         <td>
                            {{ $item->reporter->name }}
