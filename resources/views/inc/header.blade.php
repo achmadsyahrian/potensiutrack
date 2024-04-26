@@ -127,7 +127,7 @@
                   </a>
                </li>
                @if (Auth::user()->role_id == 1)
-                  <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*', 'iteminventories.index']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['users*', 'computers*', 'labs*', 'roles*', 'divisions*', 'iteminventories.index', 'webapps.index', 'webapps.edit']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -159,6 +159,10 @@
                               <a class="dropdown-item {{ Request::is('*divisions*') ? 'active' : '' }}"
                                  href="{{ route('divisions.index') }}">
                                  Divisi
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*web-applications*') ? 'active' : '' }}"
+                                 href="{{ route('webapps.index') }}">
+                                 Web Aplikasi
                               </a>
                            </div>
                            <div class="dropdown-menu-column">

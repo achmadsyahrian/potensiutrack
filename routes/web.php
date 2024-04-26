@@ -26,6 +26,7 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/roles', \App\Http\Controllers\Administrator\RoleController::class)->names('roles');
     Route::resource('/divisions', \App\Http\Controllers\Administrator\DivisionController::class)->names('divisions');
     Route::resource('/item-inventories', \App\Http\Controllers\Administrator\ItemInventoryController::class)->names('iteminventories');
+    Route::resource('/web-applications', \App\Http\Controllers\Administrator\WebAppController::class)->names('webapps');
 
     // Akun
     Route::resource('/accounts/lecturers', \App\Http\Controllers\Administrator\LecturerController::class)->names('lecturers');
