@@ -83,6 +83,11 @@ Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::get('/web-development', [\App\Http\Controllers\Employee\WebDevelopmentController::class, 'index'])->name('employee.webdevelopment.index');
     Route::get('/web-development/{id}', [\App\Http\Controllers\Employee\WebDevelopmentController::class, 'show'])->name('employee.webdevelopment.show');
     Route::patch('/web-development/{id}/verify', [\App\Http\Controllers\Employee\WebDevelopmentController::class, 'verify'])->name('employee.webdevelopment.verify');
+
+    // Web Development
+    Route::get('/web-maintenance', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'index'])->name('employee.webmaintenance.index');
+    Route::get('/web-maintenance/{id}', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'show'])->name('employee.webmaintenance.show');
+    Route::patch('/web-maintenance/{id}/verify', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'verify'])->name('employee.webmaintenance.verify');
 });
 
 // Puskom

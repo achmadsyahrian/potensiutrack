@@ -3,43 +3,48 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
+use App\Models\WebApp;
 use App\Models\WebDevelopmentRequest;
+use App\Models\WebMaintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class WebDevelopmentController extends Controller
+class WebMaintenanceController extends Controller
 {
     public function index(Request $request)
     {
-        $query = WebDevelopmentRequest::where('reported_by_id', Auth::id());
-        
+        $query = WebMaintenance::where('reported_by_id', Auth::id());
+
         $this->applySearchFilters($query, $request);
         $query->orderBy('date', 'desc');
 
-        $webDevelopmentRequests = $query->paginate(10);
-        $webDevelopmentRequests->appends(request()->query());
-        return view('employee.web_development.index', compact('webDevelopmentRequests'));
+        $webMaintenances = $query->paginate(10);
+        $webMaintenances->appends(request()->query());
+
+        $webApps = WebApp::all();
+        
+        return view('employee.web_maintenance.index', compact('webMaintenances', 'webApps'));
     }
 
-    public function show(WebDevelopmentRequest $id)
+    public function show(WebMaintenance $id)
     {
-        $webDevelopmentRequests = $id;
-        return view('employee.web_development.show', compact('webDevelopmentRequests'));
+        $webMaintenances = $id;
+        return view('employee.web_maintenance.show', compact('webMaintenances'));
     }
 
-    public function verify(WebDevelopmentRequest $id, Request $request)
+    public function verify(WebMaintenance $id, Request $request)
     {
-        $webDevelopmentRequests = $id;
+        $webMaintenances = $id;
         $validated = $request->validate([
             'reporter_signature' => 'required',
         ]);
-        $webDevelopmentRequests->status = 3;
+        $webMaintenances->status = 3;
 
         $signaturePath = $this->saveSignature($validated['reporter_signature']);
-        $webDevelopmentRequests->reporter_signature = $signaturePath;
+        $webMaintenances->reporter_signature = $signaturePath;
         
-        $webDevelopmentRequests->save();
-        return redirect()->route('employee.webdevelopment.index')->with('success', 'Permohonan berhasil di verifikasi');
+        $webMaintenances->save();
+        return redirect()->route('employee.webmaintenance.index')->with('success', 'Permohonan berhasil di verifikasi');
     }
 
 
@@ -54,6 +59,11 @@ class WebDevelopmentController extends Controller
         if ($request->filled('search_division')) {
             $query->where('division_id', $request->search_division);
         }
+
+        if ($request->filled('search_app')) {
+            $query->where('web_app_id', $request->search_app);
+        }
+
 
         if ($request->filled('search_finish_date')) {
             $query->whereDate('finish_date', $request->search_finish_date);

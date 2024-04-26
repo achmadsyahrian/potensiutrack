@@ -468,7 +468,7 @@
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['employee.webdevelopment.index', 'employee.webdevelopment.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['employee.webdevelopment.index', 'employee.webdevelopment.show', 'employee.webmaintenance.index', 'employee.webmaintenance.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -493,6 +493,10 @@
                               <a class="dropdown-item {{ Request::is('*web-development*') ? 'active' : '' }}"
                                  href="{{ route('employee.webdevelopment.index') }}">
                                  Pengembangan Web Aplikasi
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*web-maintenance*') ? 'active' : '' }}"
+                                 href="{{ route('employee.webmaintenance.index') }}">
+                                 Maintenance Sistem
                               </a>
                            </div>
                         </div>
