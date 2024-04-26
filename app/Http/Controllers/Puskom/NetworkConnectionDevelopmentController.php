@@ -47,9 +47,11 @@ class NetworkConnectionDevelopmentController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $signaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $signaturePath;
+            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             NetworkConnectionDevelopment::create($validatedData);
             
@@ -94,6 +96,9 @@ class NetworkConnectionDevelopmentController extends Controller
             $network_development->delete();
             if ($network_development->puskom_signature) {
                 Storage::disk('public')->delete($network_development->puskom_signature);
+            }
+            if ($network_development->reporter_signature_approval) {
+                Storage::disk('public')->delete($network_development->reporter_signature_approval);
             }
             if ($network_development->reporter_signature) {
                 Storage::disk('public')->delete($network_development->reporter_signature);

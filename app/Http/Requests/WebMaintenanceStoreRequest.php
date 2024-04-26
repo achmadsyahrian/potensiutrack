@@ -28,6 +28,7 @@ class WebMaintenanceStoreRequest extends FormRequest
             'reported_by_id' => 'required|exists:users,id',
             'error' => 'required',
             'puskom_signature' => 'required',
+            'reporter_signature' => 'required',
             'status' => '',
         ];
     }

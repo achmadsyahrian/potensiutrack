@@ -8,6 +8,7 @@ use App\Models\Division;
 use App\Models\User;
 use App\Models\WebDevelopmentRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WebDevelopmentRequestController extends Controller
 {
@@ -46,9 +47,11 @@ class WebDevelopmentRequestController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $signaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $signaturePath;
+            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             WebDevelopmentRequest::create($validatedData);
             
@@ -87,9 +90,24 @@ class WebDevelopmentRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WebDevelopmentRequest $webDevelopmentRequest)
+    public function destroy(WebDevelopmentRequest $web_development)
     {
-        //
+        try {
+            
+            $web_development->delete();
+            if ($web_development->puskom_signature) {
+                Storage::disk('public')->delete($web_development->puskom_signature);
+            }
+            if ($web_development->reporter_signature_approval) {
+                Storage::disk('public')->delete($web_development->reporter_signature_approval);
+            }
+            if ($web_development->reporter_signature) {
+                Storage::disk('public')->delete($web_development->reporter_signature);
+            }
+            return redirect()->route('puskom.webdevelopment.index')->with('success', 'Permohonan berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan. Permohonan tidak dapat dihapus.');
+        }
     }
 
 

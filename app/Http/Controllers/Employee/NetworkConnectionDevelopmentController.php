@@ -34,12 +34,12 @@ class NetworkConnectionDevelopmentController extends Controller
     {
         $networkDevelopment = $id;
         $validated = $request->validate([
-            'reporter_signature' => 'required',
+            'reporter_signature_approval' => 'required',
         ]);
         $networkDevelopment->status = 3;
 
-        $signaturePath = $this->saveSignature($validated['reporter_signature']);
-        $networkDevelopment->reporter_signature = $signaturePath;
+        $signaturePath = $this->saveSignature($validated['reporter_signature_approval']);
+        $networkDevelopment->reporter_signature_approval = $signaturePath;
         
         $networkDevelopment->save();
         return redirect()->route('employee.networkdev.index')->with('success', 'Permohonan berhasil di verifikasi');

@@ -49,9 +49,11 @@ class WebMaintenanceController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $signaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $signaturePath;
+            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             WebMaintenance::create($validatedData);
             
@@ -97,6 +99,9 @@ class WebMaintenanceController extends Controller
             $web_maintenance->delete();
             if ($web_maintenance->puskom_signature) {
                 Storage::disk('public')->delete($web_maintenance->puskom_signature);
+            }
+            if ($web_maintenance->reporter_signature_approval) {
+                Storage::disk('public')->delete($web_maintenance->reporter_signature_approval);
             }
             if ($web_maintenance->reporter_signature) {
                 Storage::disk('public')->delete($web_maintenance->reporter_signature);

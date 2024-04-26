@@ -31,12 +31,12 @@ class WebDevelopmentController extends Controller
     {
         $webDevelopmentRequests = $id;
         $validated = $request->validate([
-            'reporter_signature' => 'required',
+            'reporter_signature_approval' => 'required',
         ]);
         $webDevelopmentRequests->status = 3;
 
-        $signaturePath = $this->saveSignature($validated['reporter_signature']);
-        $webDevelopmentRequests->reporter_signature = $signaturePath;
+        $signaturePath = $this->saveSignature($validated['reporter_signature_approval']);
+        $webDevelopmentRequests->reporter_signature_approval = $signaturePath;
         
         $webDevelopmentRequests->save();
         return redirect()->route('employee.webdevelopment.index')->with('success', 'Permohonan berhasil di verifikasi');

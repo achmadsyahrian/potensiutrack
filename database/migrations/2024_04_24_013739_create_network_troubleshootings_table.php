@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('reported_by_id')->constrained('users');
             $table->text('fault_reason');
             $table->text('puskom_signature');
+            $table->text('reporter_signature');
             $table->date('finish_date')->nullable();
-            $table->text('reporter_signature')->nullable();
+            $table->text('reporter_signature_approval')->nullable();
             $table->enum('status', [1, 2, 3, 4, 5])->default(1);
             $table->timestamps();
         });

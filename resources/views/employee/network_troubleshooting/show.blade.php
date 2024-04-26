@@ -83,7 +83,7 @@
                                 @if ($networkTroubleshooting->status == 2)
                                     <div class="col-lg-3">
                                         <div class="mb-3">
-                                            <x-signature-canvas title="Paraf Pegawai" name="reporter_signature"></x-signature-canvas>
+                                            <x-signature-canvas title="Paraf Pegawai" name="reporter_signature_approval"></x-signature-canvas>
                                         </div>
                                     </div>
                                 @endif

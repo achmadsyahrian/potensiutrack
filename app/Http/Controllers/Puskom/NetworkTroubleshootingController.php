@@ -47,9 +47,11 @@ class NetworkTroubleshootingController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $signaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $signaturePath;
+            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             NetworkTroubleshooting::create($validatedData);
             
@@ -94,6 +96,9 @@ class NetworkTroubleshootingController extends Controller
             $networkTroubleshooting->delete();
             if ($networkTroubleshooting->puskom_signature) {
                 Storage::disk('public')->delete($networkTroubleshooting->puskom_signature);
+            }
+            if ($networkTroubleshooting->reporter_signature_approval) {
+                Storage::disk('public')->delete($networkTroubleshooting->reporter_signature_approval);
             }
             if ($networkTroubleshooting->reporter_signature) {
                 Storage::disk('public')->delete($networkTroubleshooting->reporter_signature);

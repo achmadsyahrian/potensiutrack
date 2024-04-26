@@ -27,6 +27,7 @@ class WebDevelopmentStoreRequest extends FormRequest
             'reported_by_id' => 'required|exists:users,id',
             'reason' => 'required',
             'puskom_signature' => 'required',
+            'reporter_signature' => 'required',
             'status' => '',
         ];
     }

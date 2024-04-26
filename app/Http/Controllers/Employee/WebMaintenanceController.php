@@ -36,12 +36,12 @@ class WebMaintenanceController extends Controller
     {
         $webMaintenances = $id;
         $validated = $request->validate([
-            'reporter_signature' => 'required',
+            'reporter_signature_approval' => 'required',
         ]);
         $webMaintenances->status = 3;
 
-        $signaturePath = $this->saveSignature($validated['reporter_signature']);
-        $webMaintenances->reporter_signature = $signaturePath;
+        $signaturePath = $this->saveSignature($validated['reporter_signature_approval']);
+        $webMaintenances->reporter_signature_approval = $signaturePath;
         
         $webMaintenances->save();
         return redirect()->route('employee.webmaintenance.index')->with('success', 'Permohonan berhasil di verifikasi');

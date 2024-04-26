@@ -32,12 +32,12 @@ class NetworkTroubleshootingController extends Controller
     {
         $networkTroubleshooting = $id;
         $validated = $request->validate([
-            'reporter_signature' => 'required',
+            'reporter_signature_approval' => 'required',
         ]);
         $networkTroubleshooting->status = 3;
 
-        $signaturePath = $this->saveSignature($validated['reporter_signature']);
-        $networkTroubleshooting->reporter_signature = $signaturePath;
+        $signaturePath = $this->saveSignature($validated['reporter_signature_approval']);
+        $networkTroubleshooting->reporter_signature_approval = $signaturePath;
         
         $networkTroubleshooting->save();
         return redirect()->route('employee.networktroubleshooting.index')->with('success', 'Permohonan berhasil di verifikasi');

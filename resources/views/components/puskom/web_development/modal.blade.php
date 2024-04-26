@@ -45,10 +45,15 @@
                         {{-- Paraf --}}
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <x-signature-canvas title="Paraf Puskom" name="puskom_signature"></x-signature-canvas>
+                                <x-signature-canvas title="Paraf Pelapor" name="reporter_signature"></x-signature-canvas>
                             </div>
                         </div>
                         <div class="col-lg-6">
+                            <div class="mb-3">
+                                <x-signature-canvas title="Paraf Puskom" name="puskom_signature"></x-signature-canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label required">Alasan Pembuatan Aplikasi</label>
                                 <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini" class="form-control @error('reason') is-invalid @enderror" name="reason" id="" cols="" rows="7">{{ old('reason') }}</textarea>
