@@ -94,9 +94,13 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::resource('/network-troubleshooting', \App\Http\Controllers\Puskom\NetworkTroubleshootingController::class)->names('puskom.networktroubleshooting');
     Route::patch('/network-troubleshooting/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkTroubleshootingController::class, 'markAsComplete'])->name('puskom.networktroubleshooting.markAsComplete');
 
-    //Network Troubleshooting
+    //Web Development
     Route::resource('/web-development', \App\Http\Controllers\Puskom\WebDevelopmentRequestController::class)->names('puskom.webdevelopment');
     Route::patch('/web-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebDevelopmentRequestController::class, 'markAsComplete'])->name('puskom.webdevelopment.markAsComplete');
+
+    //Web Maintenance
+    Route::resource('/web-maintenance', \App\Http\Controllers\Puskom\WebMaintenanceController::class)->names('puskom.webmaintenance');
+    Route::patch('/web-maintenance/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebMaintenanceController::class, 'markAsComplete'])->name('puskom.webmaintenance.markAsComplete');
 });
 
 // Guest

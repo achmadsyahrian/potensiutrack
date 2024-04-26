@@ -529,7 +529,7 @@
                      </div>
                   </div>
                </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.webdevelopment.index', 'puskom.webdevelopment.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.webdevelopment.index', 'puskom.webdevelopment.show', 'puskom.webmaintenance.index', 'puskom.webmaintenance.show']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -555,8 +555,8 @@
                               href="{{ route('puskom.webdevelopment.index') }}">
                               Pengembangan Sistem
                            </a>
-                           <a class="dropdown-item {{ Request::is('*web-developmentss*') ? 'active' : '' }}"
-                              href="{{ route('puskom.webdevelopment.index') }}">
+                           <a class="dropdown-item {{ Request::is('*web-maintenance*') ? 'active' : '' }}"
+                              href="{{ route('puskom.webmaintenance.index') }}">
                               Maintenance Sistem
                            </a>
                         </div>
