@@ -537,6 +537,10 @@
                               href="{{ route('puskom.networktroubleshooting.index') }}">
                               Penanganan Koneksi
                            </a>
+                           <a class="dropdown-item {{ Request::is('*wifi-checking*') ? 'active' : '' }}"
+                              href="{{ route('puskom.wificheck.index') }}">
+                              Pengecekan Wifi
+                           </a>
                         </div>
                      </div>
                   </div>
