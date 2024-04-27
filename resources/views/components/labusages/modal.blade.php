@@ -83,6 +83,11 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
+                                <x-signature-canvas title="Tanda Tangan Dosen" name="lecturer_signature"></x-signature-canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
                                 <x-signature-canvas title="Paraf Aslab" name="lab_assistant_signature"></x-signature-canvas>
                             </div>
                         </div>

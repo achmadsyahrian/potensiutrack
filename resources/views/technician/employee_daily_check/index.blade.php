@@ -92,6 +92,7 @@
                      <th class="w-1">No.</th>
                      <th>Tanggal</th>
                      <th>Bagian</th>
+                     <th>Keluhan</th>
                      <th>Keterangan</th>
                      <th></th>
                   </tr>
@@ -106,6 +107,9 @@
                      <td class="text-muted">
                         {{ $item->division->name }}
                      </td>
+                     <td>
+                        {{ $item->complaint ?? '--' }}
+                     </td>    
                      <td>
                         {{ $item->description ?? '--' }}
                      </td>                                  

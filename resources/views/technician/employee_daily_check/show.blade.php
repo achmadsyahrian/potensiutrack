@@ -10,7 +10,7 @@
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Layanan</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('technician.employeepcdailychecks.index') }}">Pemeriksaan Harian</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Edit</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
                 </div>
                 <h2 class="page-title">

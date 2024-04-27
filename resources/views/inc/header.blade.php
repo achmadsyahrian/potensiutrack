@@ -366,7 +366,7 @@
                               </a>
                               <a class="dropdown-item {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labrequests.show',]) ? 'active' : '' }}"
                                  href="{{ route('labassistant.labrequests.index') }}">
-                                 Permohonan
+                                 Permohonan Penggunaan
                               </a>
                               <a class="dropdown-item {{ request()->routeIs(['labassistant.labusages.index', 'labassistant.labusages.show',]) ? 'active' : '' }}"
                                  href="{{ route('labassistant.labusages.index') }}">

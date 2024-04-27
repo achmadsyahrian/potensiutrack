@@ -22,10 +22,16 @@ class RepairRequestController extends Controller
         return view('section_head.repair_request.show', compact('repairRequest'));
     }
 
-    public function verify(RepairRequest $id)
+    public function verify(RepairRequest $id, Request $request)
     {
         $repairRequest = $id;
+        $validated = $request->validate([
+            'kabag_signature_approval' => 'required',
+        ]);
+
         $repairRequest->status = 4;
+        $signaturePath = $this->saveSignature($validated['kabag_signature_approval']);
+        $repairRequest->employee_signature = $signaturePath;
         $repairRequest->save();
         return redirect()->route('sectionhead.repairrequests.index')->with('success', 'Permohonan berhasil di verifikasi');
     }

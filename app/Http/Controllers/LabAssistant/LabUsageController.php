@@ -47,17 +47,12 @@ class LabUsageController extends Controller
     {
         try {
             $validatedData = $request->validated();
-            $base64Signature = $validatedData['lab_assistant_signature'];
-            $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Signature));
-            $fileName = 'paraf_' . uniqid() . '.png';
-            $directory = storage_path('app/public/signature');
 
-            if (!file_exists($directory)) {
-                mkdir($directory, 0755, true);
-            }
-            file_put_contents($directory . '/' . $fileName, $imageData);
+            $signaturePath = $this->saveSignature($validatedData['lab_assistant_signature']);
+            $validatedData['lab_assistant_signature'] = $signaturePath;
+            $signaturePath = $this->saveSignature($validatedData['lecturer_signature']);
+            $validatedData['lecturer_signature'] = $signaturePath;
 
-            $validatedData['lab_assistant_signature'] = 'signature/' . $fileName;
             LabUsage::create($validatedData);
             
             return redirect()->route('labassistant.labusages.index')->with('success', 'Penggunaan berhasil ditambahkan!');

@@ -8,8 +8,8 @@
             <div class="col">
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
-                        <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('technician.employeepcdailychecks.index') }}">Pemeriksaan Harian</a></li>
+                        <li class="breadcrumb-item"><a href="#">Lab</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('labassistant.labrequests.index') }}">Permohonan Penggunaan</a></li>
                         <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                     </ol>
                 </div>

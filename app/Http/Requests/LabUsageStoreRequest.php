@@ -31,6 +31,7 @@ class LabUsageStoreRequest extends FormRequest
             'date' => 'required|date',
             'time' => 'required',
             'lab_assistant_signature' => 'required',
+            'lecturer_signature' => 'required',
         ];
     }
 }

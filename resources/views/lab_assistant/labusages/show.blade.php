@@ -8,8 +8,8 @@
             <div class="col">
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
-                        <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('technician.employeepcdailychecks.index') }}">Pemeriksaan Harian</a></li>
+                        <li class="breadcrumb-item"><a href="#">Lab</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('labassistant.labusages.index') }}">Penggunaan Lab Komputer</a></li>
                         <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                     </ol>
                 </div>
@@ -85,6 +85,14 @@
                                         <label class="form-label">Paraf Aslab</label>
                                         <a data-fslightbox="gallery" href="{{ asset('storage/'.$labUsage->lab_assistant_signature) }}">
                                             <img class="w-75 rounded border" src="{{ asset('storage/'.$labUsage->lab_assistant_signature) }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tanda Tangan Dosen</label>
+                                        <a data-fslightbox="gallery" href="{{ asset('storage/'.$labUsage->lecturer_signature) }}">
+                                            <img class="w-75 rounded border" src="{{ asset('storage/'.$labUsage->lecturer_signature) }}" alt="">
                                         </a>
                                     </div>
                                 </div>
