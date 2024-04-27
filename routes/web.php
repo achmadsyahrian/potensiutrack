@@ -35,6 +35,7 @@ Route::group(['middleware' => 'checkRole:1'], function () {
     Route::resource('/accounts/technician', \App\Http\Controllers\Administrator\TechnicianController::class)->names('accounts.technician');
     Route::resource('/accounts/lab-assistant', \App\Http\Controllers\Administrator\LabAssistantController::class)->names('accounts.labassistant');
     Route::resource('/accounts/section-head', \App\Http\Controllers\Administrator\SectionHeadController::class)->names('accounts.sectionhead');
+    Route::resource('/accounts/puskom', \App\Http\Controllers\Administrator\PuskomController::class)->names('accounts.puskom');
 });
 
 // Kabag
@@ -84,7 +85,7 @@ Route::prefix('employee')->middleware('checkRole:5')->group(function () {
     Route::get('/web-development/{id}', [\App\Http\Controllers\Employee\WebDevelopmentController::class, 'show'])->name('employee.webdevelopment.show');
     Route::patch('/web-development/{id}/verify', [\App\Http\Controllers\Employee\WebDevelopmentController::class, 'verify'])->name('employee.webdevelopment.verify');
 
-    // Web Development
+    // Web Maintenance
     Route::get('/web-maintenance', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'index'])->name('employee.webmaintenance.index');
     Route::get('/web-maintenance/{id}', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'show'])->name('employee.webmaintenance.show');
     Route::patch('/web-maintenance/{id}/verify', [\App\Http\Controllers\Employee\WebMaintenanceController::class, 'verify'])->name('employee.webmaintenance.verify');

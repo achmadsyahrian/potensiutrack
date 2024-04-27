@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('repair_solution')->nullable(); // Solusi perbaikan
             $table->text('employee_signature')->nullable();
             $table->text('technician_signature')->nullable();
+            $table->text('kabag_signature_approval')->nullable();
             $table->date('date');
             $table->date('return_date')->nullable(); // Tanggal pengembalian
             $table->enum('status', [1, 2, 3, 4, 5])->default(1);

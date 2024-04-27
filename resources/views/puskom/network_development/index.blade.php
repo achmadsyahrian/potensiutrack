@@ -94,8 +94,8 @@
                   <tr>
                      <th class="w-1">No.</th>
                      <th>Tanggal Laporan</th>
+                     <th>Pelapor</th>
                      <th>Divisi</th>
-                     <th>Alasan</th>
                      <th>Status</th>
                      <th></th>
                   </tr>
@@ -109,10 +109,10 @@
                            {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                         </td>
                         <td>
-                           {{ $item->division->name }}
+                           {{ $item->reporter->name }}
                         </td>
-                        <td style="max-width: 300px; text-wrap: wrap;">
-                           {{ $item->network_expansion_reason }}
+                        <td>
+                           {{ $item->division->name }}
                         </td>
                         <td>
                            @php

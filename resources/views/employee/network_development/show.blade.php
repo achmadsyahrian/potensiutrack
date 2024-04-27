@@ -50,7 +50,7 @@
                                         </div>
                                     @else
                                         <div class="mb-3">
-                                            <label class="form-label required">Tanggal Selesai</label>
+                                            <label class="form-label">Tanggal Selesai</label>
                                             <div class="row g-2">
                                                 <div class="col">
                                                     <input type="text" class="form-control"

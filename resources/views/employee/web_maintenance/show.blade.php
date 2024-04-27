@@ -81,7 +81,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Penanganan</label>
-                                        <input type="text" class="form-control" value="{{ $webMaintenances->handling }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $webMaintenances->handling ?? '--' }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 @if ($webMaintenances->status == 2)
