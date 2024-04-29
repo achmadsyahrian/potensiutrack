@@ -507,7 +507,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 7)
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show', 'puskom.wifichecking.index', 'puskom.wifichecking.create',]) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -538,7 +538,7 @@
                               Penanganan Koneksi
                            </a>
                            <a class="dropdown-item {{ Request::is('*wifi-checking*') ? 'active' : '' }}"
-                              href="{{ route('puskom.wificheck.index') }}">
+                              href="{{ route('puskom.wifichecking.index') }}">
                               Pengecekan Wifi
                            </a>
                         </div>

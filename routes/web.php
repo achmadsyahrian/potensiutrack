@@ -110,7 +110,7 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::patch('/web-maintenance/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebMaintenanceController::class, 'markAsComplete'])->name('puskom.webmaintenance.markAsComplete');
 
     //Wifi Check
-    Route::resource('/wifi-checking', \App\Http\Controllers\Puskom\WifiCheckController::class)->names('puskom.wificheck');
+    Route::resource('/wifi-checking', \App\Http\Controllers\Puskom\WifiCheckingController::class)->names('puskom.wifichecking');
 });
 
 // Guest

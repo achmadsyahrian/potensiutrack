@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('floors', function (Blueprint $table) {
+        Schema::create('wifi_checkings', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->foreignId('building_id')->constrained('buildings');
-            $table->string('name');
+            $table->json('floor_1')->nullable();
+            $table->json('floor_2')->nullable();
+            $table->json('floor_3')->nullable();
+            $table->json('floor_4')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('floors');
+        Schema::dropIfExists('wifi_checkings');
     }
 };
