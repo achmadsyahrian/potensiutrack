@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class WifiChecking extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function building()
+    {
+        return $this->belongsTo(building::class);
+    }
+    
 }

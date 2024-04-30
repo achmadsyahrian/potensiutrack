@@ -106,51 +106,18 @@
                         </td>
                         <td>
                            {{ $item->building->name }}
-                        </td>
-                        <td>
-                           @php
-                              $status = '';
-                              $badgeClass = '';
-                           
-                              switch ($item->status) {
-                                 case 1:
-                                    $status = 'Baru';
-                                    $badgeClass = 'warning';
-                                 break;
-                                 case 2:
-                                    $status = 'Sudah Selesai';
-                                    $badgeClass = 'teal';
-                                 break;
-                                 case 3:
-                                    $status = 'Sudah Dikonfirmasi';
-                                    $badgeClass = 'cyan';
-                                    break;
-                                 case 4:
-                                    $status = 'Sudah Disetujui Kabag';
-                                    $badgeClass = 'success';
-                                 break;
-                                 case 5:
-                                    $status = 'Tidak Disetujui';
-                                    $badgeClass = 'danger';
-                                 break;
-                                 default:
-                                    $status = 'Status Tidak Valid';
-                                    $badgeClass = 'dark';
-                              }
-                           @endphp
-                           <span class="badge bg-{{ $badgeClass }} me-1"></span> {{ $status }}
-                        </td>                                 
+                        </td>                             
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              <a href="{{ route('puskom.wifichecking.show', ['web_maintenance' => $item->id]) }}" class="btn btn-outline-info">
-                                 Lihat
+                              <a href="{{ route('puskom.wifichecking.edit', ['wifi_checking' => $item->id]) }}" class="btn btn-outline-info">
+                                 Edit
                               </a>
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
                                  Hapus
                               </a>
                            </div>
                         </td>
-                        <x-confirm-modal route="{{ route('puskom.wifichecking.destroy', ['web_maintenance' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
+                        <x-confirm-modal route="{{ route('puskom.wifichecking.destroy', ['wifi_checking' => $item->id]) }}" method='delete' id='{{ $item->id }}'></x-confirm-modal>
                      </tr>
                   @empty
                      <tr>
