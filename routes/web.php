@@ -44,6 +44,12 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('sectionhead.repairrequests.show');
     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('sectionhead.repairrequests.verify');
     Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('sectionhead.repairrequests.reject');
+
+    Route::get('/employee-daily-check', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'index'])->name('sectionhead.employeepcdailychecks.index');    
+    Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'showByMonthAndDivision'])
+            ->name('sectionhead.employeepcdailychecks.showByMonthAndDivision');
+    Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'show'])->name('sectionhead.employeepcdailychecks.show');    
+
 });
 
 // Asisten Lab

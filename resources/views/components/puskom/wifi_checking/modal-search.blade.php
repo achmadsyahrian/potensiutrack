@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('puskom.webmaintenance.index') }}" method="get">
+        <form action="{{ route('puskom.wifichecking.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
@@ -10,17 +10,17 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <label class="form-label">Tanggal Permohonan</label>
+                                <label class="form-label">Tanggal</label>
                                 <input type="date" class="form-control" name="search_date" value="{{ request('search_date') }}" autocomplete="off">
                             </div>                            
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label">Lokasi</label>
-                                <select type="text" class="form-select" name="search_division">
-                                    <option selected disabled>Pilih divisi</option>
+                                <select type="text" class="form-select" name="search_building">
+                                    <option selected disabled>Pilih lokasi</option>
                                     @foreach ($buildings as $item)
-                                        <option value="{{ $item->id }}" {{ request('search_division') == $item->id ? 'selected' : '' }}>
+                                        <option value="{{ $item->id }}" {{ request('search_building') == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach

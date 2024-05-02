@@ -129,28 +129,11 @@ class WifiCheckingController extends Controller
         }
 
         // Filter berdasarkan lab
-        if ($request->filled('search_division')) {
-            $query->where('division_id', $request->search_division);
-        }
-
-        if ($request->filled('search_app')) {
-            $query->where('web_app_id', $request->search_app);
-        }
-
-        if ($request->filled('search_finish_date')) {
-            $query->whereDate('finish_date', $request->search_finish_date);
-        }
-
-        if ($request->filled('search_reporter')) {
-            $query->where('reported_by_id', $request->search_reporter);
-        }
-
-        if ($request->filled('search_status')) {
-            $query->where('status', $request->search_status);
+        if ($request->filled('search_building')) {
+            $query->where('building_id', $request->search_building);
         }
 
     }
-
 
     private function prepareFloorData($requestData)
     {

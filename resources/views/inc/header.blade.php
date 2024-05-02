@@ -13,7 +13,7 @@
       </div>
       <div class="navbar-nav flex-row order-md-last">
          <div class="d-none d-md-flex">
-            <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Aktifkan mode gelap"
+            <a href="?theme=dark" class="nav-link px-0 hide-theme-dark me-3" title="Aktifkan mode gelap"
                data-bs-toggle="tooltip" data-bs-placement="bottom">
                <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -25,12 +25,12 @@
                   <path d="M19 11h2m-1 -1v2" />
                </svg>
             </a>
-            <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Aktifkan mode terang"
+            <a href="?theme=light" class="nav-link px-0 hide-theme-light me-3" title="Aktifkan mode terang"
                data-bs-toggle="tooltip" data-bs-placement="bottom">
                <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sun-high"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg>
             </a>
-            <div class="nav-item dropdown d-none d-md-flex me-3">
+            {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
                <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                   aria-label="Show notifications">
                   <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
@@ -75,7 +75,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> --}}
          </div>
          <div class="nav-item dropdown">
             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
@@ -93,14 +93,13 @@
                </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-               <a href="#" class="dropdown-item">Status</a>
+               {{-- <a href="#" class="dropdown-item">Status</a> --}}
                <a href="{{ route('profile.get') }}" class="dropdown-item">Profile</a>
                <div class="dropdown-divider"></div>
-               <a href="./settings.html" class="dropdown-item">Settings</a>
+               {{-- <a href="./settings.html" class="dropdown-item">Settings</a> --}}
                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                </form>
-
                <a href="#" class="dropdown-item"
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
             </div>
@@ -271,6 +270,10 @@
                               <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}"
                                  href="{{ route('sectionhead.repairrequests.index') }}">
                                  Perawatan & Perbaikan
+                              </a>
+                              <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}"
+                                 href="{{ route('sectionhead.employeepcdailychecks.index') }}">
+                                 Pemeriksaan Harian PC
                               </a>
                            </div>
                         </div>
@@ -507,7 +510,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 7)
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show', 'puskom.wifichecking.index', 'puskom.wifichecking.create',]) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show', 'puskom.wifichecking.index', 'puskom.wifichecking.create', 'puskom.wifichecking.edit']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
