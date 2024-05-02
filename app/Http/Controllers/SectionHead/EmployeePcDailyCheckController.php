@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SectionHead;
 use App\Http\Controllers\Controller;
 use App\Models\Division;
 use App\Models\EmployeePcDailyCheck;
+use App\Models\EmployeePcDailyCheckMonthlyReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,27 @@ class EmployeePcDailyCheckController extends Controller
         $employeePcDailyCheck = $id;
         return view('section_head.employee_daily_check.show', compact('employeePcDailyCheck'));
     }
+
+
+    public function verify(Request $request, $year, $month, $division)
+    {
+        $monthResult = $this->getMonthNumber($month);
+
+        $validated = $request->validate([
+            'kabag_signature' => 'required',
+        ]);
+        $kabagSignature = $this->saveSignature($validated['kabag_signature']);
+        
+        $monthlyReport = EmployeePcDailyCheckMonthlyReport::create([
+            'division_id' => $division,
+            'year' => $year,
+            'month' => $monthResult,
+            'kabag_signature' => $kabagSignature,
+        ]);
+
+        return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
+    }
+
     
     private function getMonthNumber($month)
     {

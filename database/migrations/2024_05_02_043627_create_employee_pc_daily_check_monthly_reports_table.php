@@ -13,8 +13,15 @@ return new class extends Migration
     {
         Schema::create('employee_pc_daily_check_monthly_reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('division_id')->constrained()->onDelete('cascade');
+            $table->unsignedSmallInteger('month');
+            $table->unsignedSmallInteger('year');
+            $table->string('kabag_signature')->nullable();
+            $table->string('wakil_rektor_signature')->nullable();
+            $table->string('teknisi_signature')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**

@@ -88,12 +88,19 @@
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           <a href="{{ route('sectionhead.employeepcdailychecks.index', ['employee_pc_daily_check' => $item->id]) }}"
-                              class="btn btn-outline-teal">
-                              Verifikasi
-                           </a>
+                           @if ($item->isVerified($item->year, $item->month, $item->division->id))
+                              <button class="btn btn-teal">
+                                 Sudah Verifikasi
+                              </button>
+                           @else
+                              <a href="{{ route('sectionhead.employeepcdailychecks.index', ['employee_pc_daily_check' => $item->id]) }}"
+                                 class="btn btn-outline-teal" data-bs-toggle="modal" data-bs-target="#modal-report-{{ $loop->index }}">
+                                 Verifikasi
+                              </a>
+                           @endif
                         </div>
                      </td>
+                     <x-sectionhead.employeepcdailycheck.modal route="{{ route('sectionhead.employeepcdailychecks.verify', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" method='post' id='{{ $loop->index }}'></x-sectionhead.employeepcdailycheck.modal>
                   </tr>
                   @empty
                   <tr>
@@ -118,6 +125,5 @@
    </div>
 </div>
 
-{{-- @include('components.employeepcdailychecks.modal')
-@include('components.employeepcdailychecks.modal-search') --}}
+{{-- @include('components.employeepcdailychecks.modal-search') --}}
 @endsection

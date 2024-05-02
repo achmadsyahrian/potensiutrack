@@ -49,6 +49,7 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'showByMonthAndDivision'])
             ->name('sectionhead.employeepcdailychecks.showByMonthAndDivision');
     Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'show'])->name('sectionhead.employeepcdailychecks.show');    
+    Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'verify'])->name('sectionhead.employeepcdailychecks.verify');    
 
 });
 
