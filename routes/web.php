@@ -68,6 +68,13 @@ Route::prefix('labassistant')->middleware('checkRole:3')->group(function () {
 Route::prefix('technician')->middleware('checkRole:4')->group(function () {
     Route::resource('/repair-requests', \App\Http\Controllers\Technician\RepairRequestController::class)->names('technician.repairrequests');
     Route::resource('/employee-pc-daily-checks', \App\Http\Controllers\Technician\EmployeePcDailyCheckController::class)->names('technician.employeepcdailychecks');
+
+    Route::get('/employee-daily-check', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'index'])->name('technician.employeepcdailychecksreport.index');    
+    Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'showByMonthAndDivision'])
+            ->name('technician.employeepcdailychecksreport.showByMonthAndDivision');
+    Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'show'])->name('technician.employeepcdailychecksreport.show');    
+    Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'verify'])->name('technician.employeepcdailychecksreport.verify');
+    
 });
 
 // Pegawai

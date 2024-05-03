@@ -31,6 +31,27 @@ class EmployeePcDailyCheck extends Model
         return $monthlyReport ? $monthlyReport->isVerified($role) : false;
     }
 
+    public function allSignaturesExist()
+    {
+        // Ambil division_id dari relasi division
+        $division_id = $this->division->id;
+
+        $monthlyReport = EmployeePcDailyCheckMonthlyReport::where([
+            'year' => $this->year,
+            'month' => $this->getMonthNumber($this->month), 
+            'division_id' => $division_id
+        ])->first();
+
+        if ($monthlyReport) {
+            return !is_null($monthlyReport->teknisi_signature) &&
+                !is_null($monthlyReport->kabag_signature) &&
+                !is_null($monthlyReport->wakil_rektor_signature);
+        }
+
+        return false;
+    }
+
+    
     private function getMonthNumber($month)
     {
         $bulanToAngka = [
@@ -50,6 +71,5 @@ class EmployeePcDailyCheck extends Model
 
         return $bulanToAngka[$month];
     }
-
 
 }
