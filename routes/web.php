@@ -45,11 +45,19 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('sectionhead.repairrequests.verify');
     Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('sectionhead.repairrequests.reject');
 
+    // PC Daily Check
     Route::get('/employee-daily-check', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'index'])->name('sectionhead.employeepcdailychecks.index');    
     Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'showByMonthAndDivision'])
             ->name('sectionhead.employeepcdailychecks.showByMonthAndDivision');
     Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'show'])->name('sectionhead.employeepcdailychecks.show');    
     Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\SectionHead\EmployeePcDailyCheckController::class, 'verify'])->name('sectionhead.employeepcdailychecks.verify');    
+
+    // Lab Usage
+    Route::get('/lab-usages', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'index'])->name('sectionhead.labusagesreport.index');    
+    Route::get('/lab-usages/{year}/{month}/{lab}', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'showByIndex'])
+            ->name('sectionhead.labusagesreport.showByIndex');
+    Route::get('/lab-usages/{id}', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'show'])->name('sectionhead.labusagesreport.show');    
+    Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'verify'])->name('sectionhead.labusagesreport.verify');
 
 });
 

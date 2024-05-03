@@ -243,7 +243,7 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 2)
-                  <li class="nav-item dropdown {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show', 'sectionhead.employeepcdailychecks.index', 'sectionhead.employeepcdailychecks.showByMonthAndDivision', 'sectionhead.employeepcdailychecks.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show', 'sectionhead.employeepcdailychecks.index', 'sectionhead.employeepcdailychecks.showByMonthAndDivision', 'sectionhead.employeepcdailychecks.show', 'sectionhead.labusagesreport.index', 'sectionhead.labusagesreport.showByIndex', 'sectionhead.labusagesreport.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -274,6 +274,12 @@
                               <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}"
                                  href="{{ route('sectionhead.employeepcdailychecks.index') }}">
                                  Pemeriksaan Harian PC
+                              </a>
+                           </div>
+                           <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}"
+                                 href="{{ route('sectionhead.labusagesreport.index') }}">
+                                 Penggunaan Lab Komputer
                               </a>
                            </div>
                         </div>
@@ -414,7 +420,7 @@
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['vicerector.repairrequests.index', 'vicerector.repairrequests.show', 'vicerector.employeepcdailychecks.index', 'vicerector.employeepcdailychecks.showByMonthAndDivision', 'vicerector.employeepcdailychecks.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['technician.employeepcdailychecksreport.index', 'technician.employeepcdailychecksreport.showByMonthAndDivision', 'technician.employeepcdailychecksreport.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
