@@ -142,11 +142,19 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('vicerector.repairrequests.verify');
     Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('vicerector.repairrequests.reject');
 
+    // PC Daily Check
     Route::get('/employee-daily-check', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'index'])->name('vicerector.employeepcdailychecks.index');    
     Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'showByMonthAndDivision'])
             ->name('vicerector.employeepcdailychecks.showByMonthAndDivision');
     Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'show'])->name('vicerector.employeepcdailychecks.show');    
     Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'verify'])->name('vicerector.employeepcdailychecks.verify');    
+
+    // Lab Usage
+    Route::get('/lab-usages', [\App\Http\Controllers\ViceRector\LabUsageMonthlyReportController::class, 'index'])->name('vicerector.labusagesreport.index');    
+    Route::get('/lab-usages/{year}/{month}/{lab}', [\App\Http\Controllers\ViceRector\LabUsageMonthlyReportController::class, 'showByIndex'])
+            ->name('vicerector.labusagesreport.showByIndex');
+    Route::get('/lab-usages/{id}', [\App\Http\Controllers\ViceRector\LabUsageMonthlyReportController::class, 'show'])->name('vicerector.labusagesreport.show');    
+    Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\ViceRector\LabUsageMonthlyReportController::class, 'verify'])->name('vicerector.labusagesreport.verify');
 
 });
 

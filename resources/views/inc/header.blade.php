@@ -654,6 +654,12 @@
                               Pemeriksaan Harian PC
                            </a>
                         </div>
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}"
+                              href="{{ route('vicerector.labusagesreport.index') }}">
+                              Penggunaan Lab Komputer
+                           </a>
+                        </div>
                      </div>
                   </div>
                </li>

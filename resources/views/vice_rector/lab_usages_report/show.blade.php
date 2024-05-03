@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Lab</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('sectionhead.labusagesreport.index') }}">Penggunaan Lab Komputer</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('vicerector.labusagesreport.index') }}">Penggunaan Lab Komputer</a></li>
                         <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
                 </div>
@@ -99,7 +99,7 @@
                             </div>
                             <div class="card-footer bg-transparent mt-auto">
                                 <div class="btn-list justify-content-end">
-                                    <a href="{{ route('sectionhead.labusagesreport.index') }}" class="btn">
+                                    <a href="{{ route('vicerector.labusagesreport.index') }}" class="btn">
                                         Kembali
                                     </a>
                                         {{-- <button type="submit" class="btn btn-primary">
