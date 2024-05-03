@@ -77,11 +77,19 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
     Route::resource('/repair-requests', \App\Http\Controllers\Technician\RepairRequestController::class)->names('technician.repairrequests');
     Route::resource('/employee-pc-daily-checks', \App\Http\Controllers\Technician\EmployeePcDailyCheckController::class)->names('technician.employeepcdailychecks');
 
+    // PC Daily Check
     Route::get('/employee-daily-check', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'index'])->name('technician.employeepcdailychecksreport.index');    
     Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'showByMonthAndDivision'])
             ->name('technician.employeepcdailychecksreport.showByMonthAndDivision');
     Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'show'])->name('technician.employeepcdailychecksreport.show');    
     Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'verify'])->name('technician.employeepcdailychecksreport.verify');
+    
+    // Lab Usage
+    Route::get('/lab-usages', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'index'])->name('technician.labusagesreport.index');    
+    Route::get('/lab-usages/{year}/{month}/{lab}', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'showByIndex'])
+            ->name('technician.labusagesreport.showByIndex');
+    Route::get('/lab-usages/{id}', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'show'])->name('technician.labusagesreport.show');    
+    Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'verify'])->name('technician.labusagesreport.verify');
     
 });
 

@@ -420,7 +420,7 @@
                         </div>
                      </div>
                   </li>
-                  <li class="nav-item dropdown {{ request()->routeIs(['technician.employeepcdailychecksreport.index', 'technician.employeepcdailychecksreport.showByMonthAndDivision', 'technician.employeepcdailychecksreport.show']) ? 'active' : '' }}">
+                  <li class="nav-item dropdown {{ request()->routeIs(['technician.employeepcdailychecksreport.index', 'technician.employeepcdailychecksreport.showByMonthAndDivision', 'technician.employeepcdailychecksreport.show', 'technician.labusagesreport.index', 'technician.labusagesreport.showByIndex', 'technician.labusagesreport.show']) ? 'active' : '' }}">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -448,6 +448,12 @@
                                  href="{{ route('technician.employeepcdailychecksreport.index') }}">
                                  Pemeriksaan Harian PC
                               </a>
+                              <div class="dropdown-menu-column">
+                                 <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}"
+                                    href="{{ route('technician.labusagesreport.index') }}">
+                                    Penggunaan Lab Komputer
+                                 </a>
+                              </div>
                            </div>
                         </div>
                      </div>
