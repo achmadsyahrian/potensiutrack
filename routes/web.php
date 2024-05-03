@@ -59,6 +59,13 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/lab-usages/{id}', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'show'])->name('sectionhead.labusagesreport.show');    
     Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\SectionHead\LabUsageMonthlyReportController::class, 'verify'])->name('sectionhead.labusagesreport.verify');
 
+    // Lab Request
+    Route::get('/lab-requests', [\App\Http\Controllers\SectionHead\LabRequestMonthlyReportController::class, 'index'])->name('sectionhead.labrequestsreport.index');    
+    Route::get('/lab-requests/{year}/{month}/{lab}', [\App\Http\Controllers\SectionHead\LabRequestMonthlyReportController::class, 'showByIndex'])
+            ->name('sectionhead.labrequestsreport.showByIndex');
+    Route::get('/lab-requests/{id}', [\App\Http\Controllers\SectionHead\LabRequestMonthlyReportController::class, 'show'])->name('sectionhead.labrequestsreport.show');    
+    Route::post('/lab-requests/{year}/{month}/{lab}/verify', [\App\Http\Controllers\SectionHead\LabRequestMonthlyReportController::class, 'verify'])->name('sectionhead.labrequestsreport.verify');
+
 });
 
 // Asisten Lab

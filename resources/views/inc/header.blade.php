@@ -243,7 +243,16 @@
                      </div>
                   </li>
                @elseif (Auth::user()->role_id == 2)
-                  <li class="nav-item dropdown {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show', 'sectionhead.employeepcdailychecks.index', 'sectionhead.employeepcdailychecks.showByMonthAndDivision', 'sectionhead.employeepcdailychecks.show', 'sectionhead.labusagesreport.index', 'sectionhead.labusagesreport.showByIndex', 'sectionhead.labusagesreport.show']) ? 'active' : '' }}">
+                  <li
+                     class="nav-item dropdown 
+                        {{ request()->routeIs(
+                           [
+                              'sectionhead.repairrequests.index', 'sectionhead.repairrequests.show', 
+                              'sectionhead.employeepcdailychecks.index', 'sectionhead.employeepcdailychecks.showByMonthAndDivision', 'sectionhead.employeepcdailychecks.show', 
+                              'sectionhead.labusagesreport.index', 'sectionhead.labusagesreport.showByIndex', 'sectionhead.labusagesreport.show', 
+                              'sectionhead.labrequestsreport.index', 'sectionhead.labrequestsreport.showByIndex', 'sectionhead.labrequestsreport.show'
+                           ]) ? 'active' : '' }}
+                     ">
                      <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -277,6 +286,10 @@
                               </a>
                            </div>
                            <div class="dropdown-menu-column">
+                              <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}"
+                                 href="{{ route('sectionhead.labrequestsreport.index') }}">
+                                 Permohonan Penggunaan Lab
+                              </a>
                               <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}"
                                  href="{{ route('sectionhead.labusagesreport.index') }}">
                                  Penggunaan Lab Komputer

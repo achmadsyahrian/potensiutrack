@@ -34,7 +34,7 @@ class EmployeePcDailyCheckController extends Controller
             ->where('division_id', $division)
             ->orderBy('date', 'desc')
             ->paginate(10);
-        $divisionName = Division::find($division)->pluck('name')->first();
+        $divisionName = Division::find($division)->name;
 
         return view('section_head.employee_daily_check.show_by_month_and_division', compact('data', 'year', 'month', 'divisionName'));
     }
