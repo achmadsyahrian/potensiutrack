@@ -17,7 +17,7 @@ class EmployeePcDailyCheck extends Model
         return $this->belongsTo(Division::class);
     }
 
-    public function isVerified($year, $month, $division_id)
+    public function isVerified($year, $month, $division_id, $role)
     {
         $monthNum = $this->getMonthNumber($month);
 
@@ -28,7 +28,7 @@ class EmployeePcDailyCheck extends Model
         ])->first();
 
         // Periksa apakah sudah diverifikasi
-        return $monthlyReport ? $monthlyReport->isVerified() : false;
+        return $monthlyReport ? $monthlyReport->isVerified($role) : false;
     }
 
     private function getMonthNumber($month)

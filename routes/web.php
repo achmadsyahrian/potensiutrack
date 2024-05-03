@@ -120,6 +120,21 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::resource('/wifi-checking', \App\Http\Controllers\Puskom\WifiCheckingController::class)->names('puskom.wifichecking');
 });
 
+// Wakil Rektor
+Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
+    Route::get('/repair-requests', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'index'])->name('vicerector.repairrequests.index');
+    Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('vicerector.repairrequests.show');
+    Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('vicerector.repairrequests.verify');
+    Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('vicerector.repairrequests.reject');
+
+    Route::get('/employee-daily-check', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'index'])->name('vicerector.employeepcdailychecks.index');    
+    Route::get('/employee-daily-check/{year}/{month}/{division}', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'showByMonthAndDivision'])
+            ->name('vicerector.employeepcdailychecks.showByMonthAndDivision');
+    Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'show'])->name('vicerector.employeepcdailychecks.show');    
+    Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'verify'])->name('vicerector.employeepcdailychecks.verify');    
+
+});
+
 // Guest
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [\App\Http\Controllers\AuthController::class, 'index'])->name('login');

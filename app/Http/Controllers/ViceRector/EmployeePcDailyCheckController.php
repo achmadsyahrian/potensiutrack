@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SectionHead;
+namespace App\Http\Controllers\ViceRector;
 
 use App\Http\Controllers\Controller;
 use App\Models\Division;
@@ -22,7 +22,7 @@ class EmployeePcDailyCheckController extends Controller
 
         $data = $this->convertMonthToIndonesian($data);
 
-        return view('section_head.employee_daily_check.index', compact('data'));
+        return view('vice_rector.employee_daily_check.index', compact('data'));
     }
 
     public function showByMonthAndDivision($year, $month, $division)
@@ -36,13 +36,13 @@ class EmployeePcDailyCheckController extends Controller
             ->paginate(10);
         $divisionName = Division::find($division)->pluck('name')->first();
 
-        return view('section_head.employee_daily_check.show_by_month_and_division', compact('data', 'year', 'month', 'divisionName'));
+        return view('vice_rector.employee_daily_check.show_by_month_and_division', compact('data', 'year', 'month', 'divisionName'));
     }
 
     public function show(EmployeePcDailyCheck $id)
     {
         $employeePcDailyCheck = $id;
-        return view('section_head.employee_daily_check.show', compact('employeePcDailyCheck'));
+        return view('vice_rector.employee_daily_check.show', compact('employeePcDailyCheck'));
     }
 
 
@@ -51,16 +51,18 @@ class EmployeePcDailyCheckController extends Controller
         $monthResult = $this->getMonthNumber($month);
 
         $validated = $request->validate([
-            'kabag_signature' => 'required',
+            'wakil_rektor_signature' => 'required',
         ]);
-        $kabagSignature = $this->saveSignature($validated['kabag_signature']);
+        $wakilRektorSignature = $this->saveSignature($validated['wakil_rektor_signature']);
 
         $monthlyReport = EmployeePcDailyCheckMonthlyReport::updateOrCreate(
             ['division_id' => $division, 'year' => $year, 'month' => $monthResult],
-            ['kabag_signature' => $kabagSignature]
+            ['wakil_rektor_signature' => $wakilRektorSignature]
         );
 
         return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
     }
+
+
 
 }

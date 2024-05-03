@@ -37,7 +37,7 @@
          </div>
          <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-               <a href="{{ route('sectionhead.employeepcdailychecks.index') }}" class="btn btn-secondary d-none d-sm-inline-block">
+               <a href="{{ route('vicerector.employeepcdailychecks.index') }}" class="btn btn-secondary d-none d-sm-inline-block">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                      <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
@@ -84,7 +84,7 @@
                      </td>                      
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('sectionhead.employeepcdailychecks.showByMonthAndDivision', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}"
+                           <a href="{{ route('vicerector.employeepcdailychecks.showByMonthAndDivision', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
@@ -93,14 +93,14 @@
                                  Sudah Verifikasi
                               </button>
                            @else
-                              <a href="{{ route('sectionhead.employeepcdailychecks.index', ['employee_pc_daily_check' => $item->id]) }}"
+                              <a href="#"
                                  class="btn btn-outline-teal" data-bs-toggle="modal" data-bs-target="#modal-report-{{ $loop->index }}">
                                  Verifikasi
                               </a>
                            @endif
                         </div>
                      </td>
-                     <x-sectionhead.employeepcdailycheck.modal route="{{ route('sectionhead.employeepcdailychecks.verify', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" method='post' id='{{ $loop->index }}'></x-sectionhead.employeepcdailycheck.modal>
+                     <x-verify-signature route="{{ route('vicerector.employeepcdailychecks.verify', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 2" name="wakil_rektor_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

@@ -47,5 +47,10 @@ class RoleSeeder extends Seeder
             'name' => 'Puskom',
             'description' => 'Puskom bertanggung jawab mengelola layanan terkait dengan web, sistem informasi, dan jaringan.'
         ]);
+
+        Role::create([
+            'name' => 'Wakil Rektor 2',
+            'description' => '-'
+        ]);
     }
 }
