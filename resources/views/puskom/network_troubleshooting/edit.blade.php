@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Alasan Pengembangan</label>
+                                        <label class="form-label">Alasan Kerusakan</label>
                                         <textarea data-bs-toggle="autosize" placeholder="Ketikkan disini"
                                             class="form-control @error('network_expansion_reason') is-invalid @enderror" id="" cols=""
                                             rows="1" readonly>{{ $networkTroubleshooting->fault_reason }}</textarea>

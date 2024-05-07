@@ -51,8 +51,8 @@
                   <tr>
                      <th class="w-1">No.</th>
                      <th>Tanggal</th>
-                     <th>Jam Mulai Pemeriksaan</th>
-                     <th>Jam Selesai Pemeriksaan</th>
+                     <th>Dosen</th>
+                     <th>Kelas</th>
                      <th></th>
                   </tr>
                </thead>
@@ -64,10 +64,10 @@
                         {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                     </td>
                     <td>
-                        {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }}
+                        {{ $item->lecturer->name }}
                     </td>
                     <td>
-                        {{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
+                        {{ $item->class }}
                     </td>
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
