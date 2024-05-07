@@ -254,96 +254,62 @@
                   <div class="dropdown-menu">
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*lab-daily-check*') ? 'active' : '' }}" href="{{ route('sectionhead.labdailychecksreport.index') }}">
-                              Pemeriksaan Harian Lab
-                           </a>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Lab
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*lab-daily-check*') ? 'active' : '' }}" href="{{ route('sectionhead.labdailychecksreport.index') }}">
+                                    Pemeriksaan Harian Lab
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}" href="{{ route('sectionhead.labrequestsreport.index') }}">
+                                    Permohonan Penggunaan Lab
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}" href="{{ route('sectionhead.labusagesreport.index') }}">
+                                    Penggunaan Lab Komputer
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Web Aplikasi
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/web-development*') ? 'active' : '' }}" href="{{ route('sectionhead.webdevelopmentsreport.index') }}">
+                                    Pengembangan Web
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/web-maintenances*') ? 'active' : '' }}" href="{{ route('sectionhead.webmaintenancesreport.index') }}">
+                                    Web Maintenance
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Jaringan
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/network-development*') ? 'active' : '' }}" href="{{ route('sectionhead.networkdevreport.index') }}">
+                                    Pengembangan Koneksi
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/wifi-checking*') ? 'active' : '' }}" href="{{ route('sectionhead.wificheckingsreport.index') }}">
+                                    Pengecekan Wifi
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('sectionhead.networktroubleshootingsreport.index') }}">
+                                    Penanganan Gangguan Jaringan
+                                 </a>
+                              </div>
+                           </div>
                            <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('sectionhead.repairrequests.index') }}">
-                              Perawatan & Perbaikan
+                              Perawatan & Perbaikan Pc Staff
                            </a>
                            <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}" href="{{ route('sectionhead.employeepcdailychecks.index') }}">
                               Pemeriksaan Harian PC
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*sectionhead/web-development*') ? 'active' : '' }}" href="{{ route('sectionhead.webdevelopmentsreport.index') }}">
-                              Pengembangan Web
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*sectionhead/wifi-checking*') ? 'active' : '' }}" href="{{ route('sectionhead.wificheckingsreport.index') }}">
-                              Pengecekan Wifi
-                           </a>
-                        </div>
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}" href="{{ route('sectionhead.labrequestsreport.index') }}">
-                              Permohonan Penggunaan Lab
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}" href="{{ route('sectionhead.labusagesreport.index') }}">
-                              Penggunaan Lab Komputer
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('sectionhead.networktroubleshootingsreport.index') }}">
-                              Penanganan Gangguan Jaringan
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*sectionhead/web-maintenances*') ? 'active' : '' }}" href="{{ route('sectionhead.webmaintenancesreport.index') }}">
-                              Web Maintenance
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*sectionhead/network-development*') ? 'active' : '' }}" href="{{ route('sectionhead.networkdevreport.index') }}">
-                              Pengembangan Koneksi
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['repair-requests*']) ? 'active' : '' }}">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-printer">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
-                           <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
-                           <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
-                        </svg>
-                     </span>
-                     <span class="nav-link-title">
-                        Cetak
-                     </span>
-                  </a>
-                  <div class="dropdown-menu">
-                     <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('employee.repairrequests.index') }}">
-                              Perawatan & Perbaikan
                            </a>
                         </div>
                      </div>
                   </div>
                </li>
                @elseif (Auth::user()->role_id == 3)
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
-                           <path d="M18 14v4h4" />
-                           <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
-                           <path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                           <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                           <path d="M8 11h4" />
-                           <path d="M8 15h3" />
-                        </svg>
-                     </span>
-                     <span class="nav-link-title">
-                        Laporan
-                     </span>
-                  </a>
-                  <div class="dropdown-menu">
-                     <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                           {{-- <a class="dropdown-item {{ Request::is('*lab-daily-checks*') ? 'active' : '' }}"
-                           href="{{ route('labassistant.labdailychecks.index') }}">
-                           Pemeriksaan Harian
-                           </a> --}}
-                        </div>
-                     </div>
-                  </div>
-               </li>
                <li class="nav-item dropdown {{ request()->routeIs(['labassistant.labrequests.index', 'labassistant.labrequests.show', 'labassistant.labusages.index', 'labassistant.labusages.show', 'labassistant.labdailychecks.index', 'labassistant.labdailychecks.edit']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -436,8 +402,7 @@
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}"
-                              href="{{ route('technician.labrequestsreport.index') }}">
+                           <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}" href="{{ route('technician.labrequestsreport.index') }}">
                               Permohonan Penggunaan Lab
                            </a>
                            <a class="dropdown-item {{ Request::is('*lab-daily-check*') ? 'active' : '' }}" href="{{ route('technician.labdailychecksreport.index') }}">
@@ -563,7 +528,7 @@
                      </div>
                   </div>
                </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.webdevelopment.index', 'puskom.webdevelopment.show', 'puskom.webmaintenance.index', 'puskom.webmaintenance.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.webdevelopment.index', 'puskom.webdevelopment.show', 'puskom.webmaintenance.index', 'puskom.webmaintenance.show', 'puskom.appchecking.index', 'puskom.appchecking.show']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-analytics">
@@ -587,6 +552,9 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*puskom/web-maintenance*') ? 'active' : '' }}" href="{{ route('puskom.webmaintenance.index') }}">
                               Maintenance Sistem
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*puskom/app-checking*') ? 'active' : '' }}" href="{{ route('puskom.appchecking.index') }}">
+                              Pengecekan Sistem
                            </a>
                         </div>
                      </div>
@@ -676,34 +644,54 @@
                   <div class="dropdown-menu">
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*lab-daily-check*') ? 'active' : '' }}" href="{{ route('vicerector.labdailychecksreport.index') }}">
-                              Pemeriksaan Harian Lab
-                           </a>
+
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Lab
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*lab-daily-check*') ? 'active' : '' }}" href="{{ route('vicerector.labdailychecksreport.index') }}">
+                                    Pemeriksaan Harian Lab
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}" href="{{ route('vicerector.labrequestsreport.index') }}">
+                                    Permohonan Penggunaan Lab
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}" href="{{ route('vicerector.labusagesreport.index') }}">
+                                    Penggunaan Lab Komputer
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Web Aplikasi
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*vicerector/web-development*') ? 'active' : '' }}" href="{{ route('vicerector.webdevelopmentsreport.index') }}">
+                                    Pengembangan Web
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*vicerector/web-maintenance*') ? 'active' : '' }}" href="{{ route('vicerector.webmaintenancesreport.index') }}">
+                                    Web Maintenance
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Jaringan
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*vicerector/network-development*') ? 'active' : '' }}" href="{{ route('vicerector.networkdevreport.index') }}">
+                                    Pengembangan Koneksi
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('vicerector.networktroubleshootingsreport.index') }}">
+                                    Penanganan Gangguan Jaringan
+                                 </a>
+                              </div>
+                           </div>
                            <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('vicerector.repairrequests.index') }}">
-                              Perawatan & Perbaikan
+                              Perawatan & Perbaikan Pc Staff
                            </a>
                            <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}" href="{{ route('vicerector.employeepcdailychecks.index') }}">
                               Pemeriksaan Harian PC
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*vicerector/web-development*') ? 'active' : '' }}" href="{{ route('vicerector.webdevelopmentsreport.index') }}">
-                              Pengembangan Web
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*vicerector/network-development*') ? 'active' : '' }}" href="{{ route('vicerector.networkdevreport.index') }}">
-                              Pengembangan Koneksi
-                           </a>
-                        </div>
-                        <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*lab-requests*') ? 'active' : '' }}" href="{{ route('vicerector.labrequestsreport.index') }}">
-                              Permohonan Penggunaan Lab
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}" href="{{ route('vicerector.labusagesreport.index') }}">
-                              Penggunaan Lab Komputer
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('vicerector.networktroubleshootingsreport.index') }}">
-                              Penanganan Gangguan Jaringan
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*vicerector/web-maintenance*') ? 'active' : '' }}" href="{{ route('vicerector.webmaintenancesreport.index') }}">
-                              Web Maintenance
                            </a>
                         </div>
                      </div>
@@ -744,3 +732,4 @@
       </div>
    </div>
 </header>
+

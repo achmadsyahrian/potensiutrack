@@ -57,10 +57,18 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Daifiria, M.Kom',
             'email' => null,
-            'username' => 'wakilrektor',
+            'username' => 'wakilrektor2',
             'phone' => null,
-            'password' => Hash::make('wakilrektor'),
+            'password' => Hash::make('wakilrektor2'),
             'role_id' => 8,
+        ]);
+        User::create([
+            'name' => 'Lili Tanti, M.Kom',
+            'email' => null,
+            'username' => 'wakilrektor1',
+            'phone' => null,
+            'password' => Hash::make('wakilrektor1'),
+            'role_id' => 9,
         ]);
     }
 }

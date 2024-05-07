@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('web_apps', function (Blueprint $table) {
+        Schema::create('app_checkings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('url')->nullable();
-            $table->string('description')->nullable();
+            $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade');
+            $table->unsignedInteger('month');
+            $table->unsignedInteger('year');
+            $table->json('result')->nullable();
             $table->timestamps();
+            
+            $table->unique(['web_app_id', 'month', 'year']);
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('web_apps');
+        Schema::dropIfExists('app_checkings');
     }
 };

@@ -202,6 +202,9 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::resource('/web-maintenance', \App\Http\Controllers\Puskom\WebMaintenanceController::class)->names('puskom.webmaintenance');
     Route::patch('/web-maintenance/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebMaintenanceController::class, 'markAsComplete'])->name('puskom.webmaintenance.markAsComplete');
 
+    //App Check
+    Route::resource('/app-checking', \App\Http\Controllers\Puskom\AppCheckingController::class)->names('puskom.appchecking');
+    
     //Wifi Check
     Route::resource('/wifi-checking', \App\Http\Controllers\Puskom\WifiCheckingController::class)->names('puskom.wifichecking');
 

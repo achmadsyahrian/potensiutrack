@@ -10,7 +10,7 @@
                <div class="page-pretitle">
                   <ol class="breadcrumb breadcrumb-arrows">
                      <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                     <li class="breadcrumb-item active"><a href="#">Laporan Pengecekan Wifi</a></li>
+                     <li class="breadcrumb-item active"><a href="#">Pengecekan Wifi</a></li>
                   </ol>
                </div>
                <h2 class="page-title">
