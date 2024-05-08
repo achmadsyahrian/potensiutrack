@@ -192,9 +192,9 @@
                            <a class="dropdown-item {{ Request::is('*administrator*') ? 'active' : '' }}" href="{{ route('accounts.administrator.index') }}">
                               Administrator
                            </a>
-                           <a class="dropdown-item {{ Request::is('') ? 'active' : '' }}" href="{{ route('lecturers.index') }}">
+                           {{-- <a class="dropdown-item {{ Request::is('') ? 'active' : '' }}" href="{{ route('lecturers.index') }}">
                               Wakil Rektor
-                           </a>
+                           </a> --}}
                            <a class="dropdown-item {{ Request::is('*section-head*') ? 'active' : '' }}" href="{{ route('accounts.sectionhead.index') }}">
                               Kabag
                            </a>
@@ -232,6 +232,7 @@
                               'sectionhead.webdevelopmentsreport.index', 'sectionhead.webdevelopmentsreport.showByIndex', 'sectionhead.webdevelopmentsreport.show',
                               'sectionhead.wificheckingsreport.index', 'sectionhead.wificheckingsreport.showByIndex', 'sectionhead.wificheckingsreport.show',
                               'sectionhead.networkdevreport.index', 'sectionhead.networkdevreport.showByIndex', 'sectionhead.networkdevreport.show',
+                              'sectionhead.appcheckingsreport.index', 'sectionhead.appcheckingsreport.showByIndex', 'sectionhead.appcheckingsreport.show',
                            ]) ? 'active' : '' }}
                      ">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -278,8 +279,11 @@
                                  <a class="dropdown-item {{ Request::is('*sectionhead/web-development*') ? 'active' : '' }}" href="{{ route('sectionhead.webdevelopmentsreport.index') }}">
                                     Pengembangan Web
                                  </a>
-                                 <a class="dropdown-item {{ Request::is('*sectionhead/web-maintenances*') ? 'active' : '' }}" href="{{ route('sectionhead.webmaintenancesreport.index') }}">
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/web-maintenance*') ? 'active' : '' }}" href="{{ route('sectionhead.webmaintenancesreport.index') }}">
                                     Web Maintenance
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/web-checkings*') ? 'active' : '' }}" href="{{ route('sectionhead.appcheckingsreport.index') }}">
+                                    Pengecekan Web
                                  </a>
                               </div>
                            </div>

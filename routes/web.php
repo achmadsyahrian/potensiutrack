@@ -101,12 +101,17 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/web-maintenance/detail/{id}', [\App\Http\Controllers\SectionHead\WebMaintenanceReportController::class, 'show'])->name('sectionhead.webmaintenancesreport.show');    
     Route::post('/web-maintenance/{year}/verify', [\App\Http\Controllers\SectionHead\WebMaintenanceReportController::class, 'verify'])->name('sectionhead.webmaintenancesreport.verify');
 
-    // Web Checking
+    // Wifi Checking
     Route::get('/wifi-checking', [\App\Http\Controllers\SectionHead\WifiCheckingReportController::class, 'index'])->name('sectionhead.wificheckingsreport.index');    
     Route::get('/wifi-checking/{building}', [\App\Http\Controllers\SectionHead\WifiCheckingReportController::class, 'showByIndex'])
             ->name('sectionhead.wificheckingsreport.showByIndex');
     Route::get('/wifi-checking/detail/{id}', [\App\Http\Controllers\SectionHead\WifiCheckingReportController::class, 'show'])->name('sectionhead.wificheckingsreport.show');    
     Route::post('/wifi-checking/{id}/verify', [\App\Http\Controllers\SectionHead\WifiCheckingReportController::class, 'verify'])->name('sectionhead.wificheckingsreport.verify');
+
+    // App Checking
+    Route::get('/web-checkings', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'index'])->name('sectionhead.appcheckingsreport.index');    
+    Route::get('/web-checkings/detail/{id}', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'show'])->name('sectionhead.appcheckingsreport.show');    
+    Route::post('/web-checkings/{id}/verify', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'verify'])->name('sectionhead.appcheckingsreport.verify');
 
 });
 

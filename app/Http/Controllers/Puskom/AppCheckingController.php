@@ -76,40 +76,29 @@ class AppCheckingController extends Controller
     public function update(Request $request, AppChecking $appChecking)
     {
         $input = $request->except('_token', '_method');
-        
-        // Decode JSON result from database
-        $results = json_decode($appChecking->result, true) ?? [];
-        
-        // Iterate through each input
+        $newResults = [];
+
         foreach ($input as $key => $value) {
-            // Check if checkbox value is 'on'
             if ($value === 'on') {
-                // Extract date and time information from checkbox name
+
                 $parts = explode('_', $key);
                 $appId = $parts[1];
                 $date = $parts[2];
                 $time = 'jam_' . substr($parts[3], 0, 2);
-                
-                // Create or update application report in results
-                if (!isset($results['app_' . $appId])) {
-                    $results['app_' . $appId] = [];
+                if (!isset($newResults['app_' . $appId])) {
+                    $newResults['app_' . $appId] = [];
                 }
-                if (!isset($results['app_' . $appId][$date])) {
-                    $results['app_' . $appId][$date] = [];
+                if (!isset($newResults['app_' . $appId][$date])) {
+                    $newResults['app_' . $appId][$date] = [];
                 }
-                $results['app_' . $appId][$date][$time] = 1;
+                $newResults['app_' . $appId][$date][$time] = 1;
             }
         }
-        
-        // Encode updated results to JSON and save to database
-        $appChecking->result = json_encode($results);
-        $appChecking->save();
+
+        $appChecking->update(['result' => json_encode($newResults)]);
 
         return redirect()->route('puskom.appchecking.index')->with('success', 'Laporan berhasil disimpan!');
     }
-
-
-
 
 
 

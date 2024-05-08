@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Layanan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('puskom.appchecking.index') }}">Pemeriksaan Harian</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('puskom.appchecking.index') }}">Pengecekan Web Aplikasi</a></li>
                         <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
                 </div>
@@ -62,7 +62,7 @@
                                                                 @if ($webApp->url)
                                                                 - 
                                                                 <span class="text-muted text-sm">
-                                                                    <a href="{{ $webApp->url }}" class="text-muted">
+                                                                    <a href="{{ $webApp->url }}" class="text-muted" target="_blank">
                                                                         <small>{{ $webApp->url }}</small>
                                                                     </a>
                                                                 </span>

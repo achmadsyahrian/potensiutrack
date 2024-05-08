@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedInteger('month');
             $table->unsignedInteger('year');
             $table->json('result')->nullable();
+            $table->string('kabag_signature')->nullable();
+            $table->string('wakil_rektor_signature')->nullable();
+            $table->string('puskom_signature')->nullable();
             $table->timestamps();
             
             $table->unique(['month', 'year']);
