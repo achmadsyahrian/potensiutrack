@@ -155,5 +155,5 @@
 </div>
 
 @include('components.puskom.app_checking.modal')
-{{-- @include('components.employeepcdailychecks.modal-search') --}}
+@include('components.puskom.app_checking.modal-search')
 @endsection

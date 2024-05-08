@@ -77,26 +77,20 @@ class AppCheckingController extends Controller
     {
         $input = $request->except('_token', '_method');
 
-        $results = json_decode($appChecking->result, true);
+        $results = [];
 
         foreach ($input as $key => $value) {
-            if (strpos($key, '_') !== false) {
-                list($date, $time) = explode('_', $key);
-
+            list($date, $time) = explode('_', $key);
+            if ($value === 'on') {
                 $time = 'jam_' . substr($time, 0, 2);
-
-                if (strpos($time, 'jam_') === 0) {
-                    $results[$date][$time] = ($value == 'on') ? 1 : 0;
-                }
+                $results[$date][$time] = 1;
             }
         }
-
         $appChecking->result = json_encode($results);
         $appChecking->save();
 
         return redirect()->route('puskom.appchecking.index')->with('success', 'Laporan berhasil disimpan!');
     }
-
 
 
 
@@ -113,13 +107,18 @@ class AppCheckingController extends Controller
 
     private function applySearchFilter(Request $request, $query)
     {
-        if ($request->filled('search_date')) {
-            $query->whereDate('date', $request->search_date);
+        if ($request->filled('search_apps')) {
+            $query->where('web_app_id', $request->search_apps);
         }
 
-        if ($request->filled('search_division')) {
-            $query->where('division_id', $request->search_division);
+        if ($request->filled('search_month')) {
+            $query->where('month', $request->search_month);
         }
+
+        if ($request->filled('search_year')) {
+            $query->where('year', $request->search_year);
+        }
+    
     }
 
     private function validateUniqueEntry($validated)

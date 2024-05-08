@@ -1,6 +1,6 @@
 <div class="modal modal-blur fade " id="modal-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="{{ route('technician.employeepcdailychecks.index') }}" method="get">
+        <form action="{{ route('puskom.appchecking.index') }}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pencarian Lanjutan</h5>
@@ -8,19 +8,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        @php
+                            use Carbon\Carbon;
+                        @endphp
+                        <div class="col-lg-6">
                             <div class="mb-3">
-                                <label class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" name="search_date" value="{{ request('search_date') }}" autocomplete="off">
-                            </div>                            
+                                <label class="form-label">Bulan</label>
+                                <select class="form-select " name="search_month">
+                                    <option value="">Pilih Bulan</option>
+                                    @for ($i = 1; $i <= 12; $i++)
+                                        <option value="{{ $i }}" {{ request('search_month') == $i ? 'selected' : '' }}>{{ Carbon::create()->month($i)->translatedFormat('F') }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Tahun</label>
+                                <select class="form-select" name="search_year">
+                                    <option value="">Pilih Tahun</option>
+                                    @php
+                                        $tahun_sekarang = date('Y');
+                                        $tahun_awal = $tahun_sekarang - 5;
+                                        $tahun_akhir = $tahun_sekarang + 5;
+                                    @endphp
+                                    @for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++)
+                                        <option value="{{ $tahun }}" {{ request('search_year') == $tahun ? 'selected' : '' }}>{{ $tahun }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <label class="form-label">Divisi</label>
-                                <select type="text" class="form-select" name="search_division">
-                                    <option selected disabled>Pilih divisi</option>
-                                    @foreach ($divisions as $item)
-                                        <option value="{{ $item->id }}" {{ request('search_division') == $item->id ? 'selected' : '' }}>
+                                <label class="form-label">Aplikasi</label>
+                                <select type="text" class="form-select" name="search_apps">
+                                    <option selected disabled>Pilih aplikasi</option>
+                                    @foreach ($apps as $item)
+                                        <option value="{{ $item->id }}" {{ request('search_apps') == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach
