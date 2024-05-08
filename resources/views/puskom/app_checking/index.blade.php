@@ -90,8 +90,8 @@
                <thead>
                   <tr>
                      <th class="w-1">No.</th>
-                     <th>Waktu</th>
-                     <th>Aplikasi</th>
+                     <th>Tahun</th>
+                     <th>Bulan</th>
                      <th></th>
                   </tr>
                </thead>
@@ -100,21 +100,10 @@
                   <tr>
                      <td><span class="text-muted">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}</span></td>
                      <td>
-                        {{ \Carbon\Carbon::create()->month($item->month)->translatedFormat('F') }} {{ $item->year }}
+                        {{ $item->year }}
                      </td>
                      <td>
-                        <div class="d-flex py-1 align-items-center">
-                           <div class="flex-fill">
-                              <div class="font-weight-medium">{{ $item->application->name }}</div>
-                              <div class="text-muted">
-                                 @if ($item->application->url) 
-                                    <a href="{{ $item->application->url }}" target="_blank" class="text-reset">{{ $item->application->url }}</a>
-                                 @else                                    
-                                    --
-                                 @endif
-                              </div>
-                           </div>
-                        </div>
+                        {{ \Carbon\Carbon::create()->month($item->month)->translatedFormat('F') }} 
                      </td>
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">

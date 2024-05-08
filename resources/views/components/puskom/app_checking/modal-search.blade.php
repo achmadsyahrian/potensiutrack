@@ -38,19 +38,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label class="form-label">Aplikasi</label>
-                                <select type="text" class="form-select" name="search_apps">
-                                    <option selected disabled>Pilih aplikasi</option>
-                                    @foreach ($apps as $item)
-                                        <option value="{{ $item->id }}" {{ request('search_apps') == $item->id ? 'selected' : '' }}>
-                                            {{ $item->name }}
-                                        </option>
-                                    @endforeach
-                                  </select>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

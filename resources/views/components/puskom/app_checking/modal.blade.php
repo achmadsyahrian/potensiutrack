@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        {{-- <div class="col-lg-12">
                             <div class="mb-3">
                                 <label class="form-label required">Aplikasi</label>
                                 <select type="text" class="form-select @error('web_app_id') is-invalid @enderror"
@@ -23,7 +23,7 @@
                                 </select>
                                 <x-invalid-feedback field='web_app_id'></x-invalid-feedback>
                             </div>
-                        </div>
+                        </div> --}}
                         @php
                             use Carbon\Carbon;
                         @endphp

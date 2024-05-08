@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('app_checkings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade');
+            // $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade');
             $table->unsignedInteger('month');
             $table->unsignedInteger('year');
             $table->json('result')->nullable();
             $table->timestamps();
             
-            $table->unique(['web_app_id', 'month', 'year']);
+            $table->unique(['month', 'year']);
         });
     }
 
@@ -31,3 +31,8 @@ return new class extends Migration
         Schema::dropIfExists('app_checkings');
     }
 };
+
+
+
+
+

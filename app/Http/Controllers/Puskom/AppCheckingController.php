@@ -41,7 +41,6 @@ class AppCheckingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'web_app_id' => 'required',
             'month' => 'required',
             'year' => 'required',
         ]);
@@ -59,7 +58,8 @@ class AppCheckingController extends Controller
      */
     public function show(AppChecking $appChecking)
     {
-        return view('puskom.app_checking.show', compact('appChecking'));
+        $webApps = WebApp::all();
+        return view('puskom.app_checking.show', compact('appChecking', 'webApps'));
     }
 
     /**
@@ -76,21 +76,39 @@ class AppCheckingController extends Controller
     public function update(Request $request, AppChecking $appChecking)
     {
         $input = $request->except('_token', '_method');
-
-        $results = [];
-
+        
+        // Decode JSON result from database
+        $results = json_decode($appChecking->result, true) ?? [];
+        
+        // Iterate through each input
         foreach ($input as $key => $value) {
-            list($date, $time) = explode('_', $key);
+            // Check if checkbox value is 'on'
             if ($value === 'on') {
-                $time = 'jam_' . substr($time, 0, 2);
-                $results[$date][$time] = 1;
+                // Extract date and time information from checkbox name
+                $parts = explode('_', $key);
+                $appId = $parts[1];
+                $date = $parts[2];
+                $time = 'jam_' . substr($parts[3], 0, 2);
+                
+                // Create or update application report in results
+                if (!isset($results['app_' . $appId])) {
+                    $results['app_' . $appId] = [];
+                }
+                if (!isset($results['app_' . $appId][$date])) {
+                    $results['app_' . $appId][$date] = [];
+                }
+                $results['app_' . $appId][$date][$time] = 1;
             }
         }
+        
+        // Encode updated results to JSON and save to database
         $appChecking->result = json_encode($results);
         $appChecking->save();
 
         return redirect()->route('puskom.appchecking.index')->with('success', 'Laporan berhasil disimpan!');
     }
+
+
 
 
 
@@ -107,9 +125,6 @@ class AppCheckingController extends Controller
 
     private function applySearchFilter(Request $request, $query)
     {
-        if ($request->filled('search_apps')) {
-            $query->where('web_app_id', $request->search_apps);
-        }
 
         if ($request->filled('search_month')) {
             $query->where('month', $request->search_month);
@@ -123,22 +138,21 @@ class AppCheckingController extends Controller
 
     private function validateUniqueEntry($validated)
     {
-        $existingEntry = AppChecking::where('web_app_id', $validated['web_app_id'])
-                        ->where('month', $validated['month'])
+        $existingEntry = AppChecking::where('month', $validated['month'])
                         ->where('year', $validated['year'])
                         ->exists();
 
         if ($existingEntry) {
             throw ValidationException::withMessages([
-                'web_app_id' => ['Aplikasi ini sudah memiliki laporan pada bulan dan tahun yang sama!'],
+                'month' => ['Laporan untuk bulan dan tahun yang sama sudah ada!'],
             ]);
         }
     }
 
+
     private function createAppChecking($validated)
     {
         $appChecking = new AppChecking();
-        $appChecking->web_app_id = $validated['web_app_id'];
         $appChecking->month = $validated['month'];
         $appChecking->year = $validated['year'];
         $appChecking->save();
