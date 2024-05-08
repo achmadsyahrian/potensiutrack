@@ -247,6 +247,11 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.wificheckingsreport.showByIndex');
     Route::get('/report/wifi-checking/detail/{id}', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'show'])->name('puskom.wificheckingsreport.show');    
     Route::post('/report/wifi-checking/{id}/verify', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'verify'])->name('puskom.wificheckingsreport.verify');
+
+    // App Checking
+    Route::get('/report/web-checking', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'index'])->name('puskom.appcheckingsreport.index');    
+    Route::get('/report/web-checking/detail/{id}', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'show'])->name('puskom.appcheckingsreport.show');    
+    Route::post('/report/web-checking/{id}/verify', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'verify'])->name('puskom.appcheckingsreport.verify');
     
 });
 
