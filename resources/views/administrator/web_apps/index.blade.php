@@ -75,7 +75,18 @@
                      <td><span class="text-muted">{{ ($webApps->currentPage() - 1) * $webApps->perPage() +
                            $loop->iteration }}</span></td>
                      <td>
-                        {{ $item->name }}
+                        <div class="d-flex py-1 align-items-center">
+                           <div class="flex-fill">
+                              <div class="font-weight-medium">{{ $item->name }}</div>
+                              <div class="text-muted">
+                                 @if ($item->url)
+                                    <a href="{{ $item->url }}" target="_blank" class="text-reset">{{ $item->url ?? '---' }}</a>
+                                 @else
+                                    --
+                                 @endif
+                              </div>
+                           </div>
+                        </div>
                      </td>
                      <td>
                         {{ $item->description ?? '---'}}

@@ -40,8 +40,15 @@
                            <x-invalid-feedback field='name'></x-invalid-feedback>
                         </div>
                         <div class="col-md">
+                           <div class="form-label">URL</div>
+                           <input type="text" placeholder="Masukkan url"
+                              class="form-control @error('url') is-invalid @enderror" value="{{ $web_application->url }}"
+                              name="url" autocomplete='off'>
+                           <x-invalid-feedback field='url'></x-invalid-feedback>
+                        </div>
+                        <div class="col-md">
                            <div class="form-label">Keterangan</div>
-                           <input type="text" placeholder="Masukkan nama"
+                           <input type="text" placeholder="Masukkan keterangan"
                               class="form-control @error('description') is-invalid @enderror" value="{{ $web_application->description }}"
                               name="description" autocomplete='off'>
                            <x-invalid-feedback field='description'></x-invalid-feedback>

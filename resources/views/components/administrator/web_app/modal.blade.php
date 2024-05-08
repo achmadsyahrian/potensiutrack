@@ -18,6 +18,12 @@
                                 <x-invalid-feedback field='name'></x-invalid-feedback>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">URL</label>
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" name="url"
+                                    placeholder="Masukkan url" value="{{ old('url') }}" autocomplete="off">
+                                <x-invalid-feedback field='url'></x-invalid-feedback>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Keterangan</label>
                                 <input type="text" class="form-control @error('description') is-invalid @enderror" name="description"
                                     placeholder="Masukkan keterangan" value="{{ old('description') }}" autocomplete="off">

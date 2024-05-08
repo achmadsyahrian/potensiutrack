@@ -34,6 +34,7 @@ class WebAppController extends Controller
         try {
             $validatedData = $request->validate([
                 'name' => 'required|unique:web_apps|max:255',
+                'url' => 'nullable',
                 'description' => 'nullable',
             ]);
 
@@ -69,6 +70,7 @@ class WebAppController extends Controller
         try {
             $validatedData = $request->validate([
                 'name' => 'required|unique:web_apps,name,' . $web_application->id . '|max:255',
+                'url' => 'nullable',
                 'description' => 'nullable',
             ]);
     
