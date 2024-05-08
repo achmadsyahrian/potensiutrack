@@ -252,11 +252,18 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
 // Wakil Rektor 1
 Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
+
+// Wifi Checking
     Route::get('/wifi-checking', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'index'])->name('vicerector.wificheckingsreport.index');    
     Route::get('/wifi-checking/{building}', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'showByIndex'])
                 ->name('vicerector.wificheckingsreport.showByIndex');
     Route::get('/wifi-checking/detail/{id}', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'show'])->name('vicerector.wificheckingsreport.show');    
     Route::post('/wifi-checking/{id}/verify', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'verify'])->name('vicerector.wificheckingsreport.verify');
+
+// App Checking
+    Route::get('/web-checking', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'index'])->name('vicerector.appcheckingsreport.index');    
+    Route::get('/web-checking/detail/{id}', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'show'])->name('vicerector.appcheckingsreport.show');    
+    Route::post('/web-checking/{id}/verify', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'verify'])->name('vicerector.appcheckingsreport.verify');
 });
 
 // Wakil Rektor 2
