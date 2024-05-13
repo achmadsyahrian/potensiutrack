@@ -21,7 +21,7 @@ class NetworkTroubleshootingMonthlyReport extends Model
             case '2':
                 return !is_null($this->kabag_signature);
                 break;
-            case '8':
+            case '9':
                 return !is_null($this->wakil_rektor_signature);
                 break;
             default:

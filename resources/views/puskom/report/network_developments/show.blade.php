@@ -9,7 +9,7 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb breadcrumb-arrows">
                         <li class="breadcrumb-item"><a href="#">Laporan</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('vicerector.networkdevreport.index') }}">Pengembangan Koneksi Jaringan</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('puskom.networkdevreport.index') }}">Pengembangan Koneksi Jaringan</a></li>
                         <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                     </ol>
                 </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-footer bg-transparent mt-auto">
                        <div class="btn-list justify-content-end">
-                          <a href="{{ route('vicerector.networkdevreport.index') }}" class="btn">
+                          <a href="{{ route('puskom.networkdevreport.index') }}" class="btn">
                              Kembali
                           </a>
                     </div>

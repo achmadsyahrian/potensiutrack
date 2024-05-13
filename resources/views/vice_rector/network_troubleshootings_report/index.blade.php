@@ -96,7 +96,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('vicerector.networktroubleshootingsreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 2" name="wakil_rektor_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('vicerector.networktroubleshootingsreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 1" name="wakil_rektor_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

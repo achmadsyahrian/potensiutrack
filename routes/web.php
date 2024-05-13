@@ -282,6 +282,20 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
             ->name('vicerector.webdevelopmentsreport.showByIndex');
     Route::get('/web-development/detail/{id}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'show'])->name('vicerector.webdevelopmentsreport.show');    
     Route::post('/web-development/{year}/verify', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'verify'])->name('vicerector.webdevelopmentsreport.verify');
+
+    // Network Troubleshooting
+    Route::get('/network-troubleshooting', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'index'])->name('vicerector.networktroubleshootingsreport.index');    
+    Route::get('/network-troubleshooting/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
+            ->name('vicerector.networktroubleshootingsreport.showByIndex');
+    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('vicerector.networktroubleshootingsreport.show');    
+    Route::post('/network-troubleshooting/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('vicerector.networktroubleshootingsreport.verify');
+
+    // Network Development Report
+    Route::get('/network-development', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'index'])->name('vicerector.networkdevreport.index');    
+    Route::get('/network-development/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'showByIndex'])
+            ->name('vicerector.networkdevreport.showByIndex');
+    Route::get('/network-development/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
+    Route::post('/network-development/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
 });
 
 // Wakil Rektor 2
@@ -319,19 +333,6 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\ViceRector\LabDailyCheckMonthlyReportController::class, 'show'])->name('vicerector.labdailychecksreport.show');    
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\ViceRector\LabDailyCheckMonthlyReportController::class, 'verify'])->name('vicerector.labdailychecksreport.verify');
 
-    // Network Troubleshooting
-    Route::get('/network-troubleshooting', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'index'])->name('vicerector.networktroubleshootingsreport.index');    
-    Route::get('/network-troubleshooting/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
-            ->name('vicerector.networktroubleshootingsreport.showByIndex');
-    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('vicerector.networktroubleshootingsreport.show');    
-    Route::post('/network-troubleshooting/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('vicerector.networktroubleshootingsreport.verify');
-
-    // Network Development Report
-    Route::get('/network-development', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'index'])->name('vicerector.networkdevreport.index');    
-    Route::get('/network-development/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'showByIndex'])
-            ->name('vicerector.networkdevreport.showByIndex');
-    Route::get('/network-development/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
-    Route::post('/network-development/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
     
 });
 

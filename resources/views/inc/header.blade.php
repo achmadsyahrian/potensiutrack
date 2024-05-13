@@ -501,7 +501,7 @@
                   </div>
                </li>
                @elseif (Auth::user()->role_id == 7)
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.show', 'puskom.wifichecking.index', 'puskom.wifichecking.create', 'puskom.wifichecking.edit']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.edit', 'puskom.wifichecking.index', 'puskom.wifichecking.create', 'puskom.wifichecking.edit']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-broadcast-tower">
@@ -595,25 +595,25 @@
                   <div class="dropdown-menu">
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*report/web-maintenance*') ? 'active' : '' }}" href="{{ route('puskom.webmaintenancesreport.index') }}">
-                              Web Maintenance
-                           </a>
                            <a class="dropdown-item {{ Request::is('*report/web-development*') ? 'active' : '' }}" href="{{ route('puskom.webdevelopmentsreport.index') }}">
                               Pengembangan Web
                            </a>
-                           <a class="dropdown-item {{ Request::is('*report/network-development*') ? 'active' : '' }}" href="{{ route('puskom.networkdevreport.index') }}">
-                              Pengembangan Koneksi
+                           <a class="dropdown-item {{ Request::is('*report/web-maintenance*') ? 'active' : '' }}" href="{{ route('puskom.webmaintenancesreport.index') }}">
+                              Web Maintenance
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*report/web-checking*') ? 'active' : '' }}" href="{{ route('puskom.appcheckingsreport.index') }}">
+                              Pengecekan Web
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*report/network-development*') ? 'active' : '' }}" href="{{ route('puskom.networkdevreport.index') }}">
+                              Pengembangan Koneksi Jaringan
+                           </a>
                            <a class="dropdown-item {{ Request::is('*report/network-troubleshooting*') ? 'active' : '' }}" href="{{ route('puskom.networktroubleshootingsreport.index') }}">
                               Penanganan Gangguan Jaringan
                            </a>
                            <a class="dropdown-item {{ Request::is('*report/wifi-checking*') ? 'active' : '' }}" href="{{ route('puskom.wificheckingsreport.index') }}">
                               Pengecekan Wifi
-                           </a>
-                           <a class="dropdown-item {{ Request::is('*report/web-checking*') ? 'active' : '' }}" href="{{ route('puskom.appcheckingsreport.index') }}">
-                              Pengecekan Web
                            </a>
                         </div>
                      </div>
@@ -678,9 +678,6 @@
                                  <a class="dropdown-item {{ Request::is('*vicerector/network-development*') ? 'active' : '' }}" href="{{ route('vicerector.networkdevreport.index') }}">
                                     Pengembangan Koneksi
                                  </a>
-                                 <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('vicerector.networktroubleshootingsreport.index') }}">
-                                    Penanganan Gangguan Jaringan
-                                 </a>
                               </div>
                            </div>
                            <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('vicerector.repairrequests.index') }}">
@@ -694,7 +691,14 @@
                   </div>
                </li>
                @elseif (Auth::user()->role_id == 9)
-               <li class="nav-item dropdown {{ request()->routeIs([ 'vicerector.wificheckingsreport.index', 'vicerector.wificheckingsreport.showByIndex', 'vicerector.wificheckingsreport.show', 'vicerector.appcheckingsreport.index', 'vicerector.appcheckingsreport.showByIndex', 'vicerector.appcheckingsreport.show', 'vicerector.webmaintenancesreport.index', 'vicerector.webmaintenancesreport.showByIndex', 'vicerector.webmaintenancesreport.show', 'vicerector.webdevelopmentsreport.index', 'vicerector.webdevelopmentsreport.showByIndex', 'vicerector.webdevelopmentsreport.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs([ 
+                  'vicerector.wificheckingsreport.index', 'vicerector.wificheckingsreport.showByIndex', 'vicerector.wificheckingsreport.show', 
+                  'vicerector.appcheckingsreport.index', 'vicerector.appcheckingsreport.showByIndex', 'vicerector.appcheckingsreport.show', 
+                  'vicerector.webmaintenancesreport.index', 'vicerector.webmaintenancesreport.showByIndex', 'vicerector.webmaintenancesreport.show', 
+                  'vicerector.networktroubleshootingsreport.index', 'vicerector.networktroubleshootingsreport.showByIndex', 'vicerector.networktroubleshootingsreport.show', 
+                  'vicerector.webdevelopmentsreport.index', 'vicerector.webdevelopmentsreport.showByIndex', 'vicerector.webdevelopmentsreport.show',
+                  'vicerector.networkdevreport.index', 'vicerector.networkdevreport.showByIndex', 'vicerector.networkdevreport.show',
+                  ]) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
@@ -721,6 +725,19 @@
                            <a class="dropdown-item {{ Request::is('*vicerector/web-checking*') ? 'active' : '' }}" href="{{ route('vicerector.appcheckingsreport.index') }}">
                               Pengecekan Web Aplikasi
                            </a>
+                           <div class="dropend">
+                              <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+                                Jaringan
+                              </a>
+                              <div class="dropdown-menu">
+                                 <a class="dropdown-item {{ Request::is('*vicerector/network-development*') ? 'active' : '' }}" href="{{ route('vicerector.networkdevreport.index') }}">
+                                    Pengembangan Koneksi Jaringan
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*vicerector/network-troubleshooting*') ? 'active' : '' }}" href="{{ route('vicerector.networktroubleshootingsreport.index') }}">
+                                    Penanganan Gangguan Jaringan
+                                 </a>
+                              </div>
+                           </div>
                            <div class="dropend">
                               <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                                 Web Aplikasi
