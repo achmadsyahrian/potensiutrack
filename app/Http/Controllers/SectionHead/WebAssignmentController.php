@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Programmer;
+namespace App\Http\Controllers\SectionHead;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WebAssignmentStoreRequest;
@@ -21,14 +21,16 @@ class WebAssignmentController extends Controller
 
         $this->applySearchFilters($query, $request);
 
-        $query->where('programmer_id', auth()->user()->id);
+        $query->whereNotNull('finish_date');
 
         $query->orderBy('date', 'desc');
 
         $data = $query->paginate(10);
         $data->appends(request()->query());
-        
-        return view('programmer.web_assignment.index', compact('data'));
+
+        $programmers = User::where('role_id', 10)->get();
+
+        return view('section_head.web_assignment.index', compact('data', 'programmers'));
     }
 
 
@@ -43,6 +45,10 @@ class WebAssignmentController extends Controller
         if ($request->filled('search_application')) {
             $query->where('application', 'like', '%' . $request->search_application . '%');
         }        
+
+        if ($request->filled('search_programmer')) {
+            $query->where('programmer_id', $request->search_programmer);
+        }
 
         if ($request->filled('search_finish_date')) {
             $query->whereDate('finish_date', $request->search_finish_date);
@@ -61,11 +67,11 @@ class WebAssignmentController extends Controller
     public function verify(WebAssignment $id, Request $request)
     {
         $validated = $request->validate([
-            'programmer_signature' => 'required',
+            'kabag_signature' => 'required',
         ]);
-        $signatureResult = $this->saveSignature($validated['programmer_signature']);
+        $signatureResult = $this->saveSignature($validated['kabag_signature']);
 
-        $id->programmer_signature = $signatureResult;
+        $id->kabag_signature = $signatureResult;
         $id->save();
         
         return redirect()->back()->with('success', 'Data telah diverifikasi.');

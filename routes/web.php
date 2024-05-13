@@ -113,6 +113,10 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/web-checkings/detail/{id}', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'show'])->name('sectionhead.appcheckingsreport.show');    
     Route::post('/web-checkings/{id}/verify', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'verify'])->name('sectionhead.appcheckingsreport.verify');
 
+    // Web Assignment Verify
+    Route::get('/web-assignment', [\App\Http\Controllers\SectionHead\WebAssignmentController::class, 'index'])->name('sectionhead.webassignment.index');
+    Route::post('/web-assignment/{id}/verify', [\App\Http\Controllers\SectionHead\WebAssignmentController::class, 'verify'])->name('sectionhead.webassignment.verify');
+
 });
 
 // Asisten Lab
