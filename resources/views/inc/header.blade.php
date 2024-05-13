@@ -252,6 +252,7 @@
                               'sectionhead.wificheckingsreport.index', 'sectionhead.wificheckingsreport.showByIndex', 'sectionhead.wificheckingsreport.show',
                               'sectionhead.networkdevreport.index', 'sectionhead.networkdevreport.showByIndex', 'sectionhead.networkdevreport.show',
                               'sectionhead.appcheckingsreport.index', 'sectionhead.appcheckingsreport.showByIndex', 'sectionhead.appcheckingsreport.show',
+                              'sectionhead.webassignmentreport.index', 'sectionhead.webassignmentreport.showByIndex', 'sectionhead.webassignmentreport.show',
                            ]) ? 'active' : '' }}
                      ">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -303,6 +304,9 @@
                                  </a>
                                  <a class="dropdown-item {{ Request::is('*sectionhead/web-checkings*') ? 'active' : '' }}" href="{{ route('sectionhead.appcheckingsreport.index') }}">
                                     Pengecekan Web
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/report/web-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.webassignmentreport.index') }}">
+                                    Penugasan Web Informasi
                                  </a>
                               </div>
                            </div>
