@@ -203,6 +203,10 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::resource('/web-development', \App\Http\Controllers\Puskom\WebDevelopmentRequestController::class)->names('puskom.webdevelopment');
     Route::patch('/web-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebDevelopmentRequestController::class, 'markAsComplete'])->name('puskom.webdevelopment.markAsComplete');
 
+    //Web Assignment
+    Route::resource('/web-assignment', \App\Http\Controllers\Puskom\WebAssignmentController::class)->names('puskom.webassignment');
+    Route::patch('/web-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebAssignmentController::class, 'markAsComplete'])->name('puskom.webassignment.markAsComplete');
+
     //Web Maintenance
     Route::resource('/web-maintenance', \App\Http\Controllers\Puskom\WebMaintenanceController::class)->names('puskom.webmaintenance');
     Route::patch('/web-maintenance/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebMaintenanceController::class, 'markAsComplete'])->name('puskom.webmaintenance.markAsComplete');
