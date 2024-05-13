@@ -57,5 +57,10 @@ class RoleSeeder extends Seeder
             'name' => 'Wakil Rektor 1',
             'description' => '-'
         ]);
+
+        Role::create([
+            'name' => 'Programmer',
+            'description' => 'Staff Puskom'
+        ]);
     }
 }

@@ -23,7 +23,7 @@ class WebAssignmentStoreRequest extends FormRequest
     {
         return [
             'date' => 'required|date',
-            'programmer_id' => 'required|exists:programmers,id',
+            'programmer_id' => 'required|exists:users,id',
             'application' => 'required',
             'assignment_type' => 'required',
         ];

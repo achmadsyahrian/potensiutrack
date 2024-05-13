@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Puskom;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WebAssignmentStoreRequest;
 use App\Models\Programmer;
+use App\Models\User;
 use App\Models\WebAssignment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,8 +25,7 @@ class WebAssignmentController extends Controller
         $data = $query->paginate(10);
         $data->appends(request()->query());
 
-        $programmers = Programmer::all();
-        
+        $programmers = User::where('role_id', 10)->get();
         return view('puskom.web_assignment.index', compact('data', 'programmers'));
     }
 

@@ -336,9 +336,14 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
             ->name('vicerector.labdailychecksreport.showByIndex');
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\ViceRector\LabDailyCheckMonthlyReportController::class, 'show'])->name('vicerector.labdailychecksreport.show');    
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\ViceRector\LabDailyCheckMonthlyReportController::class, 'verify'])->name('vicerector.labdailychecksreport.verify');
-
-    
 });
+
+
+Route::prefix('programmer')->middleware('checkRole:10')->group(function () {
+    Route::get('/web-assignment', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'index'])->name('programmer.webassignment.index');
+    Route::post('/web-assignment/{id}/verify', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'verify'])->name('programmer.webassignment.verify');
+});
+
 
 // Guest
 Route::middleware(['guest'])->group(function () {

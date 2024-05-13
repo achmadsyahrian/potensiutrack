@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('web_assignments', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('programmer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('programmer_id')->constrained('users')->onDelete('cascade');
             // $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade');
             $table->string('application');
             $table->enum('assignment_type', ['maintenance', 'development']);

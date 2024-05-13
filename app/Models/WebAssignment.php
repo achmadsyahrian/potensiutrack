@@ -13,7 +13,7 @@ class WebAssignment extends Model
 
     public function programmer()
     {
-        return $this->belongsTo(Programmer::class);
+        return $this->belongsTo(User::class, 'programmer_id');
     }
 
     public function assignmentTypeDisplay()
