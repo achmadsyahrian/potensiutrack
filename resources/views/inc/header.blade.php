@@ -723,6 +723,7 @@
                   'vicerector.networktroubleshootingsreport.index', 'vicerector.networktroubleshootingsreport.showByIndex', 'vicerector.networktroubleshootingsreport.show', 
                   'vicerector.webdevelopmentsreport.index', 'vicerector.webdevelopmentsreport.showByIndex', 'vicerector.webdevelopmentsreport.show',
                   'vicerector.networkdevreport.index', 'vicerector.networkdevreport.showByIndex', 'vicerector.networkdevreport.show',
+                  'vicerector.webassignmentreport.index', 'vicerector.webassignmentreport.showByIndex', 'vicerector.webassignmentreport.show',
                   ]) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -773,6 +774,9 @@
                                  </a>
                                  <a class="dropdown-item {{ Request::is('*vicerector/web-maintenance*') ? 'active' : '' }}" href="{{ route('vicerector.webmaintenancesreport.index') }}">
                                     Web Maintenance
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*vicerector/web-assignment*') ? 'active' : '' }}" href="{{ route('vicerector.webassignmentreport.index') }}">
+                                    Penugasan Web Informasi
                                  </a>
                               </div>
                            </div>

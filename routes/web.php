@@ -311,6 +311,13 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
             ->name('vicerector.networkdevreport.showByIndex');
     Route::get('/network-development/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
     Route::post('/network-development/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
+
+    // Web Assignment Report
+    Route::get('/web-assignment', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'index'])->name('vicerector.webassignmentreport.index');    
+    Route::get('/web-assignment/{year}', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'showByIndex'])
+            ->name('vicerector.webassignmentreport.showByIndex');
+    Route::get('/web-assignment/detail/{id}', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'show'])->name('vicerector.webassignmentreport.show');    
+    Route::post('/web-assignment/{year}/verify', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'verify'])->name('vicerector.webassignmentreport.verify');
 });
 
 // Wakil Rektor 2
