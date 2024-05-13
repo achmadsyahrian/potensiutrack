@@ -26,7 +26,7 @@ class WebDevelopmentStoreRequest extends FormRequest
             'division_id' => 'required|exists:divisions,id',
             'reported_by_id' => 'required|exists:users,id',
             'reason' => 'required',
-            'puskom_signature' => 'required',
+            'wakil_rektor1_signature' => 'required',
             'reporter_signature' => 'required',
             'status' => '',
         ];

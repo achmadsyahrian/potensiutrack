@@ -84,7 +84,7 @@
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           @if ($item->isVerified($item->year, $item->month, Auth::user()->role_id))
+                           @if ($item->isVerified($item->year, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -96,7 +96,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('vicerector.webdevelopmentsreport.verify', ['year' => $item->year]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 2" name="wakil_rektor_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('vicerector.webdevelopmentsreport.verify', ['year' => $item->year]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 1" name="wakil_rektor_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

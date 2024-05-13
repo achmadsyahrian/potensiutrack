@@ -275,6 +275,13 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
             ->name('vicerector.webmaintenancesreport.showByIndex');
     Route::get('/web-maintenance/detail/{id}', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'show'])->name('vicerector.webmaintenancesreport.show');    
     Route::post('/web-maintenance/{year}/verify', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'verify'])->name('vicerector.webmaintenancesreport.verify');
+
+    // Web Development
+    Route::get('/web-development', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'index'])->name('vicerector.webdevelopmentsreport.index');    
+    Route::get('/web-development/{year}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'showByIndex'])
+            ->name('vicerector.webdevelopmentsreport.showByIndex');
+    Route::get('/web-development/detail/{id}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'show'])->name('vicerector.webdevelopmentsreport.show');    
+    Route::post('/web-development/{year}/verify', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'verify'])->name('vicerector.webdevelopmentsreport.verify');
 });
 
 // Wakil Rektor 2
@@ -325,13 +332,6 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
             ->name('vicerector.networkdevreport.showByIndex');
     Route::get('/network-development/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
     Route::post('/network-development/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
-    
-    // Web Development
-    Route::get('/web-development', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'index'])->name('vicerector.webdevelopmentsreport.index');    
-    Route::get('/web-development/{year}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'showByIndex'])
-            ->name('vicerector.webdevelopmentsreport.showByIndex');
-    Route::get('/web-development/detail/{id}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'show'])->name('vicerector.webdevelopmentsreport.show');    
-    Route::post('/web-development/{year}/verify', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'verify'])->name('vicerector.webdevelopmentsreport.verify');
     
 });
 

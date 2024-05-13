@@ -97,9 +97,9 @@ class WebMaintenanceController extends Controller
     {
         try {
             $web_maintenance->delete();
-            if ($web_maintenance->puskom_signature) {
-                Storage::disk('public')->delete($web_maintenance->puskom_signature);
-            }
+            // if ($web_maintenance->puskom_signature) {
+            //     Storage::disk('public')->delete($web_maintenance->puskom_signature);
+            // }
             if ($web_maintenance->reporter_signature_approval) {
                 Storage::disk('public')->delete($web_maintenance->reporter_signature_approval);
             }

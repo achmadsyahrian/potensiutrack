@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <x-signature-canvas title="Paraf Puskom" name="puskom_signature"></x-signature-canvas>
+                                <x-signature-canvas title="Paraf Wakil Rektor 1" name="wakil_rektor1_signature"></x-signature-canvas>
                             </div>
                         </div>
                         <div class="col-lg-12">

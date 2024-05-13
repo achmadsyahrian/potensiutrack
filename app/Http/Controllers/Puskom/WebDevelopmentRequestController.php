@@ -47,10 +47,10 @@ class WebDevelopmentRequestController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            $wr1SignaturePath = $this->saveSignature($validatedData['wakil_rektor1_signature']);
             $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            $validatedData['wakil_rektor1_signature'] = $wr1SignaturePath;
             $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             WebDevelopmentRequest::create($validatedData);
@@ -95,8 +95,8 @@ class WebDevelopmentRequestController extends Controller
         try {
             
             $web_development->delete();
-            if ($web_development->puskom_signature) {
-                Storage::disk('public')->delete($web_development->puskom_signature);
+            if ($web_development->wakil_rektor1_signature) {
+                Storage::disk('public')->delete($web_development->wakil_rektor1_signature);
             }
             if ($web_development->reporter_signature_approval) {
                 Storage::disk('public')->delete($web_development->reporter_signature_approval);
