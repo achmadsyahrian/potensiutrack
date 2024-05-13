@@ -61,7 +61,7 @@
                      </div>
                      @if ($web_maintenance->status == 1)
                      <hr>
-                     <div class="col-lg-6">
+                     <div class="col-lg-12">
                         <div class="mb-3">
                            <label class="form-label required">Tanggal Selesai</label>
                            <div class="row g-2">
@@ -75,31 +75,11 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-6">
-                        <div class="mb-3">
-                           <label class="form-label">Penanganan</label>
-                           <div class="row g-2">
-                              <div class="col">
-                                 <input type="text" class="form-control @error('handling') is-invalid @enderror" name="handling" value="{{ $web_maintenance->handling ?? '--' }}" autocomplete="off">
-                                 <x-invalid-feedback field='handling'></x-invalid-feedback>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                 <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Silakan isi kolom ini ketika sudah selesai.</p>" data-bs-html="true">?</span>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
                      @else
-                     <div class="col-lg-6">
+                     <div class="col-lg-12">
                         <div class="mb-3">
                            <label class="form-label">Tanggal Selesai</label>
                            <input type="text" class="form-control" value="{{ \Carbon\Carbon::parse($web_maintenance->finish_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}" readonly>
-                        </div>
-                     </div>
-                     <div class="col-lg-6">
-                        <div class="mb-3">
-                           <label class="form-label">Penanganan</label>
-                           <input type="text" class="form-control" value="{{ $web_maintenance->handling }}" readonly>
                         </div>
                      </div>
                      @endif

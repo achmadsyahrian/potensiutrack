@@ -72,18 +72,18 @@
                                         <input type="text" class="form-control" value="{{ $webMaintenances->reporter->name }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-62">
                                     <div class="mb-3">
                                         <label class="form-label">Permasalahan</label>
                                         <input type="text" class="form-control" value="{{ $webMaintenances->error }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Penanganan</label>
                                         <input type="text" class="form-control" value="{{ $webMaintenances->handling ?? '--' }}" autocomplete="off" readonly>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @if ($webMaintenances->status == 2)
                                     <div class="col-lg-3">
                                         <div class="mb-3">

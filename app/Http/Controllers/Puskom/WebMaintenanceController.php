@@ -49,10 +49,10 @@ class WebMaintenanceController extends Controller
         try {
             $validatedData = $request->validated();
             
-            $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
+            // $puskomSignaturePath = $this->saveSignature($validatedData['puskom_signature']);
             $reporterSignaturePath = $this->saveSignature($validatedData['reporter_signature']);
             
-            $validatedData['puskom_signature'] = $puskomSignaturePath;
+            // $validatedData['puskom_signature'] = $puskomSignaturePath;
             $validatedData['reporter_signature'] = $reporterSignaturePath;
     
             WebMaintenance::create($validatedData);
@@ -146,13 +146,13 @@ class WebMaintenanceController extends Controller
     {
         $validated = $request->validate([
             'finish_date' => 'required',
-            'handling' => 'nullable',
+            // 'handling' => 'nullable',
         ]);
 
         $webMaintenance = $id;
         $webMaintenance->status = 2;
         $webMaintenance->finish_date = $validated['finish_date'];
-        $webMaintenance->handling = $validated['handling'];
+        // $webMaintenance->handling = $validated['handling'];
         $webMaintenance->save();
         return redirect()->route('puskom.webmaintenance.index')->with('success', 'Permohonan berhasil di perbarui');
     }

@@ -257,18 +257,24 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
 // Wakil Rektor 1
 Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
-
-// Wifi Checking
+        // Wifi Checking
     Route::get('/wifi-checking', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'index'])->name('vicerector.wificheckingsreport.index');    
     Route::get('/wifi-checking/{building}', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'showByIndex'])
                 ->name('vicerector.wificheckingsreport.showByIndex');
     Route::get('/wifi-checking/detail/{id}', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'show'])->name('vicerector.wificheckingsreport.show');    
     Route::post('/wifi-checking/{id}/verify', [\App\Http\Controllers\ViceRector\WifiCheckingReportController::class, 'verify'])->name('vicerector.wificheckingsreport.verify');
 
-// App Checking
+        // App Checking
     Route::get('/web-checking', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'index'])->name('vicerector.appcheckingsreport.index');    
     Route::get('/web-checking/detail/{id}', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'show'])->name('vicerector.appcheckingsreport.show');    
     Route::post('/web-checking/{id}/verify', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'verify'])->name('vicerector.appcheckingsreport.verify');
+
+    // Web Maintenance
+    Route::get('/web-maintenance', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'index'])->name('vicerector.webmaintenancesreport.index');    
+    Route::get('/web-maintenance/{year}', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'showByIndex'])
+            ->name('vicerector.webmaintenancesreport.showByIndex');
+    Route::get('/web-maintenance/detail/{id}', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'show'])->name('vicerector.webmaintenancesreport.show');    
+    Route::post('/web-maintenance/{year}/verify', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'verify'])->name('vicerector.webmaintenancesreport.verify');
 });
 
 // Wakil Rektor 2
@@ -326,13 +332,6 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
             ->name('vicerector.webdevelopmentsreport.showByIndex');
     Route::get('/web-development/detail/{id}', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'show'])->name('vicerector.webdevelopmentsreport.show');    
     Route::post('/web-development/{year}/verify', [\App\Http\Controllers\ViceRector\WebDevelopmentMonthlyReportController::class, 'verify'])->name('vicerector.webdevelopmentsreport.verify');
-
-    // Web Maintenance
-    Route::get('/web-maintenance', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'index'])->name('vicerector.webmaintenancesreport.index');    
-    Route::get('/web-maintenance/{year}', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'showByIndex'])
-            ->name('vicerector.webmaintenancesreport.showByIndex');
-    Route::get('/web-maintenance/detail/{id}', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'show'])->name('vicerector.webmaintenancesreport.show');    
-    Route::post('/web-maintenance/{year}/verify', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'verify'])->name('vicerector.webmaintenancesreport.verify');
     
 });
 
