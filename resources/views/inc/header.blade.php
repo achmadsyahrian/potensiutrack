@@ -597,7 +597,8 @@
                      'puskom.webmaintenancesreport.index', 'puskom.webmaintenancesreport.showByIndex', 'puskom.webmaintenancesreport.show',
                      'puskom.wificheckingsreport.index', 'puskom.wificheckingsreport.showByIndex', 'puskom.wificheckingsreport.show',
                      'puskom.networkdevreport.index', 'puskom.networkdevreport.showByIndex', 'puskom.networkdevreport.show',
-                     'puskom.appcheckingsreport.index', 'puskom.appcheckingsreport.showByIndex', 'puskom.appcheckingsreport.show'
+                     'puskom.appcheckingsreport.index', 'puskom.appcheckingsreport.showByIndex', 'puskom.appcheckingsreport.show',
+                     'puskom.webassignmentreport.index', 'puskom.webassignmentreport.showByIndex', 'puskom.webassignmentreport.show',
                   ]
                ) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -628,6 +629,9 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*report/web-checking*') ? 'active' : '' }}" href="{{ route('puskom.appcheckingsreport.index') }}">
                               Pengecekan Web
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*report/web-assignment*') ? 'active' : '' }}" href="{{ route('puskom.webassignmentreport.index') }}">
+                              Penugasan Programmer
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
