@@ -31,7 +31,7 @@ class RepairRequestController extends Controller
 
         $repairRequest->status = 4;
         $signaturePath = $this->saveSignature($validated['kabag_signature_approval']);
-        $repairRequest->employee_signature = $signaturePath;
+        $repairRequest->kabag_signature_approval = $signaturePath;
         $repairRequest->save();
         return redirect()->route('sectionhead.repairrequests.index')->with('success', 'Permohonan berhasil di verifikasi');
     }

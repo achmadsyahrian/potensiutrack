@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'role_id' => 1,
         ]);
         User::create([
-            'name' => 'Kepala Bagian Puskom',
+            'name' => 'Soeheri, M.Kom',
             'email' => null,
             'username' => 'kabag',
             'phone' => null,
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'role_id' => 3,
         ]);
         User::create([
-            'name' => 'Teknisi',
+            'name' => 'Ahmad Jihad Alfayed',
             'email' => null,
             'username' => 'teknisi',
             'phone' => null,

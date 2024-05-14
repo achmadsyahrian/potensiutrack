@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->foreignId('reported_by_id')->constrained('users');
             $table->text('network_expansion_reason');
-            $table->text('puskom_signature');
+            $table->text('wakil_rektor1_signature');
             $table->text('reporter_signature');
             $table->date('finish_date')->nullable();
             $table->text('reporter_signature_approval')->nullable();

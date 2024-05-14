@@ -26,7 +26,7 @@ class NetworkTroubleshootingStoreRequest extends FormRequest
             'division_id' => 'required|exists:divisions,id',
             'reported_by_id' => 'required|exists:users,id',
             'fault_reason' => 'required',
-            'puskom_signature' => 'required',
+            // 'puskom_signature' => 'required',
             'reporter_signature' => 'required',
             'status' => '',
         ];

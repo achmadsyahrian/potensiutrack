@@ -631,7 +631,7 @@
                               Pengecekan Web
                            </a>
                            <a class="dropdown-item {{ Request::is('*report/web-assignment*') ? 'active' : '' }}" href="{{ route('puskom.webassignmentreport.index') }}">
-                              Penugasan Programmer
+                              Penugasan Web Informasi
                            </a>
                         </div>
                         <div class="dropdown-menu-column">

@@ -329,10 +329,10 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
 
 // Wakil Rektor 2
 Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
-    Route::get('/repair-requests', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'index'])->name('vicerector.repairrequests.index');
-    Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('vicerector.repairrequests.show');
-    Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('vicerector.repairrequests.verify');
-    Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('vicerector.repairrequests.reject');
+//     Route::get('/repair-requests', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'index'])->name('vicerector.repairrequests.index');
+//     Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('vicerector.repairrequests.show');
+//     Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('vicerector.repairrequests.verify');
+//     Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('vicerector.repairrequests.reject');
 
     // PC Daily Check
     Route::get('/employee-daily-check', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'index'])->name('vicerector.employeepcdailychecks.index');    
