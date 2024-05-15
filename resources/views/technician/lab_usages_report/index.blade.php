@@ -89,8 +89,8 @@
                               Lihat
                            </a>
                            @if ($item->allSignaturesExist())
-                              {{-- <a href="{{ route('technician.employeepcdailychecksreport.print', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" class="btn btn-teal"> --}}
-                              <a href="#" class="btn btn-warning">
+                              <a href="{{ route('technician.labusagesreport.print', ['year' => $item->year, 'month' => $item->month,  'lab' => $item->lab_id]) }}" class="btn btn-warning">
+                              {{-- <a href="#" class="btn btn-warning"> --}}
                                  Cetak
                               </a>
                            @elseif ($item->isVerified($item->year, $item->month, $item->lab->id, Auth::user()->role_id))

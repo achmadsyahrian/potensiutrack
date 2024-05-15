@@ -61,4 +61,23 @@ class LabUsageMonthlyReportController extends Controller
 
         return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
     }
+
+    public function print($year, $month, $lab)
+    {
+        $monthInNumber = $this->getMonthNumber($month);
+
+        $data = LabUsage::whereYear('date', $year)
+            ->whereMonth('date', $monthInNumber)
+            ->where('lab_id', $lab)
+            ->orderBy('date', 'desc')
+            ->paginate(10);
+        $labName = Lab::find($lab)->pluck('name')->first();
+
+        $dataReport = LabUsageMonthlyReport::where('lab_id', $lab)
+                    ->where('year', $year)
+                    ->where('month', $monthInNumber)
+                    ->first();
+
+        return view('technician.lab_usages_report.print', compact('data', 'year', 'month', 'labName', 'dataReport'));
+    }
 }
