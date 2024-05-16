@@ -128,6 +128,13 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/report/web-assignment/detail/{id}', [\App\Http\Controllers\SectionHead\WebAssignmentReportController::class, 'show'])->name('sectionhead.webassignmentreport.show');    
     Route::post('/report/web-assignment/{year}/verify', [\App\Http\Controllers\SectionHead\WebAssignmentReportController::class, 'verify'])->name('sectionhead.webassignmentreport.verify');
 
+    // Network Assignment Report
+    Route::get('/report/network-assignment', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'index'])->name('sectionhead.networkassignmentreport.index');    
+    Route::get('/report/network-assignment/{year}', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'showByIndex'])
+            ->name('sectionhead.networkassignmentreport.showByIndex');
+    Route::get('/report/network-assignment/detail/{id}', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'show'])->name('sectionhead.networkassignmentreport.show');    
+    Route::post('/report/network-assignment/{year}/verify', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'verify'])->name('sectionhead.networkassignmentreport.verify');
+
 });
 
 // Asisten Lab

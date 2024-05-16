@@ -271,6 +271,7 @@
                               'sectionhead.networkdevreport.index', 'sectionhead.networkdevreport.showByIndex', 'sectionhead.networkdevreport.show',
                               'sectionhead.appcheckingsreport.index', 'sectionhead.appcheckingsreport.showByIndex', 'sectionhead.appcheckingsreport.show',
                               'sectionhead.webassignmentreport.index', 'sectionhead.webassignmentreport.showByIndex', 'sectionhead.webassignmentreport.show',
+                              'sectionhead.networkassignmentreport.index', 'sectionhead.networkassignmentreport.showByIndex', 'sectionhead.networkassignmentreport.show',
                            ]) ? 'active' : '' }}
                      ">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -341,6 +342,9 @@
                                  </a>
                                  <a class="dropdown-item {{ Request::is('*network-troubleshootings*') ? 'active' : '' }}" href="{{ route('sectionhead.networktroubleshootingsreport.index') }}">
                                     Penanganan Gangguan Jaringan
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*sectionhead/report/network-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.networkassignmentreport.index') }}">
+                                    Penugasan Web Informasi
                                  </a>
                               </div>
                            </div>

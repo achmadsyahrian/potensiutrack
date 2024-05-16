@@ -30,4 +30,31 @@ class NetworkAssignment extends Model
         }
     }
 
+    public function isVerified($year, $role)
+    {
+
+        $monthlyReport = NetworkAssignmentReport::where([
+            'year' => $year
+        ])->first();
+
+        // Periksa apakah sudah diverifikasi
+        return $monthlyReport ? $monthlyReport->isVerified($role) : false;
+    }
+
+    public function allSignaturesExist()
+    {
+
+        $monthlyReport = NetworkAssignmentReport::where([
+            'year' => $this->year,
+        ])->first();
+
+        if ($monthlyReport) {
+            return !is_null($monthlyReport->puskom_signature) &&
+                !is_null($monthlyReport->kabag_signature) &&
+                !is_null($monthlyReport->wakil_rektor_signature);
+        }
+
+        return false;
+    }
+
 }
