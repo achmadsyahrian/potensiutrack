@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Lab;
 use App\Models\LabUsage;
 use App\Models\LabUsageMonthlyReport;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class LabUsageMonthlyReportController extends Controller
 {
@@ -80,4 +83,103 @@ class LabUsageMonthlyReportController extends Controller
 
         return view('technician.lab_usages_report.print', compact('data', 'year', 'month', 'labName', 'dataReport'));
     }
+
+
+    // =================================================================
+
+    public function print2($year, $month, $lab)
+    {
+        $monthInNumber = $this->getMonthNumber($month);
+
+        $data = LabUsage::whereYear('date', $year)
+            ->whereMonth('date', $monthInNumber)
+            ->where('lab_id', $lab)
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $labName = Lab::where('id', $lab)->pluck('name')->first();
+
+        $dataReport = LabUsageMonthlyReport::where('lab_id', $lab)
+            ->where('year', $year)
+            ->where('month', $monthInNumber)
+            ->first();
+
+        $chunkedData = $data->chunk(6);
+
+        $html = view('technician.lab_usages_report.print2', [
+            'chunkedData' => $chunkedData,
+            'labName' => $labName,
+            'dataReport' => $dataReport,
+            'year' => $year,
+            'month' => $month
+        ])->render();
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        $output = $dompdf->output();
+
+        return response()->streamDownload(
+            fn () => print($output),
+            "report.pdf",
+            ["Content-Type" => "application/pdf"]
+        );
+    }
+
+    public function print3($year, $month, $lab)
+    {
+        $monthInNumber = $this->getMonthNumber($month);
+
+        $data = LabUsage::whereYear('date', $year)
+            ->whereMonth('date', $monthInNumber)
+            ->where('lab_id', $lab)
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $labName = Lab::where('id', $lab)->pluck('name')->first();
+
+        $dataReport = LabUsageMonthlyReport::where('lab_id', $lab)
+            ->where('year', $year)
+            ->where('month', $monthInNumber)
+            ->first();
+
+        $chunkedData = $data->chunk(7);
+
+        $html = view('technician.lab_usages_report.print3', [
+            'chunkedData' => $chunkedData,
+            'labName' => $labName,
+            'dataReport' => $dataReport,
+            'year' => $year,
+            'month' => $month
+        ])->render();
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        $output = $dompdf->output();
+
+        return response()->stream(
+            fn () => print($output),
+            200,
+            [
+                "Content-Type" => "application/pdf",
+                "Content-Disposition" => "inline; filename=document.pdf"
+            ]
+        );
+        
+    }
+
+    
 }

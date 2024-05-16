@@ -147,6 +147,9 @@
          .container > table > thead > tr > th {
             background-color: #cdcdcd !important;
          }
+         .container {
+            margin-top: 200px;
+         }
       }
       
    </style>
@@ -305,8 +308,6 @@
         </div>
       </footer>
    </div>
-
-   {{-- <button onclick="window.print()">Print this page</button> --}}
 </body>
 </html>
 

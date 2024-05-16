@@ -117,6 +117,10 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/web-assignment', [\App\Http\Controllers\SectionHead\WebAssignmentController::class, 'index'])->name('sectionhead.webassignment.index');
     Route::post('/web-assignment/{id}/verify', [\App\Http\Controllers\SectionHead\WebAssignmentController::class, 'verify'])->name('sectionhead.webassignment.verify');
 
+    // Network Assignment Verify
+    Route::get('/network-assignment', [\App\Http\Controllers\SectionHead\NetworkAssignmentController::class, 'index'])->name('sectionhead.networkassignment.index');
+    Route::post('/network-assignment/{id}/verify', [\App\Http\Controllers\SectionHead\NetworkAssignmentController::class, 'verify'])->name('sectionhead.networkassignment.verify');
+
     // Web Assignment Report
     Route::get('/report/web-assignment', [\App\Http\Controllers\SectionHead\WebAssignmentReportController::class, 'index'])->name('sectionhead.webassignmentreport.index');    
     Route::get('/report/web-assignment/{year}', [\App\Http\Controllers\SectionHead\WebAssignmentReportController::class, 'showByIndex'])
@@ -155,7 +159,8 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
             ->name('technician.labusagesreport.showByIndex');
     Route::get('/lab-usages/{id}', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'show'])->name('technician.labusagesreport.show');    
     Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'verify'])->name('technician.labusagesreport.verify');
-    Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print'])->name('technician.labusagesreport.print');
+//     Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print'])->name('technician.labusagesreport.print');
+    Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print3'])->name('technician.labusagesreport.print');
 
     // Lab Request
     Route::get('/lab-requests', [\App\Http\Controllers\Technician\LabRequestMonthlyReportController::class, 'index'])->name('technician.labrequestsreport.index');    
@@ -217,8 +222,12 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
     //Web Assignment
     Route::resource('/web-assignment', \App\Http\Controllers\Puskom\WebAssignmentController::class)->names('puskom.webassignment');
-    Route::patch('/web-development/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebAssignmentController::class, 'markAsComplete'])->name('puskom.webassignment.markAsComplete');
+    Route::patch('/web-assignment/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebAssignmentController::class, 'markAsComplete'])->name('puskom.webassignment.markAsComplete');
 
+    //Network Assignment
+    Route::resource('/network-assignment', \App\Http\Controllers\Puskom\NetworkAssignmentController::class)->names('puskom.networkassignment');
+    Route::patch('/network-assignment/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\NetworkAssignmentController::class, 'markAsComplete'])->name('puskom.networkassignment.markAsComplete');
+    
     //Web Maintenance
     Route::resource('/web-maintenance', \App\Http\Controllers\Puskom\WebMaintenanceController::class)->names('puskom.webmaintenance');
     Route::patch('/web-maintenance/{id}/mark-as-complete', [\App\Http\Controllers\Puskom\WebMaintenanceController::class, 'markAsComplete'])->name('puskom.webmaintenance.markAsComplete');
@@ -368,6 +377,11 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
 Route::prefix('programmer')->middleware('checkRole:10')->group(function () {
     Route::get('/web-assignment', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'index'])->name('programmer.webassignment.index');
     Route::post('/web-assignment/{id}/verify', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'verify'])->name('programmer.webassignment.verify');
+});
+
+Route::prefix('engineer')->middleware('checkRole:11')->group(function () {
+    Route::get('/network-assignment', [\App\Http\Controllers\Engineer\NetworkAssignmentController::class, 'index'])->name('engineer.networkassignment.index');
+    Route::post('/network-assignment/{id}/verify', [\App\Http\Controllers\Engineer\NetworkAssignmentController::class, 'verify'])->name('engineer.networkassignment.verify');
 });
 
 

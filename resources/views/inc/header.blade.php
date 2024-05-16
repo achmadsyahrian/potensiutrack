@@ -238,6 +238,24 @@
                      </span>
                   </a>
                </li>
+               <li class="nav-item {{ request()->routeIs(['sectionhead.networkassignment.index']) ? 'active' : ''}}">
+                  <a class="nav-link" href="{{ route('sectionhead.networkassignment.index') }}">
+                     <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
+                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                           <path d="M13 5h8" />
+                           <path d="M13 9h5" />
+                           <path d="M13 15h8" />
+                           <path d="M13 19h5" />
+                           <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                           <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                        </svg>
+                     </span>
+                     <span class="nav-link-title">
+                        Penugasan Koneksi Jaringan
+                     </span>
+                  </a>
+               </li>
                <li class="nav-item dropdown 
                         {{ request()->routeIs(
                            [
@@ -523,7 +541,7 @@
                   </div>
                </li>
                @elseif (Auth::user()->role_id == 7)
-               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.edit', 'puskom.wifichecking.index', 'puskom.wifichecking.create', 'puskom.wifichecking.edit']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['puskom.networkdev.index', 'puskom.networkdev.show', 'puskom.networktroubleshooting.index', 'puskom.networktroubleshooting.edit', 'puskom.wifichecking.index', 'puskom.wifichecking.create', 'puskom.wifichecking.edit', 'puskom.networkassignment.index']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-broadcast-tower">
@@ -550,6 +568,9 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*puskom/wifi-checking*') ? 'active' : '' }}" href="{{ route('puskom.wifichecking.index') }}">
                               Pengecekan Wifi
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*puskom/network-assignment*') ? 'active' : '' }}" href="{{ route('puskom.networkassignment.index') }}">
+                              Penugasan
                            </a>
                         </div>
                      </div>
@@ -584,7 +605,7 @@
                               Pengecekan Sistem
                            </a>
                            <a class="dropdown-item {{ Request::is('*puskom/web-assignment*') ? 'active' : '' }}" href="{{ route('puskom.webassignment.index') }}">
-                              Penugasan Programmer
+                              Penugasan
                            </a>
                         </div>
                      </div>
@@ -804,6 +825,25 @@
                      </span>
                      <span class="nav-link-title">
                         Penugasan Web Informasi
+                     </span>
+                  </a>
+               </li>
+               @elseif (Auth::user()->role_id == 11)
+               <li class="nav-item {{ request()->routeIs(['engineer.networkassignment.index']) ? 'active' : ''}}">
+                  <a class="nav-link" href="{{ route('engineer.networkassignment.index') }}">
+                     <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
+                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                           <path d="M13 5h8" />
+                           <path d="M13 9h5" />
+                           <path d="M13 15h8" />
+                           <path d="M13 19h5" />
+                           <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                           <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                        </svg>
+                     </span>
+                     <span class="nav-link-title">
+                        Penugasan Koneksi Jaringan
                      </span>
                   </a>
                </li>
