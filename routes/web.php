@@ -166,8 +166,7 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
             ->name('technician.labusagesreport.showByIndex');
     Route::get('/lab-usages/{id}', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'show'])->name('technician.labusagesreport.show');    
     Route::post('/lab-usages/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'verify'])->name('technician.labusagesreport.verify');
-//     Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print'])->name('technician.labusagesreport.print');
-    Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print3'])->name('technician.labusagesreport.print');
+    Route::get('/lab-usages/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'print'])->name('technician.labusagesreport.print');
 
     // Lab Request
     Route::get('/lab-requests', [\App\Http\Controllers\Technician\LabRequestMonthlyReportController::class, 'index'])->name('technician.labrequestsreport.index');    
