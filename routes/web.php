@@ -412,6 +412,13 @@ Route::prefix('headassistantlab')->middleware('checkRole:12')->group(function ()
         ->name('headaslab.labusagesreport.showByIndex');
     Route::get('/lab-usages/{id}', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'show'])->name('headaslab.labusagesreport.show');    
     Route::post('/lab-usages/{year}/{month}/verify', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'verify'])->name('headaslab.labusagesreport.verify');
+
+    // Lab Usage
+    Route::get('/lab-request', [\App\Http\Controllers\HeadAslab\LabRequestMonthlyReportController::class, 'index'])->name('headaslab.labrequestsreport.index');    
+    Route::get('/lab-request/{year}/{month}/', [\App\Http\Controllers\HeadAslab\LabRequestMonthlyReportController::class, 'showByIndex'])
+        ->name('headaslab.labrequestsreport.showByIndex');
+    Route::get('/lab-request/{id}', [\App\Http\Controllers\HeadAslab\LabRequestMonthlyReportController::class, 'show'])->name('headaslab.labrequestsreport.show');    
+    Route::post('/lab-request/{year}/{month}/verify', [\App\Http\Controllers\HeadAslab\LabRequestMonthlyReportController::class, 'verify'])->name('headaslab.labrequestsreport.verify');
     
 });
 

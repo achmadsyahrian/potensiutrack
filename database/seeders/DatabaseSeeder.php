@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LabSeeder::class);
         $this->call(BuildingSeeder::class);
         $this->call(WebAppSeeder::class);
+        $this->call(HeadLabAssistant::class);
     }
 }

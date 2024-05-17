@@ -13,7 +13,7 @@ class ComputerSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($lab_id = 1; $lab_id <= 4; $lab_id++) {
+        for ($lab_id = 1; $lab_id <= 5; $lab_id++) {
             for ($computer_num = 1; $computer_num <= 41; $computer_num++) {
                 Computer::create([
                     'lab_id' => $lab_id,

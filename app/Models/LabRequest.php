@@ -49,6 +49,7 @@ class LabRequest extends Model
         if ($monthlyReport) {
             return !is_null($monthlyReport->teknisi_signature) &&
                 !is_null($monthlyReport->kabag_signature) &&
+                !is_null($monthlyReport->kepala_aslab_signature) &&
                 !is_null($monthlyReport->wakil_rektor_signature);
         }
 

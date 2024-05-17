@@ -102,5 +102,45 @@ class UserSeeder extends Seeder
             'password' => Hash::make('potensiutama'),
             'role_id' => 11,
         ]);
+        User::create([
+            'name' => 'Riski Doli Puluhan',
+            'email' => null,
+            'username' => 'riskidoli',
+            'phone' => null,
+            'password' => Hash::make('potensiutama'),
+            'role_id' => 12,
+        ]);
+        User::create([
+            'name' => 'Ismed',
+            'email' => null,
+            'username' => 'ismed',
+            'phone' => null,
+            'password' => Hash::make('potensiutama'),
+            'role_id' => 12,
+        ]);
+        User::create([
+            'name' => 'Muhammad Akbar Sipauta',
+            'email' => null,
+            'username' => 'akbar',
+            'phone' => null,
+            'password' => Hash::make('potensiutama'),
+            'role_id' => 12,
+        ]);
+        User::create([
+            'name' => 'Diki Rahmadi',
+            'email' => null,
+            'username' => 'dikirahmadi',
+            'phone' => null,
+            'password' => Hash::make('potensiutama'),
+            'role_id' => 12,
+        ]);
+        User::create([
+            'name' => 'Farhan',
+            'email' => null,
+            'username' => 'farhan',
+            'phone' => null,
+            'password' => Hash::make('potensiutama'),
+            'role_id' => 12,
+        ]);
     }
 }
