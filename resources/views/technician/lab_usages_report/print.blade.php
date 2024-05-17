@@ -136,7 +136,7 @@
       <table class="table-title">
          <thead>
             <tr>
-               <td style="width: 100px; height: 90px;">
+               <td style="width: 100px; height: 90px; text-align: center; vertical-align: middle;">
                   <img src="{{ asset('image/Logopotensiutama.png') }}" alt="Logo" width="85px" style="text-align: center">
                </td>
                <td class="header-cell">
@@ -186,14 +186,14 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <td>Dicky Rahmadi</td>
-               <td>Akbar</td>
-            </tr>
-            <tr>
-               <td>Achamd</td>
-               <td>Achamd</td>
-            </tr>
+            @foreach ($headAssistants as $headAssistant)
+               <tr>
+                  <td>{{ $headAssistant->user->name }}</td>
+                  <td>
+                     <img src="{{ asset('storage/'.$dataReport->kepala_aslab_signature) }}" alt="Tanda Tangan Dosen" width="50">
+                  </td>
+               </tr>
+            @endforeach
          </tbody>
       </table>
 

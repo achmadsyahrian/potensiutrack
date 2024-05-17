@@ -67,5 +67,10 @@ class RoleSeeder extends Seeder
             'name' => 'IT Administrator',
             'description' => 'Staff Puskom'
         ]);
+
+        Role::create([
+            'name' => 'Kepala Asisten Lab',
+            'description' => '-'
+        ]);
     }
 }

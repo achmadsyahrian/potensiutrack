@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Technician;
 
 use App\Http\Controllers\Controller;
+use App\Models\HeadLabAssistant;
 use App\Models\Lab;
 use App\Models\LabUsage;
 use App\Models\LabUsageMonthlyReport;
@@ -69,6 +70,8 @@ class LabUsageMonthlyReportController extends Controller
     {
         $monthInNumber = $this->getMonthNumber($month);
 
+        $headAssistants = HeadLabAssistant::where('lab_id', $lab)->get();
+
         $data = LabUsage::whereYear('date', $year)
             ->whereMonth('date', $monthInNumber)
             ->where('lab_id', $lab)
@@ -90,7 +93,8 @@ class LabUsageMonthlyReportController extends Controller
             'dataReport' => $dataReport,
             'year' => $year,
             'month' => $month,
-            'pageCount' => 0
+            'pageCount' => 0,
+            'headAssistants' => $headAssistants,
         ])->render();
 
         $options = new Options();

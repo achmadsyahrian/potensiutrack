@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(RepairRequest::class, 'technician_id');
     }
+
+    public function headLabAssistant()
+    {
+        return $this->hasOne(HeadLabAssistant::class);
+    }
 }

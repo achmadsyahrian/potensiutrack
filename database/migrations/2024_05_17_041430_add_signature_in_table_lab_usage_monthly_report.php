@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('head_lab_assistants', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('lab_id')->constrained('labs');
-            $table->timestamps();
+        Schema::table('lab_usage_monthly_reports', function (Blueprint $table) {
+            $table->string('kepala_aslab_signature')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('head_lab_assistants');
+        Schema::table('lab_usage_monthly_reports', function (Blueprint $table) {
+            $table->dropColumn('kepala_aslab_signature');
+        });
     }
 };

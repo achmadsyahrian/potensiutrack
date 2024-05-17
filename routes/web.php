@@ -405,6 +405,17 @@ Route::prefix('engineer')->middleware('checkRole:11')->group(function () {
     Route::post('/network-assignment/{id}/verify', [\App\Http\Controllers\Engineer\NetworkAssignmentController::class, 'verify'])->name('engineer.networkassignment.verify');
 });
 
+Route::prefix('headassistantlab')->middleware('checkRole:12')->group(function () {
+    // Lab Usage
+    Route::get('/lab-usages', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'index'])->name('headaslab.labusagesreport.index');    
+    Route::get('/lab-usages/{year}/{month}/', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'showByIndex'])
+        ->name('headaslab.labusagesreport.showByIndex');
+    Route::get('/lab-usages/{id}', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'show'])->name('headaslab.labusagesreport.show');    
+    Route::post('/lab-usages/{year}/{month}/verify', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'verify'])->name('headaslab.labusagesreport.verify');
+    
+});
+
+
 
 // Guest
 Route::middleware(['guest'])->group(function () {
