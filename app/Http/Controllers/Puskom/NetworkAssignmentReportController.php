@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SectionHead;
+namespace App\Http\Controllers\Puskom;
 
 use App\Http\Controllers\Controller;
 use App\Models\NetworkAssignment;
@@ -20,7 +20,7 @@ class NetworkAssignmentReportController extends Controller
             ->orderBy('year', 'desc')
             ->paginate(10);
 
-        return view('section_head.network_assignment_report.index', compact('data'));
+        return view('puskom.report.network_assignment.index', compact('data'));
     }
 
     public function showByIndex($year)
@@ -33,19 +33,19 @@ class NetworkAssignmentReportController extends Controller
             ->orderBy('date', 'desc')
             ->paginate(10);
 
-        return view('section_head.network_assignment_report.show_by_index', compact('data', 'year'));
+        return view('puskom.report.network_assignment.show_by_index', compact('data', 'year'));
     }
 
     public function verify(Request $request, $year)
     {
         $validated = $request->validate([
-            'kabag_signature' => 'required',
+            'puskom_signature' => 'required',
         ]);
-        $kabagSignature = $this->saveSignature($validated['kabag_signature']);
+        $kabagSignature = $this->saveSignature($validated['puskom_signature']);
 
         $monthlyReport = NetworkAssignmentReport::updateOrCreate(
             ['year' => $year],
-            ['kabag_signature' => $kabagSignature]
+            ['puskom_signature' => $kabagSignature]
         );
 
         return redirect()->back()->with('success', 'Laporan tahunan telah diverifikasi.');

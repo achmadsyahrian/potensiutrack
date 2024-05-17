@@ -291,6 +291,13 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.webassignmentreport.showByIndex');
     Route::get('/report/web-assignment/detail/{id}', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'show'])->name('puskom.webassignmentreport.show');    
     Route::post('/report/web-assignment/{year}/verify', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'verify'])->name('puskom.webassignmentreport.verify');
+
+    // Network Assignment Report
+    Route::get('/network/network-assignment', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'index'])->name('puskom.networkassignmentreport.index');    
+    Route::get('/network/network-assignment/{year}', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'showByIndex'])
+            ->name('puskom.networkassignmentreport.showByIndex');
+    Route::get('/network/network-assignment/detail/{id}', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'show'])->name('puskom.networkassignmentreport.show');    
+    Route::post('/network/network-assignment/{year}/verify', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'verify'])->name('puskom.networkassignmentreport.verify');
     
 });
 
@@ -342,6 +349,14 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
             ->name('vicerector.webassignmentreport.showByIndex');
     Route::get('/web-assignment/detail/{id}', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'show'])->name('vicerector.webassignmentreport.show');    
     Route::post('/web-assignment/{year}/verify', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'verify'])->name('vicerector.webassignmentreport.verify');
+    
+    // Network Assignment Report
+    Route::get('/network-assignment', [\App\Http\Controllers\ViceRector\NetworkAssignmentReportController::class, 'index'])->name('vicerector.networkassignmentreport.index');    
+    Route::get('/network-assignment/{year}', [\App\Http\Controllers\ViceRector\NetworkAssignmentReportController::class, 'showByIndex'])
+            ->name('vicerector.networkassignmentreport.showByIndex');
+    Route::get('/network-assignment/detail/{id}', [\App\Http\Controllers\ViceRector\NetworkAssignmentReportController::class, 'show'])->name('vicerector.networkassignmentreport.show');    
+    Route::post('/network-assignment/{year}/verify', [\App\Http\Controllers\ViceRector\NetworkAssignmentReportController::class, 'verify'])->name('vicerector.networkassignmentreport.verify');
+    
 });
 
 // Wakil Rektor 2

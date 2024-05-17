@@ -344,7 +344,7 @@
                                     Penanganan Gangguan Jaringan
                                  </a>
                                  <a class="dropdown-item {{ Request::is('*sectionhead/report/network-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.networkassignmentreport.index') }}">
-                                    Penugasan Web Informasi
+                                    Penugasan Koneksi Jaringan
                                  </a>
                               </div>
                            </div>
@@ -624,6 +624,7 @@
                      'puskom.networkdevreport.index', 'puskom.networkdevreport.showByIndex', 'puskom.networkdevreport.show',
                      'puskom.appcheckingsreport.index', 'puskom.appcheckingsreport.showByIndex', 'puskom.appcheckingsreport.show',
                      'puskom.webassignmentreport.index', 'puskom.webassignmentreport.showByIndex', 'puskom.webassignmentreport.show',
+                     'puskom.networkassignmentreport.index', 'puskom.networkassignmentreport.showByIndex', 'puskom.networkassignmentreport.show',
                   ]
                ) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -668,6 +669,9 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*report/wifi-checking*') ? 'active' : '' }}" href="{{ route('puskom.wificheckingsreport.index') }}">
                               Pengecekan Wifi
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*report/network-assignment*') ? 'active' : '' }}" href="{{ route('puskom.networkassignmentreport.index') }}">
+                              Penugasan Koneksi Jaringan
                            </a>
                         </div>
                      </div>
@@ -753,6 +757,7 @@
                   'vicerector.webdevelopmentsreport.index', 'vicerector.webdevelopmentsreport.showByIndex', 'vicerector.webdevelopmentsreport.show',
                   'vicerector.networkdevreport.index', 'vicerector.networkdevreport.showByIndex', 'vicerector.networkdevreport.show',
                   'vicerector.webassignmentreport.index', 'vicerector.webassignmentreport.showByIndex', 'vicerector.webassignmentreport.show',
+                  'vicerector.networkassignmentreport.index', 'vicerector.networkassignmentreport.showByIndex', 'vicerector.networkassignmentreport.show',
                   ]) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -790,6 +795,9 @@
                                  </a>
                                  <a class="dropdown-item {{ Request::is('*vicerector/network-troubleshooting*') ? 'active' : '' }}" href="{{ route('vicerector.networktroubleshootingsreport.index') }}">
                                     Penanganan Gangguan Jaringan
+                                 </a>
+                                 <a class="dropdown-item {{ Request::is('*vicerector/network-assignment*') ? 'active' : '' }}" href="{{ route('vicerector.networkassignmentreport.index') }}">
+                                    Penugasan Koneksi Jaringan
                                  </a>
                               </div>
                            </div>

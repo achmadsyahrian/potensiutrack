@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SectionHead;
+namespace App\Http\Controllers\ViceRector;
 
 use App\Http\Controllers\Controller;
 use App\Models\NetworkAssignment;
@@ -20,7 +20,7 @@ class NetworkAssignmentReportController extends Controller
             ->orderBy('year', 'desc')
             ->paginate(10);
 
-        return view('section_head.network_assignment_report.index', compact('data'));
+        return view('vice_rector.network_assignment_report.index', compact('data'));
     }
 
     public function showByIndex($year)
@@ -33,19 +33,19 @@ class NetworkAssignmentReportController extends Controller
             ->orderBy('date', 'desc')
             ->paginate(10);
 
-        return view('section_head.network_assignment_report.show_by_index', compact('data', 'year'));
+        return view('vice_rector.network_assignment_report.show_by_index', compact('data', 'year'));
     }
 
     public function verify(Request $request, $year)
     {
         $validated = $request->validate([
-            'kabag_signature' => 'required',
+            'wakil_rektor_signature' => 'required',
         ]);
-        $kabagSignature = $this->saveSignature($validated['kabag_signature']);
+        $kabagSignature = $this->saveSignature($validated['wakil_rektor_signature']);
 
         $monthlyReport = NetworkAssignmentReport::updateOrCreate(
             ['year' => $year],
-            ['kabag_signature' => $kabagSignature]
+            ['wakil_rektor_signature' => $kabagSignature]
         );
 
         return redirect()->back()->with('success', 'Laporan tahunan telah diverifikasi.');
