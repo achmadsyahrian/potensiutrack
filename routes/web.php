@@ -73,19 +73,19 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\SectionHead\LabDailyCheckMonthlyReportController::class, 'show'])->name('sectionhead.labdailychecksreport.show');    
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\SectionHead\LabDailyCheckMonthlyReportController::class, 'verify'])->name('sectionhead.labdailychecksreport.verify');
 
-    // Network Troubleshooting
+    // Network Troubleshooting Report
     Route::get('/network-troubleshooting', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'index'])->name('sectionhead.networktroubleshootingsreport.index');    
-    Route::get('/network-troubleshooting/{year}/{month}', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
+    Route::get('/network-troubleshooting/{year}/', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
             ->name('sectionhead.networktroubleshootingsreport.showByIndex');
-    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('sectionhead.networktroubleshootingsreport.show');    
-    Route::post('/network-troubleshooting/{year}/{month}/verify', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('sectionhead.networktroubleshootingsreport.verify');
+    Route::get('/network-troubleshooting/detail/{id}', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('sectionhead.networktroubleshootingsreport.show');    
+    Route::post('/network-troubleshooting/{year}/verify', [\App\Http\Controllers\SectionHead\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('sectionhead.networktroubleshootingsreport.verify');
 
     // Network Development Report
     Route::get('/report/network-development', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'index'])->name('sectionhead.networkdevreport.index');    
-    Route::get('/report/network-development/{year}/{month}', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'showByIndex'])
+    Route::get('/report/network-development/{year}/', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'showByIndex'])
             ->name('sectionhead.networkdevreport.showByIndex');
-    Route::get('/report/network-development/{id}', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'show'])->name('sectionhead.networkdevreport.show');    
-    Route::post('/report/network-development/{year}/{month}/verify', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'verify'])->name('sectionhead.networkdevreport.verify');
+    Route::get('/report/network-development/detail/{id}', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'show'])->name('sectionhead.networkdevreport.show');    
+    Route::post('/report/network-development/{year}/verify', [\App\Http\Controllers\SectionHead\NetworkDevelopmentReportController::class, 'verify'])->name('sectionhead.networkdevreport.verify');
     
     // Web Development
     Route::get('/web-development', [\App\Http\Controllers\SectionHead\WebDevelopmentMonthlyReportController::class, 'index'])->name('sectionhead.webdevelopmentsreport.index');    
@@ -248,17 +248,19 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
     // Report Network Troubleshooting
     Route::get('/report/network-troubleshooting', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'index'])->name('puskom.networktroubleshootingsreport.index');    
-    Route::get('/report/network-troubleshooting/{year}/{month}', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
+    Route::get('/report/network-troubleshooting/{year}/', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
             ->name('puskom.networktroubleshootingsreport.showByIndex');
     Route::get('/report/network-troubleshooting/{id}', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('puskom.networktroubleshootingsreport.show');    
-    Route::post('/report/network-troubleshooting/{year}/{month}/verify', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('puskom.networktroubleshootingsreport.verify');
+    Route::post('/report/network-troubleshooting/{year}/verify', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('puskom.networktroubleshootingsreport.verify');
+    Route::get('/report/network-troubleshooting/{year}/print', [\App\Http\Controllers\Puskom\NetworkTroubleshootingMonthlyReportController::class, 'print'])->name('puskom.networktroubleshootingsreport.print');
 
     // Network Development Report
     Route::get('/report/network-development', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'index'])->name('puskom.networkdevreport.index');    
-    Route::get('/report/network-development/{year}/{month}', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'showByIndex'])
+    Route::get('/report/network-development/{year}/', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'showByIndex'])
             ->name('puskom.networkdevreport.showByIndex');
     Route::get('/report/network-development/{id}', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'show'])->name('puskom.networkdevreport.show');    
-    Route::post('/report/network-development/{year}/{month}/verify', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'verify'])->name('puskom.networkdevreport.verify');
+    Route::post('/report/network-development/{year}/verify', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'verify'])->name('puskom.networkdevreport.verify');
+    Route::get('/report/network-development/{year}/print', [\App\Http\Controllers\Puskom\NetworkDevelopmentReportController::class, 'print'])->name('puskom.networkdevreport.print');
     
     // Web Development
     Route::get('/report/web-development', [\App\Http\Controllers\Puskom\WebDevelopmentMonthlyReportController::class, 'index'])->name('puskom.webdevelopmentsreport.index');    
@@ -332,17 +334,17 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
 
     // Network Troubleshooting
     Route::get('/network-troubleshooting', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'index'])->name('vicerector.networktroubleshootingsreport.index');    
-    Route::get('/network-troubleshooting/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
+    Route::get('/network-troubleshooting/{year}/', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'showByIndex'])
             ->name('vicerector.networktroubleshootingsreport.showByIndex');
-    Route::get('/network-troubleshooting/{id}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('vicerector.networktroubleshootingsreport.show');    
-    Route::post('/network-troubleshooting/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('vicerector.networktroubleshootingsreport.verify');
+    Route::get('/network-troubleshooting/detail/{id}', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'show'])->name('vicerector.networktroubleshootingsreport.show');    
+    Route::post('/network-troubleshooting/{year}/verify', [\App\Http\Controllers\ViceRector\NetworkTroubleshootingMonthlyReportController::class, 'verify'])->name('vicerector.networktroubleshootingsreport.verify');
 
     // Network Development Report
     Route::get('/network-development', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'index'])->name('vicerector.networkdevreport.index');    
-    Route::get('/network-development/{year}/{month}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'showByIndex'])
+    Route::get('/network-development/{year}/', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'showByIndex'])
             ->name('vicerector.networkdevreport.showByIndex');
-    Route::get('/network-development/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
-    Route::post('/network-development/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
+    Route::get('/network-development/detail/{id}', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'show'])->name('vicerector.networkdevreport.show');    
+    Route::post('/network-development/{year}/verify', [\App\Http\Controllers\ViceRector\NetworkDevelopmentReportController::class, 'verify'])->name('vicerector.networkdevreport.verify');
 
     // Web Assignment Report
     Route::get('/web-assignment', [\App\Http\Controllers\ViceRector\WebAssignmentReportController::class, 'index'])->name('vicerector.webassignmentreport.index');    
@@ -396,17 +398,19 @@ Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\ViceRector\LabDailyCheckMonthlyReportController::class, 'verify'])->name('vicerector.labdailychecksreport.verify');
 });
 
-
+// Programmer
 Route::prefix('programmer')->middleware('checkRole:10')->group(function () {
     Route::get('/web-assignment', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'index'])->name('programmer.webassignment.index');
     Route::post('/web-assignment/{id}/verify', [\App\Http\Controllers\Programmer\WebAssignmentController::class, 'verify'])->name('programmer.webassignment.verify');
 });
 
+// IT Admin
 Route::prefix('engineer')->middleware('checkRole:11')->group(function () {
     Route::get('/network-assignment', [\App\Http\Controllers\Engineer\NetworkAssignmentController::class, 'index'])->name('engineer.networkassignment.index');
     Route::post('/network-assignment/{id}/verify', [\App\Http\Controllers\Engineer\NetworkAssignmentController::class, 'verify'])->name('engineer.networkassignment.verify');
 });
 
+// Kepala Aslab
 Route::prefix('headassistantlab')->middleware('checkRole:12')->group(function () {
     // Lab Usage
     Route::get('/lab-usages', [\App\Http\Controllers\HeadAslab\LabUsageMonthlyReportController::class, 'index'])->name('headaslab.labusagesreport.index');    

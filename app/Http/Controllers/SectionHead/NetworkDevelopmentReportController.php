@@ -12,30 +12,24 @@ class NetworkDevelopmentReportController extends Controller
 {
     public function index(Request $request)
     {
-        $data = NetworkConnectionDevelopment::select(DB::raw('YEAR(date) as year, MONTH(date) as month, COUNT(*) as count'))
+        $data = NetworkConnectionDevelopment::select(DB::raw('YEAR(date) as year, COUNT(*) as count'))
             ->where('status', 3) // Menambahkan kondisi status adalah 3
-            ->groupBy(DB::raw('YEAR(date)'), DB::raw('MONTH(date)'))
+            ->groupBy(DB::raw('YEAR(date)'))
             ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
             ->paginate(10);
-
-        $data = $this->convertMonthToIndonesian($data);
 
         return view('section_head.network_developments_report.index', compact('data'));
     }
 
 
-    public function showByIndex($year, $month)
+    public function showByIndex($year)
     {
-        $monthInNumber = $this->getMonthNumber($month);
-
         $data = NetworkConnectionDevelopment::whereYear('date', $year)
-            ->whereMonth('date', $monthInNumber)
             ->where('status', 3) 
             ->orderBy('date', 'desc')
             ->paginate(10);
 
-        return view('section_head.network_developments_report.show_by_index', compact('data', 'year', 'month'));
+        return view('section_head.network_developments_report.show_by_index', compact('data', 'year'));
     }
 
 
@@ -46,20 +40,18 @@ class NetworkDevelopmentReportController extends Controller
     }
 
 
-    public function verify(Request $request, $year, $month)
+    public function verify(Request $request, $year)
     {
-        $monthResult = $this->getMonthNumber($month);
-
         $validated = $request->validate([
             'kabag_signature' => 'required',
         ]);
         $kabagSignature = $this->saveSignature($validated['kabag_signature']);
 
         $monthlyReport = NetworkDevelopmentReport::updateOrCreate(
-            ['year' => $year, 'month' => $monthResult],
+            ['year' => $year],
             ['kabag_signature' => $kabagSignature]
         );
 
-        return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
+        return redirect()->back()->with('success', 'Laporan tahunan telah diverifikasi.');
     }
 }

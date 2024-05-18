@@ -80,11 +80,11 @@
                     </td>                 
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('sectionhead.networkdevreport.showByIndex', ['year' => $item->year, 'month' => $item->month]) }}"
+                           <a href="{{ route('sectionhead.networkdevreport.showByIndex', ['year' => $item->year]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           @if ($item->isVerified($item->year, $item->month, Auth::user()->role_id))
+                           @if ($item->isVerified($item->year, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -96,7 +96,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('sectionhead.networkdevreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Kabag" name="kabag_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('sectionhead.networkdevreport.verify', ['year' => $item->year]) }}" method='post' id='{{ $loop->index }}' title="Paraf Kabag" name="kabag_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

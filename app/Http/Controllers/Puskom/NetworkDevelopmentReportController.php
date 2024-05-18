@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Puskom;
 use App\Http\Controllers\Controller;
 use App\Models\NetworkConnectionDevelopment;
 use App\Models\NetworkDevelopmentReport;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,30 +14,24 @@ class NetworkDevelopmentReportController extends Controller
 {
     public function index(Request $request)
     {
-        $data = NetworkConnectionDevelopment::select(DB::raw('YEAR(date) as year, MONTH(date) as month, COUNT(*) as count'))
-            ->where('status', 3) // Menambahkan kondisi status adalah 3
-            ->groupBy(DB::raw('YEAR(date)'), DB::raw('MONTH(date)'))
+        $data = NetworkConnectionDevelopment::select(DB::raw('YEAR(date) as year, COUNT(*) as count'))
+            ->where('status', 3)
+            ->groupBy(DB::raw('YEAR(date)'))
             ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
             ->paginate(10);
-
-        $data = $this->convertMonthToIndonesian($data);
 
         return view('puskom.report.network_developments.index', compact('data'));
     }
 
 
-    public function showByIndex($year, $month)
+    public function showByIndex($year)
     {
-        $monthInNumber = $this->getMonthNumber($month);
-
         $data = NetworkConnectionDevelopment::whereYear('date', $year)
-            ->whereMonth('date', $monthInNumber)
             ->where('status', 3) 
             ->orderBy('date', 'desc')
             ->paginate(10);
 
-        return view('puskom.report.network_developments.show_by_index', compact('data', 'year', 'month'));
+        return view('puskom.report.network_developments.show_by_index', compact('data', 'year'));
     }
 
 
@@ -46,9 +42,8 @@ class NetworkDevelopmentReportController extends Controller
     }
 
 
-    public function verify(Request $request, $year, $month)
+    public function verify(Request $request, $year)
     {
-        $monthResult = $this->getMonthNumber($month);
 
         $validated = $request->validate([
             'puskom_signature' => 'required',
@@ -56,10 +51,56 @@ class NetworkDevelopmentReportController extends Controller
         $kabagSignature = $this->saveSignature($validated['puskom_signature']);
 
         $monthlyReport = NetworkDevelopmentReport::updateOrCreate(
-            ['year' => $year, 'month' => $monthResult],
+            ['year' => $year],
             ['puskom_signature' => $kabagSignature]
         );
 
-        return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
+        return redirect()->back()->with('success', 'Laporan tahunan telah diverifikasi.');
     }
+
+    public function print($year)
+    {
+
+        $data = NetworkConnectionDevelopment::whereYear('date', $year)
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $dataReport = NetworkDevelopmentReport::where('year', $year)->first();
+
+        $chunkedData = $data->chunk(10);
+
+        $html = view('puskom.report.network_developments.print', [
+            'chunkedData' => $chunkedData,
+            'dataReport' => $dataReport,
+            'year' => $year,
+            'pageCount' => 0,
+        ])->render();
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        $pageCount = $dompdf->getCanvas()->get_page_count();
+
+        session(['pageCount' => $pageCount]);
+
+        $output = $dompdf->output();
+
+        return response()->stream(
+            function () use ($output) {
+                print($output);
+            },
+            200,
+            [
+                "Content-Type" => "application/pdf",
+                "Content-Disposition" => "inline; filename=document.pdf",
+            ]
+        );
+    }
+    
 }

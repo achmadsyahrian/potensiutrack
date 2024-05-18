@@ -80,16 +80,15 @@
                     </td>                 
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('puskom.networkdevreport.showByIndex', ['year' => $item->year, 'month' => $item->month]) }}"
+                           <a href="{{ route('puskom.networkdevreport.showByIndex', ['year' => $item->year]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
                            @if ($item->allSignaturesExist())
-                              {{-- <a href="{{ route('technician.employeepcdailychecksreport.print', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" class="btn btn-teal"> --}}
-                              <a href="#" class="btn btn-warning">
+                              <a href="{{ route('puskom.networkdevreport.print', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" class="btn btn-warning">
                                  Cetak
                               </a>
-                           @elseif ($item->isVerified($item->year, $item->month, Auth::user()->role_id))
+                           @elseif ($item->isVerified($item->year,Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -101,7 +100,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('puskom.networkdevreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Puskom" name="puskom_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('puskom.networkdevreport.verify', ['year' => $item->year]) }}" method='post' id='{{ $loop->index }}' title="Paraf Puskom" name="puskom_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

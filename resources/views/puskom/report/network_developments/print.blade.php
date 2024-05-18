@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Print Permohonan Penggunaan Lab Komputer</title>
+   <title>Print Permohonan Pengembangan Koneksi Jaringan</title>
    <style>
       body {
          font-family: 'Times New Roman', Times, serif;
@@ -124,15 +124,15 @@
                   <strong>DOKUMEN LEVEL</strong><br>FORM
                </td>
                <td class="header-cell" style="width: 30%;">
-                  <strong>NO. DOKUMEN</strong><br>F-/SPMI/26-01-07
+                  <strong>NO. DOKUMEN</strong><br>F-/SPMI/27-02-01
                </td>
             </tr>
             <tr>
                <td colspan="2" rowspan="2" class="header-cell">
-                  <strong>JUDUL</strong><br>PEMERIKSAAAN KONDISI HARIAN PC STAFF / PEGAWAI               
+                  <strong>JUDUL</strong><br>PERMOHONAN PENGEMBANGAN KONEKSI JARINGAN UTAMA
                </td>
                <td class="">
-                  <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 Mei 2019
+                  <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 April 2019
                </td>
             </tr>
             <tr>
@@ -152,7 +152,7 @@
             </tr>
             <tr>
                <td class="header-cell">
-                  <strong>NO. REVISI</strong><br>00
+                  <strong>NO. REVISI</strong><br>01
                </td>
             </tr>
          </thead>
@@ -178,18 +178,18 @@
                  </tr>
                  <tr>
                      <td style="text-align: left;">
-                         Teknisi
+                         Staff PUSKOM
                      </td>
                      <td style="text-align: left;">
                          Kabag. Puskom
                      </td>
                      <td style="text-align: left;">
-                         Wakil Rektor II
+                         Wakil Rektor I
                      </td>
                  </tr>
                  <tr>
                      <td>
-                         <img src="{{ asset('storage/'.$dataReport->teknisi_signature) }}" alt="Tanda Tangan Teknisi" width="120" style="display: block; text-align: left;">
+                         <img src="{{ asset('storage/'.$dataReport->puskom_signature) }}" alt="Tanda Tangan Puskom" width="120" style="display: block; text-align: left;">
                      </td>
                      <td>
                          <img src="{{ asset('storage/'.$dataReport->kabag_signature) }}" alt="Tanda Tangan Kabag" width="120">
@@ -200,13 +200,13 @@
                  </tr>
                  <tr>
                   <td>
-                     (Ahmad Jihad Alfayed)
+                     (M. Irfan Aldy Nasution, M.Kom)
                   </td>
                   <td>
                      (Soeheri M.Kom)
                   </td>
                   <td>
-                     (Daifiria, M.Kom)
+                     (Lili Tanti, M.Kom)
                   </td>
                  </tr>
              </tbody>
@@ -219,89 +219,49 @@
       <div class="container" style="position:absolute; bottom:0; width:100%; left:0;">
          <div class="flex-container" style="display: flex; justify-content: space-between; font-size:13px; font-weight:500;">
             <div style="position: absolute; left: 20; margin-bottom:10px;">
-               <p>Bagian: {{ $divisionName }}</p>
-            </div>
-            <div style="position: absolute; right: 20; margin-bottom:10px;">
-                  <p>Bulan: {{ $month }} {{ $year }}</p>
+                  <p>Tahun: {{ $year }}</p>
             </div>
          </div>
          <table class="table-data" style="margin-top:15px;">
             <thead>
                <tr>
                   <th rowspan="2">No.</th>
-                  <th rowspan="2">Tanggal</th>
-                  <th colspan="2">Jam Pemeriksaan</th>
-                  <th colspan="2">Kode Inventaris</th>
-                  <th colspan="7">Kondisi</th>
-                  <th rowspan="2">Keluhan</th>
-                  <th colspan="2">Paraf / Nama</th>
-                  <th rowspan="2">Keterangan</th>
+                  <th rowspan="2">Pelapor</th>
+                  <th rowspan="2">Divisi</th>
+                  <th rowspan="2">Alasan Penambahan Jaringan</th>
+                  <th rowspan="2">Tanggal Pelaporan</th>
+                  <th colspan="2">Paraf</th>
+                  <th rowspan="2">Tanggal Selesai</th>
+                  <th rowspan="2">Paraf Pelapor</th>
                </tr>
                <tr>
-                  {{-- Jam Pemeriksaan --}}
-                  <th>Mulai</th>
-                  <th>Selesai</th>
-                  {{-- Kode Inventaris --}}
-                  <th>Monitor</th>
-                  <th>CPU</th>
-                  {{-- Kondisi --}}
-                  <th>Key</th>
-                  <th>Mou</th>
-                  <th>Mon</th>
-                  <th>CPU</th>
-                  <th>Net</th>
-                  <th>Print</th>
-                  <th>Scan</th>
-                  {{-- Paraf --}}
-                  <th>Diperiksa</th>
-                  <th>Pemeriksa</th>
+                 <th>Pelapor</th>
+                 <th>WR-1</th>
                </tr>
             </thead>
             <tbody>
                @foreach ($dataChunk as $item)
                   <tr>
                      <td>{{ $pageNumber++ }}</td>
+                     <td>
+                        {{ $item->reporter->name }}
+                     </td>
+                     <td>
+                        {{ $item->division->name }}
+                     </td>
+                     <td>
+                        {{ $item->network_expansion_reason }}
+                     </td>
                      <td>{{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->start_time)->locale('id_ID')->isoFormat('HH:mm') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->end_time)->locale('id_ID')->isoFormat('HH:mm') }}</td>
-                     <td>
-                        {{ $item->monitor_inventory_code }}
-                     </td>
-                     <td>
-                        {{ $item->cpu_inventory_code }}
-                     </td>
-                     <td>
-                        {!! $item->keyboard_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->mouse_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->monitor_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->cpu_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->internet_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->printer_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {!! $item->scanner_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
-                     </td>
-                     <td>
-                        {{ $item->complaint ?? '-'}}
+                     <td style="padding:0;">
+                        <img src="{{ asset('storage/'.$item->reporter_signature) }}" alt="Paraf Pelapor" width="50">
                      </td>
                      <td style="padding:0;">
-                        <img src="{{ asset('storage/'.$item->employee_signature) }}" alt="Paraf Aslab" width="50">
+                        <img src="{{ asset('storage/'.$item->wakil_rektor1_signature) }}" alt="Paraf Pelapor" width="50">
                      </td>
+                     <td>{{ \Carbon\Carbon::parse($item->finish_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
                      <td style="padding:0;">
-                        <img src="{{ asset('storage/'.$item->technician_signature) }}" alt="Paraf Aslab" width="50">
-                     </td>
-                     <td>
-                        {{ $item->description ?? '-'}}   
+                        <img src="{{ asset('storage/'.$item->reporter_signature_approval) }}" alt="Paraf Pelapor" width="50">
                      </td>
                   </tr>
                @endforeach

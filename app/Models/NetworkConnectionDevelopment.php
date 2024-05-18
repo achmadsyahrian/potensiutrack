@@ -21,13 +21,11 @@ class NetworkConnectionDevelopment extends Model
         return $this->belongsTo(User::class, 'reported_by_id');
     }
 
-    public function isVerified($year, $month, $role)
+    public function isVerified($year, $role)
     {
-        $monthNum = $this->getMonthNumber($month);
 
         $monthlyReport = NetworkDevelopmentReport::where([
             'year' => $year,
-            'month' => $monthNum, 
         ])->first();
 
         // Periksa apakah sudah diverifikasi
@@ -39,7 +37,6 @@ class NetworkConnectionDevelopment extends Model
 
         $monthlyReport = NetworkDevelopmentReport::where([
             'year' => $this->year,
-            'month' => $this->getMonthNumber($this->month)
         ])->first();
 
         if ($monthlyReport) {
@@ -49,25 +46,5 @@ class NetworkConnectionDevelopment extends Model
         }
 
         return false;
-    }
-
-    private function getMonthNumber($month)
-    {
-        $bulanToAngka = [
-            'Januari' => 1,
-            'Februari' => 2,
-            'Maret' => 3,
-            'April' => 4,
-            'Mei' => 5,
-            'Juni' => 6,
-            'Juli' => 7,
-            'Agustus' => 8,
-            'September' => 9,
-            'Oktober' => 10,
-            'November' => 11,
-            'Desember' => 12,
-        ];
-
-        return $bulanToAngka[$month];
     }
 }

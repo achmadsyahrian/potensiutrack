@@ -10,7 +10,7 @@
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Laporan</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('sectionhead.networktroubleshootingsreport.index') }}">Penanganan Gangguan Jaringan</a></li>
-                  <li class="breadcrumb-item active"><a href="#"> {{ $month }} {{ $year }}</a></li>
+                  <li class="breadcrumb-item active"><a href="#">  {{ $year }}</a></li>
                </ol>
             </div>
             <h2 class="page-title">
