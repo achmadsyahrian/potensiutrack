@@ -199,7 +199,7 @@
 
       {{-- Signature Path --}}
       <div class="signature-path">
-         <p style="margin: 4px 0;">Medan, 30 April 2024</p>
+         <p style="margin: 4px 0;">Medan, {{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p>
          <table class="table-signature" >
              <tbody>
                  <tr>

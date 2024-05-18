@@ -107,25 +107,6 @@
          bottom: 0;
          width: 100%;
       }
-      footer > .table-aslab {
-         width: 20%;
-         margin: 10px 0 0 0;
-         border-collapse: collapse;
-      }
-      footer > .table-aslab > thead > tr > th{
-         background-color: #cdcdcd !important;
-         /* padding: 10px; */
-         font-weight: 500;
-         text-align: center;
-         vertical-align: middle;
-         border: 1px solid black;
-      }
-      footer > .table-aslab > tbody > tr > td {
-         /* padding: 10px; */
-         border: 1px solid black;
-         font-size: 12px;
-         text-align: center;
-      }
       .page-num:before {
          content: counter(page);
       }
@@ -143,15 +124,15 @@
                   <strong>DOKUMEN LEVEL</strong><br>FORM
                </td>
                <td class="header-cell" style="width: 30%;">
-                  <strong>NO. DOKUMEN</strong><br>F-/SPMI/26-01-04
+                  <strong>NO. DOKUMEN</strong><br>F-/SPMI/26-01-07
                </td>
             </tr>
             <tr>
                <td colspan="2" rowspan="2" class="header-cell">
-                  <strong>JUDUL</strong><br>PERMOHONAN PENGGUNAAN LAB KULIAH PENGGANTI               
+                  <strong>JUDUL</strong><br>PEMERIKSAAAN KONDISI HARIAN PC STAFF / PEGAWAI               
                </td>
                <td class="">
-                  <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 April 2019
+                  <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 Mei 2019
                </td>
             </tr>
             <tr>
@@ -178,28 +159,10 @@
       </table>
    </header>
    <footer>
-      <table class="table-aslab">
-         <thead>
-            <tr>
-               <th>Asisten Lab</th>
-               <th>Paraf</th>
-            </tr>
-         </thead>
-         <tbody>
-            @foreach ($headAssistants as $headAssistant)
-               <tr>
-                  <td>{{ $headAssistant->user->name }}</td>
-                  <td>
-                     <img src="{{ asset('storage/'.$dataReport->kepala_aslab_signature) }}" alt="Tanda Tangan Dosen" width="50">
-                  </td>
-               </tr>
-            @endforeach
-         </tbody>
-      </table>
 
       {{-- Signature Path --}}
       <div class="signature-path">
-         <p style="margin: 4px 0;">Medan, {{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p>
+         {{-- <p style="margin: 4px 0;">Medan, {{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p> --}}
          <table class="table-signature" >
              <tbody>
                  <tr>
@@ -254,9 +217,9 @@
    @foreach ($chunkedData as $index => $dataChunk)
       @php $pageNumber = ($index * 7) + 1; @endphp
       <div class="container" style="position:absolute; bottom:0; width:100%; left:0;">
-         <div class="flex-container" style="display: flex; justify-content: space-between;">
+         <div class="flex-container" style="display: flex; justify-content: space-between; font-size:13px; font-weight:500;">
             <div style="position: absolute; left: 20; margin-bottom:10px;">
-               <p>Nama Lab Komputer: {{ $labName }}</p>
+               <p>Bagian: {{ $divisionName }}</p>
             </div>
             <div style="position: absolute; right: 20; margin-bottom:10px;">
                   <p>Bulan: {{ $month }} {{ $year }}</p>
@@ -267,17 +230,31 @@
                <tr>
                   <th rowspan="2">No.</th>
                   <th rowspan="2">Tanggal</th>
-                  <th rowspan="2">Mata Kuliah</th>
-                  <th rowspan="2">Dosen</th>
-                  <th rowspan="2">Kelas</th>
-                  <th colspan="3">Rencana Penggunaan</th>
-                  <th rowspan="2">Paraf Aslab</th>
+                  <th colspan="2">Jam Pemeriksaan</th>
+                  <th colspan="2">Kode Inventaris</th>
+                  <th colspan="7">Kondisi</th>
+                  <th rowspan="2">Keluhan</th>
+                  <th colspan="2">Paraf / Nama</th>
                   <th rowspan="2">Keterangan</th>
                </tr>
                <tr>
-                  <th>Hari</th>
-                  <th>Tanggal</th>
-                  <th>Jam Penggunaan</th>
+                  {{-- Jam Pemeriksaan --}}
+                  <th>Mulai</th>
+                  <th>Selesai</th>
+                  {{-- Kode Inventaris --}}
+                  <th>Monitor</th>
+                  <th>CPU</th>
+                  {{-- Kondisi --}}
+                  <th>Key</th>
+                  <th>Mou</th>
+                  <th>Mon</th>
+                  <th>CPU</th>
+                  <th>Net</th>
+                  <th>Print</th>
+                  <th>Scan</th>
+                  {{-- Paraf --}}
+                  <th>Diperiksa</th>
+                  <th>Pemeriksa</th>
                </tr>
             </thead>
             <tbody>
@@ -285,17 +262,46 @@
                   <tr>
                      <td>{{ $pageNumber++ }}</td>
                      <td>{{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ $item->course }}</td>
-                     <td>{{ $item->lecturer->name }}</td>
-                     <td>{{ $item->class }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('dddd') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('HH:mm') }}</td>
-                     <td style="padding:0;">
-                        <img src="{{ asset('storage/'.$item->lab_assistant_signature) }}" alt="Paraf Aslab" width="50">
+                     <td>{{ \Carbon\Carbon::parse($item->start_time)->locale('id_ID')->isoFormat('HH:mm') }}</td>
+                     <td>{{ \Carbon\Carbon::parse($item->end_time)->locale('id_ID')->isoFormat('HH:mm') }}</td>
+                     <td>
+                        {{ $item->monitor_inventory_code }}
                      </td>
                      <td>
-                        {{ $item->description }}   
+                        {{ $item->cpu_inventory_code }}
+                     </td>
+                     <td>
+                        {!! $item->keyboard_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->mouse_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->monitor_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->cpu_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->internet_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->printer_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {!! $item->scanner_condition == 1 ? '<div style="font-family: DejaVu Sans, sans-serif;">&#10003;</div>' : '' !!}
+                     </td>
+                     <td>
+                        {{ $item->complaint ?? '-'}}
+                     </td>
+                     <td style="padding:0;">
+                        <img src="{{ asset('storage/'.$item->employee_signature) }}" alt="Paraf Aslab" width="50">
+                     </td>
+                     <td style="padding:0;">
+                        <img src="{{ asset('storage/'.$item->technician_signature) }}" alt="Paraf Aslab" width="50">
+                     </td>
+                     <td>
+                        {{ $item->description ?? '-'}}   
                      </td>
                   </tr>
                @endforeach

@@ -159,6 +159,7 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
             ->name('technician.employeepcdailychecksreport.showByMonthAndDivision');
     Route::get('/employee-daily-check/{id}', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'show'])->name('technician.employeepcdailychecksreport.show');    
     Route::post('/employee-daily-check/{year}/{month}/{division}/verify', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'verify'])->name('technician.employeepcdailychecksreport.verify');
+    Route::get('/employee-daily-check/{year}/{month}/{division}/print', [\App\Http\Controllers\Technician\EmployeePcDailyCheckReportController::class, 'print'])->name('technician.employeepcdailychecksreport.print');
     
     // Lab Usage
     Route::get('/lab-usages', [\App\Http\Controllers\Technician\LabUsageMonthlyReportController::class, 'index'])->name('technician.labusagesreport.index');    
