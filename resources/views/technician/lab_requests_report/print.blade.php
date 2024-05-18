@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Print Penggunaan Lab Komputer</title>
+   <title>Print Permohonan Penggunaan Lab Komputer</title>
    <style>
       body {
          font-family: 'Times New Roman', Times, serif;
@@ -64,10 +64,10 @@
       }
       .container > .table-data > thead > tr > th{
          background-color: #cdcdcd !important;
-         padding: 8px;
+         /* padding: 10px; */
          font-weight: 500;
          text-align: center;
-         font-size: 14px;
+         font-size: 13px;
          vertical-align: middle;
          border: 1px solid black;
       }
@@ -148,7 +148,7 @@
             </tr>
             <tr>
                <td colspan="2" rowspan="2" class="header-cell">
-                  <strong>JUDUL</strong><br>PENGGUNAAN LAB KOMPUTER
+                  <strong>JUDUL</strong><br>PERMOHONAN PENGGUNAAN LAB KULIAH PENGGANTI               
                </td>
                <td class="">
                   <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 April 2019
@@ -265,16 +265,19 @@
          <table class="table-data" style="margin-top:15px;">
             <thead>
                <tr>
-                  <th>No.</th>
+                  <th rowspan="2">No.</th>
+                  <th rowspan="2">Tanggal</th>
+                  <th rowspan="2">Mata Kuliah</th>
+                  <th rowspan="2">Dosen</th>
+                  <th rowspan="2">Kelas</th>
+                  <th colspan="3">Rencana Penggunaan</th>
+                  <th rowspan="2">Paraf Aslab</th>
+                  <th rowspan="2">Keterangan</th>
+               </tr>
+               <tr>
+                  <th>Hari</th>
                   <th>Tanggal</th>
-                  <th>Jam</th>
-                  <th>Mata Kuliah</th>
-                  <th>Dosen</th>
-                  <th>Kelas</th>
-                  <th>Materi Kuliah</th>
-                  <th>Jumlah SKS</th>
-                  <th>TTD Dosen</th>
-                  <th>Paraf Aslab</th>
+                  <th>Jam Penggunaan</th>
                </tr>
             </thead>
             <tbody>
@@ -282,17 +285,17 @@
                   <tr>
                      <td>{{ $pageNumber++ }}</td>
                      <td>{{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->time)->format('H:i') }}</td>
                      <td>{{ $item->course }}</td>
                      <td>{{ $item->lecturer->name }}</td>
                      <td>{{ $item->class }}</td>
-                     <td>{{ $item->course_topic }}</td>
-                     <td>{{ $item->course_credits }}</td>
+                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('dddd') }}</td>
+                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
+                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('HH:mm') }}</td>
                      <td style="padding:0;">
-                           <img src="{{ asset('storage/'.$item->lecturer_signature) }}" alt="Tanda Tangan Dosen" width="50">
+                        <img src="{{ asset('storage/'.$item->lab_assistant_signature) }}" alt="Paraf Aslab" width="50">
                      </td>
-                     <td style="padding:0;">
-                           <img src="{{ asset('storage/'.$item->lab_assistant_signature) }}" alt="Paraf Aslab" width="50">
+                     <td>
+                        {{ $item->description }}   
                      </td>
                   </tr>
                @endforeach

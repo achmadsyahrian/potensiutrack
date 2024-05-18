@@ -174,6 +174,7 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
             ->name('technician.labrequestsreport.showByIndex');
     Route::get('/lab-requests/{id}', [\App\Http\Controllers\Technician\LabRequestMonthlyReportController::class, 'show'])->name('technician.labrequestsreport.show');    
     Route::post('/lab-requests/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabRequestMonthlyReportController::class, 'verify'])->name('technician.labrequestsreport.verify');
+    Route::get('/lab-requests/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabRequestMonthlyReportController::class, 'print'])->name('technician.labrequestsreport.print');
     
     // Lab Daily Check
     Route::get('/lab-daily-check', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'index'])->name('technician.labdailychecksreport.index');    
