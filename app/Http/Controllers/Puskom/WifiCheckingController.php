@@ -78,7 +78,7 @@ class WifiCheckingController extends Controller
      */
     public function show(WifiChecking $wifiChecking)
     {
-        //
+        return view('puskom.wifi_checking.show', compact('wifiChecking'));
     }
 
     /**

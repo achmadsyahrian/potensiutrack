@@ -71,8 +71,7 @@
                               Lihat
                            </a>
                            @if ($item->allSignaturesExist($item))
-                           {{-- <a href="{{ route('technician.employeepcdailychecksreport.print', ['year' => $item->year, 'month' => $item->month, 'division' => $item->division_id]) }}" class="btn btn-teal"> --}}
-                           <a href="#" class="btn btn-warning">
+                           <a href="{{ route('puskom.wificheckingsreport.print', ['id' => $item]) }}" class="btn btn-warning">
                               Cetak
                            </a>
                            @elseif ($item->isVerified(Auth::user()->role_id))

@@ -278,12 +278,13 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
     Route::post('/report/web-maintenance/{year}/verify', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'verify'])->name('puskom.webmaintenancesreport.verify');
     Route::get('/report/web-maintenance/{year}/print', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'print'])->name('puskom.webmaintenancesreport.print');
     
-    // Web Checking
+    // Wifi Checking
     Route::get('/report/wifi-checking', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'index'])->name('puskom.wificheckingsreport.index');    
     Route::get('/report/wifi-checking/{building}', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'showByIndex'])
             ->name('puskom.wificheckingsreport.showByIndex');
     Route::get('/report/wifi-checking/detail/{id}', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'show'])->name('puskom.wificheckingsreport.show');    
     Route::post('/report/wifi-checking/{id}/verify', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'verify'])->name('puskom.wificheckingsreport.verify');
+    Route::get('/report/wifi-checking/{id}/print', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'print'])->name('puskom.wificheckingsreport.print');
 
     // App Checking
     Route::get('/report/web-checking', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'index'])->name('puskom.appcheckingsreport.index');    

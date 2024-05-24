@@ -109,9 +109,15 @@
                         </td>                             
                         <td>
                            <div class="btn-list justify-content-end flex-nowrap">
-                              <a href="{{ route('puskom.wifichecking.edit', ['wifi_checking' => $item->id]) }}" class="btn btn-outline-info">
-                                 Edit
-                              </a>
+                              @if ($item->puskom_signature || $item->kabag_signature || $item->wakilrektor1_signature)
+                                 <a href="{{ route('puskom.wifichecking.show', ['wifi_checking' => $item->id]) }}" class="btn btn-outline-info">
+                                    Lihat
+                                 </a>
+                              @else
+                                 <a href="{{ route('puskom.wifichecking.edit', ['wifi_checking' => $item->id]) }}" class="btn btn-outline-info">
+                                    Edit
+                                 </a>
+                              @endif
                               <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirm-{{ $item->id }}">
                                  Hapus
                               </a>
