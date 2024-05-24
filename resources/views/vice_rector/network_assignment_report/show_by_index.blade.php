@@ -9,7 +9,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Laporan</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('sectionhead.networkassignmentreport.index') }}">Penugasan Koneksi Jaringan</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('vicerector.networkassignmentreport.index') }}">Penugasan Koneksi Jaringan</a></li>
                   <li class="breadcrumb-item active"><a href="#"> {{ $year }}</a></li>
                </ol>
             </div>
@@ -19,14 +19,14 @@
          </div>
          {{-- <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-               <a href="{{ route('sectionhead.networkassignmentreport.index') }}" class="btn btn-warning d-none d-sm-inline-block">
+               <a href="{{ route('vicerector.networkassignmentreport.index') }}" class="btn btn-warning d-none d-sm-inline-block">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevrons-left">
                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                      <path d="M11 7l-5 5l5 5" />
                      <path d="M17 7l-5 5l5 5" /></svg>
                   Kembali
                </a>
-               <a href="{{ route('sectionhead.networkassignmentreport.index') }}" class="btn btn-secondary d-sm-none btn-icon">
+               <a href="{{ route('vicerector.networkassignmentreport.index') }}" class="btn btn-secondary d-sm-none btn-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevrons-left">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M11 7l-5 5l5 5" />
@@ -83,7 +83,7 @@
                     </td>
                      {{-- <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('sectionhead.networkassignmentreport.show', ['id' => $item]) }}"
+                           <a href="{{ route('vicerector.networkassignmentreport.show', ['id' => $item]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>

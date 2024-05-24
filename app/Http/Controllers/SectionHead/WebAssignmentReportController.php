@@ -16,6 +16,8 @@ class WebAssignmentReportController extends Controller
     {
         $data = WebAssignment::select(DB::raw('YEAR(date) as year, COUNT(*) as count'))
             ->whereNotNull('finish_date') 
+            ->whereNotNull('programmer_signature') 
+            ->whereNotNull('kabag_signature') 
             ->groupBy(DB::raw('YEAR(date)'))
             ->orderBy('year', 'desc')
             ->paginate(10);
@@ -29,6 +31,8 @@ class WebAssignmentReportController extends Controller
 
         $data = WebAssignment::whereYear('date', $year)
             ->whereNotNull('finish_date') 
+            ->whereNotNull('programmer_signature') 
+            ->whereNotNull('kabag_signature') 
             ->orderBy('date', 'desc')
             ->paginate(10);
 

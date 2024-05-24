@@ -268,6 +268,7 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.webdevelopmentsreport.showByIndex');
     Route::get('/report/web-development/detail/{id}', [\App\Http\Controllers\Puskom\WebDevelopmentMonthlyReportController::class, 'show'])->name('puskom.webdevelopmentsreport.show');    
     Route::post('/report/web-development/{year}/verify', [\App\Http\Controllers\Puskom\WebDevelopmentMonthlyReportController::class, 'verify'])->name('puskom.webdevelopmentsreport.verify');
+    Route::get('/report/web-development/{year}/print', [\App\Http\Controllers\Puskom\WebDevelopmentMonthlyReportController::class, 'print'])->name('puskom.webdevelopmentsreport.print');
 
     // Web Maintenance
     Route::get('/report/web-maintenance', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'index'])->name('puskom.webmaintenancesreport.index');    
@@ -275,6 +276,7 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.webmaintenancesreport.showByIndex');
     Route::get('/report/web-maintenance/detail/{id}', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'show'])->name('puskom.webmaintenancesreport.show');    
     Route::post('/report/web-maintenance/{year}/verify', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'verify'])->name('puskom.webmaintenancesreport.verify');
+    Route::get('/report/web-maintenance/{year}/print', [\App\Http\Controllers\Puskom\WebMaintenanceReportController::class, 'print'])->name('puskom.webmaintenancesreport.print');
     
     // Web Checking
     Route::get('/report/wifi-checking', [\App\Http\Controllers\Puskom\WifiCheckingReportController::class, 'index'])->name('puskom.wificheckingsreport.index');    
@@ -294,6 +296,7 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.webassignmentreport.showByIndex');
     Route::get('/report/web-assignment/detail/{id}', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'show'])->name('puskom.webassignmentreport.show');    
     Route::post('/report/web-assignment/{year}/verify', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'verify'])->name('puskom.webassignmentreport.verify');
+    Route::get('/report/web-assignment/{year}/print', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'print'])->name('puskom.webassignmentreport.print');
 
     // Network Assignment Report
     Route::get('/network/network-assignment', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'index'])->name('puskom.networkassignmentreport.index');    
@@ -301,6 +304,7 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
             ->name('puskom.networkassignmentreport.showByIndex');
     Route::get('/network/network-assignment/detail/{id}', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'show'])->name('puskom.networkassignmentreport.show');    
     Route::post('/network/network-assignment/{year}/verify', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'verify'])->name('puskom.networkassignmentreport.verify');
+    Route::get('/network/network-assignment/{year}/print', [\App\Http\Controllers\Puskom\NetworkAssignmentReportController::class, 'print'])->name('puskom.networkassignmentreport.print');
     
 });
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Puskom;
 use App\Http\Controllers\Controller;
 use App\Models\WebDevelopmentMonthlyReport;
 use App\Models\WebDevelopmentRequest;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,4 +57,50 @@ class WebDevelopmentMonthlyReportController extends Controller
 
         return redirect()->back()->with('success', 'Laporan tahunan telah diverifikasi.');
     }
+
+    public function print($year)
+    {
+
+        $data = WebDevelopmentRequest::whereYear('date', $year)
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $dataReport = WebDevelopmentMonthlyReport::where('year', $year)->first();
+
+        $chunkedData = $data->chunk(10);
+
+        $html = view('puskom.report.web_development.print', [
+            'chunkedData' => $chunkedData,
+            'dataReport' => $dataReport,
+            'year' => $year,
+            'pageCount' => 0,
+        ])->render();
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        $pageCount = $dompdf->getCanvas()->get_page_count();
+
+        session(['pageCount' => $pageCount]);
+
+        $output = $dompdf->output();
+
+        return response()->stream(
+            function () use ($output) {
+                print($output);
+            },
+            200,
+            [
+                "Content-Type" => "application/pdf",
+                "Content-Disposition" => "inline; filename=document.pdf",
+            ]
+        );
+    }
+    
 }
