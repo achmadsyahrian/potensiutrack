@@ -23,8 +23,6 @@ class LabDailyCheckStoreRequest extends FormRequest
     {
         return [
             'lab_id' => 'required',
-            'mandatory_user_id' => 'required',
-            'optional_user_id' => 'nullable',
             'date' => 'required|date',
             'results' => 'nullable|array',
             'descriptions' => 'nullable|array',

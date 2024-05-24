@@ -43,18 +43,6 @@
                            autocomplete="off" readonly>                     
                      </div>
                   </div>
-                  <div class="row g-3 mt-4">
-                     <div class="col-md">
-                           <label class="form-label">Asisten Lab 1</label>
-                           <input type="text" class="form-control" value="{{ $labDailyCheck->mandatoryUser->name }}"
-                           autocomplete="off" readonly>
-                     </div>
-                     <div class="col-md">
-                           <label class="form-label">Asisten Lab 2</label>
-                           <input type="text" class="form-control" value="{{ $labDailyCheck->optionalUser->name ?? '--' }}"
-                           autocomplete="off" readonly>
-                     </div>
-                  </div>
                   <div class="row">
                      <div class="col-lg-12">
                         {{-- <label class="form-label mt-4">Laporan Harian</label> --}}
@@ -96,7 +84,7 @@
       table.innerHTML = '';
 
       // Tambahkan baris untuk setiap perangkat di thead (sekarang ditampilkan secara horizontal)
-      var theadRow = '<tr><th><input class="form-check-input m-0 align-middle" type="checkbox" onclick="return false;" id="checkAll"></th><th>Item</th>';
+      var theadRow = '<tr><th></th><th>Item</th>';
       for (let i = 1; i <= Object.keys(computers).length; i++) {
          theadRow += '<th>' + i + '</th>';
       }

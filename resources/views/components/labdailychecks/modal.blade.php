@@ -36,34 +36,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label required">Asisten Lab 1</label>
-                                <select type="text" class="form-select @error('mandatory_user_id') is-invalid @enderror"
-                                    name="mandatory_user_id" id="select-aslab" value="">
-                                    <option selected disabled>Pilih asisten lab</option>
-                                    @foreach ($lab_assistants as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-invalid-feedback field='mandatory_user_id'></x-invalid-feedback>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label required">Asisten Lab 2</label>
-                                <select type="text" class="form-select @error('optional_user_id') is-invalid @enderror"
-                                    name="optional_user_id" id="select-aslab" value="">
-                                    <option selected disabled>Pilih asisten lab</option>
-                                    @foreach ($lab_assistants as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-invalid-feedback field='optional_user_id'></x-invalid-feedback>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="table-responsive">

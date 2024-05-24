@@ -28,6 +28,9 @@ class LabDailyCheckMonthlyReport extends Model
             case '8':
                 return !is_null($this->wakil_rektor_signature);
                 break;
+            case '12':
+                return !is_null($this->kepala_aslab_signature);
+                break;
             default:
                 return false;
         }

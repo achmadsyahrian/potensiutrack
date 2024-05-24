@@ -47,30 +47,6 @@
                            <x-invalid-feedback field='date'></x-invalid-feedback>
                         </div>
                      </div>
-                     <div class="row g-3 mt-4">
-                        <div class="col-md">
-                            <label class="form-label required">Asisten Lab 1</label>
-                            <select type="text" class="form-select @error('mandatory_user_id') is-invalid @enderror"
-                                    name="mandatory_user_id" id="select-aslab">
-                                <option disabled selected>Pilih asisten lab</option>
-                                @foreach ($lab_assistants as $item)
-                                    <option value="{{ $item->id }}" @if($item->id == $labDailyCheck->mandatory_user_id) selected @endif>{{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                            <x-invalid-feedback field='mandatory_user_id'></x-invalid-feedback>
-                        </div>
-                        <div class="col-md">
-                            <label class="form-label required">Asisten Lab 2</label>
-                            <select type="text" class="form-select @error('optional_user_id') is-invalid @enderror"
-                                    name="optional_user_id" id="select-aslab" value="">
-                                <option selected disabled>Pilih asisten lab</option>
-                                @foreach ($lab_assistants as $item)
-                                 <option value="{{ $item->id }}" @if($item->id == $labDailyCheck->optional_user_id) selected @endif>{{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                            <x-invalid-feedback field='optional_user_id'></x-invalid-feedback>
-                        </div>
-                    </div>
                      <div class="row">
                         <div class="col-lg-12">
                            {{-- <label class="form-label mt-4 required">Laporan Harian</label> --}}

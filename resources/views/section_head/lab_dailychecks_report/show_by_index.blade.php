@@ -51,7 +51,6 @@
                   <tr>
                      <th class="w-1">No.</th>
                      <th>Tanggal</th>
-                     <th>Asisten Lab</th>
                      <th>Kelas</th>
                      <th></th>
                   </tr>
@@ -62,9 +61,6 @@
                      <td><span class="text-muted">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}</span></td>
                      <td>
                         {{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-                    </td>
-                    <td>
-                        {{ $item->mandatoryUser->name }}
                     </td>
                     <td>
                         {{ $item->class }}

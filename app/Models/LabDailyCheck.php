@@ -15,15 +15,6 @@ class LabDailyCheck extends Model
         return $this->belongsTo(Lab::class);
     }
     
-    public function mandatoryUser()
-    {
-        return $this->belongsTo(User::class, 'mandatory_user_id');
-    }
-
-    public function optionalUser()
-    {
-        return $this->belongsTo(User::class, 'optional_user_id');
-    }
 
     public function isVerified($year, $month, $lab_id, $role)
     {
@@ -53,6 +44,7 @@ class LabDailyCheck extends Model
         if ($monthlyReport) {
             return !is_null($monthlyReport->teknisi_signature) &&
                 !is_null($monthlyReport->kabag_signature) &&
+                !is_null($monthlyReport->kepala_aslab_signature) &&
                 !is_null($monthlyReport->wakil_rektor_signature);
         }
 

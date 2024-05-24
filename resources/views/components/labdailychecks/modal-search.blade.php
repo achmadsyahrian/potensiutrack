@@ -27,19 +27,6 @@
                                   </select>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="mb-3">
-                                <label class="form-label">Asisten Lab</label>
-                                <select type="text" class="form-select" name="search_mandatory_user_id">
-                                    <option selected disabled>Pilih asisten lab</option>
-                                    @foreach ($lab_assistants as $item)
-                                    <option value="{{ $item->id }}" {{ request('search_mandatory_user_id') == $item->id ? 'selected' : '' }}>
-                                        {{ $item->name }}
-                                    </option>
-                                    @endforeach
-                                  </select>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

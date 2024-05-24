@@ -22,8 +22,6 @@ class LabDailyCheckUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mandatory_user_id' => 'required',
-            'optional_user_id' => 'nullable',
             'results' => 'nullable|array',
             'descriptions' => 'nullable|array',
             'descriptions.*.*' => 'nullable|string',

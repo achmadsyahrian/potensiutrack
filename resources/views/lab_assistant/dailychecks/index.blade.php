@@ -89,7 +89,6 @@
                      <th class="w-1">No.</th>
                      <th>Tanggal</th>
                      <th>Lab</th>
-                     <th>Asisten Lab</th>
                      <th>Status</th>
                      <th></th>
                   </tr>
@@ -104,9 +103,6 @@
                        </td>                       
                         <td>
                            {{ $item->lab->name }}
-                        </td>
-                        <td>
-                           {{ $item->mandatoryUser->name }}
                         </td>
                         <td class="text-success">
                            <span class="badge bg-success me-1"></span> Selesai

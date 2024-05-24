@@ -10,7 +10,7 @@
             <div class="page-pretitle">
                <ol class="breadcrumb breadcrumb-arrows">
                   <li class="breadcrumb-item"><a href="#">Lab</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('vicerector.labdailychecksreport.index') }}">Pemeriksaan Harian Lab</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('headaslab.labdailychecksreport.index') }}">Pemeriksaan Harian Lab</a></li>
                   <li class="breadcrumb-item active"><a href="#">Lihat</a></li>
                </ol>
             </div>
@@ -38,8 +38,8 @@
                      </div>
                      <div class="col-md">
                         <label class="form-label">Tanggal</label>
-                        <input type="text" class="form-control @error('date') is-invalid @enderror"
-                           name="date" value="{{ \Carbon\Carbon::parse($labDailyCheck->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}"
+                        <input type="date" class="form-control @error('date') is-invalid @enderror"
+                           name="date" value="{{ $labDailyCheck->date }}"
                            autocomplete="off" readonly>                     
                      </div>
                   </div>
@@ -58,7 +58,7 @@
                </div>
                <div class="card-footer bg-transparent mt-auto">
                   <div class="btn-list justify-content-end">
-                     <a href="{{ route('vicerector.labdailychecksreport.index') }}" class="btn">
+                     <a href="{{ route('headaslab.labdailychecksreport.index') }}" class="btn">
                         Kembali
                      </a>
                      <button type="submit" class="btn btn-primary">

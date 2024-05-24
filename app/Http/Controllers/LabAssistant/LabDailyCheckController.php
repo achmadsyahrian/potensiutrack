@@ -51,10 +51,6 @@ class LabDailyCheckController extends Controller
         try {
             $validatedData = $request->validated();
 
-            if (isset($validatedData['optional_user_id'])) {
-                $this->checkUserIds($validatedData['mandatory_user_id'], $validatedData['optional_user_id']);
-            }
-
             $this->checkDuplicateRecord($validatedData['lab_id'], $validatedData['date']);
             $validatedData['results'] = json_encode($validatedData['results']);
             $validatedData['descriptions'] = json_encode($validatedData['descriptions']);
@@ -101,10 +97,6 @@ class LabDailyCheckController extends Controller
 
             $validatedData = $request->validated();
             
-            if (isset($validatedData['optional_user_id'])) {
-                $this->checkUserIds($validatedData['mandatory_user_id'], $validatedData['optional_user_id']);
-            }
-            
             $labDailyCheck->update($validatedData);
 
             return redirect()->route('labassistant.labdailychecks.index')->with('success', 'Laporan berhasil diperbarui!');
@@ -132,13 +124,6 @@ class LabDailyCheckController extends Controller
         return response()->json($computers);
     }
     
-    // Cek Kesamaan Ass Lab 1 dan 2
-    protected function checkUserIds($mandatoryUserId, $optionalUserId)
-    {
-        if ($mandatoryUserId === $optionalUserId) {
-            throw new \InvalidArgumentException('Asisten Lab 1 dan Lab 2 tidak boleh sama.');
-        }
-    }
 
     protected function checkDuplicateRecord($labId, $date)
     {
@@ -158,12 +143,6 @@ class LabDailyCheckController extends Controller
         // Filter berdasarkan lab
         if ($request->filled('search_lab')) {
             $query->where('lab_id', $request->search_lab);
-        }
-
-        // Filter berdasarkan user mandatory atau optional
-        if ($request->filled('search_mandatory_user_id')) {
-            $query->where('mandatory_user_id', $request->search_mandatory_user_id)
-                ->orWhere('optional_user_id', $request->search_mandatory_user_id);
         }
     }
 

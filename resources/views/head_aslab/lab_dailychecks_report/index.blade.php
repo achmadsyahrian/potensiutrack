@@ -37,7 +37,7 @@
          </div>
          <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-               <a href="{{ route('technician.labdailychecksreport.index') }}" class="btn btn-secondary d-none d-sm-inline-block">
+               <a href="{{ route('headaslab.labdailychecksreport.index') }}" class="btn btn-secondary d-none d-sm-inline-block">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                      <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
@@ -84,27 +84,23 @@
                      </td>                      
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('technician.labdailychecksreport.showByIndex', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}"
+                           <a href="{{ route('headaslab.labdailychecksreport.showByIndex', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           @if ($item->allSignaturesExist())
-                              <a href="{{ route('technician.labdailychecksreport.print', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}" class="btn btn-warning">
-                                 Cetak
-                              </a>
-                           @elseif ($item->isVerified($item->year, $item->month, $item->lab->id, Auth::user()->role_id))
+                           @if ($item->isVerified($item->year, $item->month, $item->lab->id, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
                            @else
-                              <a href="{{ route('technician.employeepcdailychecksreport.index', ['employee_pc_daily_check' => $item->id]) }}"
+                              <a href="#"
                                  class="btn btn-outline-teal" data-bs-toggle="modal" data-bs-target="#modal-report-{{ $loop->index }}">
                                  Verifikasi
                               </a>
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('technician.labdailychecksreport.verify', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Teknisi" name="teknisi_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('headaslab.labdailychecksreport.verify', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Kepala Aslab" name="kepala_aslab_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>
