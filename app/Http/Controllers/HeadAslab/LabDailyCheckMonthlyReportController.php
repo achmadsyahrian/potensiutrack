@@ -13,7 +13,10 @@ class LabDailyCheckMonthlyReportController extends Controller
 {
     public function index(Request $request)
     {
+        $labId = auth()->user()->headLabAssistant->lab_id;
+        
         $data = LabDailyCheck::select(DB::raw('YEAR(date) as year, MONTH(date) as month, lab_id, COUNT(*) as count'))
+            ->where('lab_id', $labId)
             ->groupBy(DB::raw('YEAR(date)'), DB::raw('MONTH(date)'), 'lab_id')
             ->orderBy('year', 'desc')
             ->orderBy('month', 'desc')
@@ -24,17 +27,18 @@ class LabDailyCheckMonthlyReportController extends Controller
         return view('head_aslab.lab_dailychecks_report.index', compact('data'));
     }
 
-    public function showByIndex($year, $month, $lab)
+    public function showByIndex($year, $month)
     {
         $monthInNumber = $this->getMonthNumber($month);
+        $labId = auth()->user()->headLabAssistant->lab_id;
 
         $data = LabDailyCheck::whereYear('date', $year)
             ->whereMonth('date', $monthInNumber)
-            ->where('lab_id', $lab)
+            ->where('lab_id', $labId)
             ->orderBy('date', 'desc')
             ->paginate(10);
 
-        $labName = Lab::find($lab)->name;
+        $labName = Lab::find($labId)->name;
         return view('head_aslab.lab_dailychecks_report.show_by_index', compact('data', 'year', 'month', 'labName'));
     }
 
@@ -45,9 +49,10 @@ class LabDailyCheckMonthlyReportController extends Controller
     }
 
 
-    public function verify(Request $request, $year, $month, $lab)
+    public function verify(Request $request, $year, $month)
     {
         $monthResult = $this->getMonthNumber($month);
+        $labId = auth()->user()->headLabAssistant->lab_id;
 
         $validated = $request->validate([
             'kepala_aslab_signature' => 'required',
@@ -55,7 +60,7 @@ class LabDailyCheckMonthlyReportController extends Controller
         $kabagSignature = $this->saveSignature($validated['kepala_aslab_signature']);
 
         $monthlyReport = LabDailyCheckMonthlyReport::updateOrCreate(
-            ['lab_id' => $lab, 'year' => $year, 'month' => $monthResult],
+            ['lab_id' => $labId, 'year' => $year, 'month' => $monthResult],
             ['kepala_aslab_signature' => $kabagSignature]
         );
 

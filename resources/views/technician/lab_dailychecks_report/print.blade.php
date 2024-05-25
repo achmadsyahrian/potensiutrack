@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Print Pemeriksaan Harian PC Lab Komputer</title>
+   <title>Print Penugasan Pembuatan dan Maintenance Web Sistem Informasi</title>
    <style>
       body {
          font-family: 'Times New Roman', Times, serif;
@@ -13,7 +13,7 @@
       .table-title {
          width: 100%;
          border-collapse: collapse;
-         margin-bottom: 10px;
+         /* margin-bottom: 10px; */
       }
 
       .table-title,
@@ -44,27 +44,22 @@
 
       /* Containter */
       .container {
-         margin-top: 10px;
-         border: 1px solid black;
-         height: 500px;
-      }
-      .flex-container {
-         display: flex;
-         padding: 10px 4%;
-         justify-content: space-between;
-      }
-      .flex-container p {
-         margin: 0;
+         position:absolute; 
+         top: 110;
+         width:100%; 
+         left:0;
+         height: 400px;
       }
 
       .container > .table-data {
-         width: 96%;
+         width: 100%;
          border-collapse: collapse;
          margin: auto;
+         /* page-break-after: always; */
       }
       .container > .table-data > thead > tr > th{
          background-color: #cdcdcd !important;
-         /* padding: 10px; */
+         padding: 2px;
          font-weight: 500;
          text-align: center;
          font-size: 13px;
@@ -82,13 +77,17 @@
       .table-signature {
          width: 100%;
          border-collapse: collapse;
-         margin-bottom: 20px;
       }
 
       .table-signature > tbody > tr > td {
          border: none;
+         padding-right: 10px
       }
-      
+      .table-desc > tbody > tr > td {
+         border: none;
+         /* width: 130px; */
+      }
+
       .page-break {
          page-break-after: always;
       }
@@ -103,32 +102,39 @@
       }
       
       footer {
-         position: fixed;
+         position: absolute;
          bottom: 0;
          width: 100%;
-      }
-      footer > .table-aslab {
-         width: 20%;
-         margin: 10px 0 0 0;
-         border-collapse: collapse;
-      }
-      footer > .table-aslab > thead > tr > th{
-         background-color: #cdcdcd !important;
          /* padding: 10px; */
-         font-weight: 500;
-         text-align: center;
-         vertical-align: middle;
-         border: 1px solid black;
-      }
-      footer > .table-aslab > tbody > tr > td {
-         /* padding: 10px; */
-         border: 1px solid black;
-         font-size: 12px;
          text-align: center;
       }
       .page-num:before {
          content: counter(page);
       }
+
+      .vertical-text {
+         transform: rotate(-90deg);
+      }
+      
+      footer > .footer-desc > .table-aslab {
+         margin: 10px 0 15px 0;
+         border-collapse: collapse;
+      }
+      footer > .footer-desc > .table-aslab > thead > tr > th{
+         /* padding: 10px; */
+         width: 150px;
+         font-weight: 500;
+         text-align: center;
+         vertical-align: middle;
+         border: 1px solid black;
+      }
+      footer > .footer-desc > .table-aslab > tbody > tr > td {
+         /* padding: 10px; */
+         border: 1px solid black;
+         font-size: 12px;
+         text-align: center;
+      }
+      
    </style>
 </head>
 <body>
@@ -139,7 +145,7 @@
                <td rowspan="5" style="width: 100px; height: 90px; text-align: center; vertical-align: middle;">
                   <img src="{{ asset('image/Logopotensiutama.png') }}" alt="Logo" width="85px" style="text-align: center">
                </td>
-               <td colspan="2"class="header-cell">
+               <td colspan="2"  class="header-cell">
                   <strong>DOKUMEN LEVEL</strong><br>FORM
                </td>
                <td class="header-cell" style="width: 30%;">
@@ -147,8 +153,8 @@
                </td>
             </tr>
             <tr>
-               <td colspan="2" rowspan="2" class="header-cell">
-                  <strong>JUDUL</strong><br>PERMOHONAN PENGGUNAAN LAB KULIAH PENGGANTI               
+               <td colspan="2" rowspan="2" class="header-cell" style="font-size: 13px;">
+                  <strong>JUDUL</strong><br>PEMERIKSAAN HARIAN PC LAB KOMPUTER
                </td>
                <td class="">
                   <span style="width: 120px; display: inline-block"> Tanggal Terbit </span> : 08 April 2019
@@ -177,33 +183,171 @@
          </thead>
       </table>
    </header>
+
+   <p style="position: fixed; font-size:12px; left:10%; margin:auto; bottom:-10;"><i>Dokumen ini milik Universitas Potensi Utama, Dilarang memperbanyak atau menggunakan informasi didalamnya tanpa persetujuan Universitas Potensi Utama</i></p>
+   
+   <div class="container">
+      <div class="flex-container" style="display: flex; justify-content: space-between; font-size:13px; font-weight:500; background-color:grey; margin-bottom:40px;">
+         <div style="position: absolute; left: 20; margin-bottom:10px;">
+            <p>ASLAB : {{ $headAssistants }} </p>
+         </div>
+         <div style="position: absolute; right: 50%; margin-bottom:10px;">
+               <p>BULAN: {{ $month }} {{ $year }}</p>
+         </div>
+         <div style="position: absolute; right: 20; margin-bottom:10px;">
+               <p>LOKASI: {{ $labName }}</p>
+         </div>
+     </div>
+     
+
+      @php
+         use Carbon\Carbon;
+
+         // Generate an array of dates for the given month and year
+         $startOfMonth = Carbon::create($year, $monthNumber, 1);
+         $endOfMonth = $startOfMonth->copy()->endOfMonth();
+         $dates = [];
+         for ($date = $startOfMonth; $date->lte($endOfMonth); $date->addDay()) {
+               $dates[] = $date->copy();
+         }
+
+         $datesCollection = collect($dates);
+
+         $lab_id = $lab;
+         $startId = ($lab_id - 1) * 41 + 1;
+         $endId = $lab_id * 41;
+      @endphp
+
+      @foreach ($datesCollection->chunk(4) as $chunkedDates)
+            <table class="table-data" style="margin-top:10px;">
+                  <thead>
+                     <tr>
+                        <th rowspan="2" class="center-text">TGL</th>
+                        <th rowspan="2" style="width: 20px; font-size:12px;"><div class="vertical-text">ITEM</div></th>
+                        <th colspan="41" class="center-text">Nomor Perangkat</th>
+                        <th rowspan="2" class="center-text">Keterangan</th>
+                     </tr>
+                     <tr>
+                        @for ($i = 1; $i <= 41; $i++)
+                              <th class="center-text">{{ $i }}</th>
+                        @endfor
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach ($chunkedDates as $date)
+                        @php
+                              $dateString = $date->format('Y-m-d');
+                              $dayData = $data->firstWhere('date', $dateString);
+                              $results = $dayData ? json_decode($dayData->results, true) : [];
+                              $descriptions = $dayData ? json_decode($dayData->descriptions, true) : [];
+                        @endphp
+                        <tr>
+                              <td rowspan="4" class="center-text">{{ $date->format('d') }}</td>
+                              <td>M</td>
+                              @for ($i = $startId; $i <= $endId; $i++)
+                                 <td class="center-text">
+                                    <div style="font-family: DejaVu Sans, sans-serif;">
+                                          @if(isset($results[$i]['Mouse']) && $results[$i]['Mouse'] == 'on')
+                                             &#10003;
+                                          @endif
+                                    </div>
+                                 </td>
+                              @endfor
+                              <td>{{ $descriptions['Mouse'] ?? '' }}</td>
+                        </tr>
+                        <tr>
+                              <td>K</td>
+                              @for ($i = $startId; $i <= $endId; $i++)
+                                 <td class="center-text">
+                                    <div style="font-family: DejaVu Sans, sans-serif;">
+                                          @if(isset($results[$i]['Keyboard']) && $results[$i]['Keyboard'] == 'on')
+                                             &#10003;
+                                          @endif
+                                    </div>
+                                 </td>
+                              @endfor
+                              <td>{{ $descriptions['Keyboard'] ?? '' }}</td>
+                        </tr>
+                        <tr>
+                              <td>S</td>
+                              @for ($i = $startId; $i <= $endId; $i++)
+                                 <td class="center-text">
+                                    <div style="font-family: DejaVu Sans, sans-serif;">
+                                          @if(isset($results[$i]['Sistem']) && $results[$i]['Sistem'] == 'on')
+                                             &#10003;
+                                          @endif
+                                    </div>
+                                 </td>
+                              @endfor
+                              <td>{{ $descriptions['Sistem'] ?? '' }}</td>
+                        </tr>
+                        <tr>
+                              <td>I</td>
+                              @for ($i = $startId; $i <= $endId; $i++)
+                                 <td class="center-text">
+                                    <div style="font-family: DejaVu Sans, sans-serif;">
+                                          @if(isset($results[$i]['Internet']) && $results[$i]['Internet'] == 'on')
+                                             &#10003;
+                                          @endif
+                                    </div>
+                                 </td>
+                              @endfor
+                              <td>{{ $descriptions['Internet'] ?? '' }}</td>
+                        </tr>
+                     @endforeach
+                  </tbody>
+            </table>
+            @if (!$loop->last)
+               <div class="page-break"></div>
+            @endif
+      @endforeach
+   </div>
+
    <footer>
-      <table class="table-aslab">
-         <thead>
-            <tr>
-               <th>Asisten Lab</th>
-               <th>Paraf</th>
-            </tr>
-         </thead>
-         <tbody>
-            @foreach ($headAssistants as $headAssistant)
+
+      <div class="footer-desc" style="height: 70px; width:70%;">
+         <table class="table-aslab" style="float: left;">
+            <thead>
                <tr>
-                  <td>{{ $headAssistant->user->name }}</td>
+                  <th>Asisten Lab</th>
+                  <th>Paraf</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>{{ $headAssistants }}</td>
                   <td>
                      <img src="{{ asset('storage/'.$dataReport->kepala_aslab_signature) }}" alt="Tanda Tangan Dosen" width="50">
                   </td>
                </tr>
-            @endforeach
-         </tbody>
-      </table>
+            </tbody>
+         </table>
 
-      {{-- Signature Path --}}
+         <table class="table-desc" style="border-collapse:collapse; float: right; font-size:14px;">
+            <tr>
+               <td>Keterangan :</td>
+               <td style="width: 120px;"></td>
+               <td style="width: 120px;"></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>M : Mouse</td>
+               <td>S : System</td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>K : Keyboard</td>
+               <td>I : Internet</td>
+            </tr>
+         </table>
+      </div>
+      
       <div class="signature-path">
-         <p style="margin: 4px 0;">Medan, {{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p>
-         <table class="table-signature" >
+         <table class="table-signature" style="font-size: 15px;">
              <tbody>
                  <tr>
                      <td style="text-align: left;">
+                           Medan, {{ \Carbon\Carbon::now()->locale('id_ID')->isoFormat('D MMMM YYYY') }} <br>
                          Dibuat Oleh :
                      </td>
                      <td style="text-align: left;">
@@ -226,7 +370,7 @@
                  </tr>
                  <tr>
                      <td>
-                         <img src="{{ asset('storage/'.$dataReport->teknisi_signature) }}" alt="Tanda Tangan Teknisi" width="120" style="display: block; text-align: left;">
+                         <img src="{{ asset('storage/'.$dataReport->teknisi_signature) }}" alt="Tanda Tangan Puskom" width="120" style="display: block; text-align: left;">
                      </td>
                      <td>
                          <img src="{{ asset('storage/'.$dataReport->kabag_signature) }}" alt="Tanda Tangan Kabag" width="120">
@@ -248,64 +392,9 @@
                  </tr>
              </tbody>
          </table>
-         <p style="position: fixed; font-size:12px; left:10%; margin:auto;"><i>Dokumen ini milik Universitas Potensi Utama, Dilarang memperbanyak atau menggunakan informasi didalamnya tanpa persetujuan Universitas Potensi Utama</i></p>
      </div>
    </footer>
-   @foreach ($chunkedData as $index => $dataChunk)
-      @php $pageNumber = ($index * 7) + 1; @endphp
-      <div class="container" style="position:absolute; bottom:0; width:100%; left:0;">
-         <div class="flex-container" style="display: flex; justify-content: space-between;">
-            <div style="position: absolute; left: 20; margin-bottom:10px;">
-               <p>Nama Lab Komputer: {{ $labName }}</p>
-            </div>
-            <div style="position: absolute; right: 20; margin-bottom:10px;">
-                  <p>Bulan: {{ $month }} {{ $year }}</p>
-            </div>
-         </div>
-         <table class="table-data" style="margin-top:15px;">
-            <thead>
-               <tr>
-                  <th rowspan="2">No.</th>
-                  <th rowspan="2">Tanggal</th>
-                  <th rowspan="2">Mata Kuliah</th>
-                  <th rowspan="2">Dosen</th>
-                  <th rowspan="2">Kelas</th>
-                  <th colspan="3">Rencana Penggunaan</th>
-                  <th rowspan="2">Paraf Aslab</th>
-                  <th rowspan="2">Keterangan</th>
-               </tr>
-               <tr>
-                  <th>Hari</th>
-                  <th>Tanggal</th>
-                  <th>Jam Penggunaan</th>
-               </tr>
-            </thead>
-            <tbody>
-               @foreach ($dataChunk as $item)
-                  <tr>
-                     <td>{{ $pageNumber++ }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ $item->course }}</td>
-                     {{-- <td>{{ $item->lecturer->name }}</td> --}}
-                     <td>{{ $item->class }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('dddd') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</td>
-                     <td>{{ \Carbon\Carbon::parse($item->scheduled_date)->locale('id_ID')->isoFormat('HH:mm') }}</td>
-                     <td style="padding:0;">
-                        <img src="{{ asset('storage/'.$item->lab_assistant_signature) }}" alt="Paraf Aslab" width="50">
-                     </td>
-                     <td>
-                        {{ $item->description }}   
-                     </td>
-                  </tr>
-               @endforeach
-            </tbody>
-         </table>
-      </div>
-      @if (!$loop->last)
-         <div class="page-break"></div>
-      @endif
-   @endforeach
+   
 </body>
 </html>
 

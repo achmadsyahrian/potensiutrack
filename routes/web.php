@@ -183,7 +183,7 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
             ->name('technician.labdailychecksreport.showByIndex');
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'show'])->name('technician.labdailychecksreport.show');    
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'verify'])->name('technician.labdailychecksreport.verify');
-    Route::get('/lab-requests/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'print'])->name('technician.labdailychecksreport.print');
+    Route::get('/lab-daily-check/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'print'])->name('technician.labdailychecksreport.print');
     
 });
 
@@ -434,10 +434,10 @@ Route::prefix('headassistantlab')->middleware('checkRole:12')->group(function ()
 
     // Lab Daily Check
     Route::get('/lab-daily-check', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'index'])->name('headaslab.labdailychecksreport.index');    
-    Route::get('/lab-daily-check/{year}/{month}/{lab}', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'showByIndex'])
+    Route::get('/lab-daily-check/{year}/{month}/', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'showByIndex'])
             ->name('headaslab.labdailychecksreport.showByIndex');
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'show'])->name('headaslab.labdailychecksreport.show');    
-    Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'verify'])->name('headaslab.labdailychecksreport.verify');
+    Route::post('/lab-daily-check/{year}/{month}/verify', [\App\Http\Controllers\HeadAslab\LabDailyCheckMonthlyReportController::class, 'verify'])->name('headaslab.labdailychecksreport.verify');
     
 });
 

@@ -84,11 +84,11 @@
                      </td>                      
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('headaslab.labdailychecksreport.showByIndex', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}"
+                           <a href="{{ route('headaslab.labdailychecksreport.showByIndex', ['year' => $item->year, 'month' => $item->month]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           @if ($item->isVerified($item->year, $item->month, $item->lab->id, Auth::user()->role_id))
+                           @if ($item->isVerified($item->year, $item->month, $item->lab_id, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -100,7 +100,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('headaslab.labdailychecksreport.verify', ['year' => $item->year, 'month' => $item->month, 'lab' => $item->lab_id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Kepala Aslab" name="kepala_aslab_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('headaslab.labdailychecksreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Kepala Aslab" name="kepala_aslab_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

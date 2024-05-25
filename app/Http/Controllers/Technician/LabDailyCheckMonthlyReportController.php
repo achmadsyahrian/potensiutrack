@@ -70,13 +70,16 @@ class LabDailyCheckMonthlyReportController extends Controller
         $monthInNumber = $this->getMonthNumber($month);
 
         $headAssistants = HeadLabAssistant::where('lab_id', $lab)->get();
+        foreach ($headAssistants as $headAssistant) {
+            $headAssistantsUser = $headAssistant->user->name;
+        }
 
         $data = LabDailyCheck::whereYear('date', $year)
             ->whereMonth('date', $monthInNumber)
             ->where('lab_id', $lab)
             ->orderBy('date', 'desc')
             ->get();
-
+        
         $labName = Lab::where('id', $lab)->pluck('name')->first();
 
         $dataReport = LabDailyCheckMonthlyReport::where('lab_id', $lab)
@@ -84,16 +87,18 @@ class LabDailyCheckMonthlyReportController extends Controller
             ->where('month', $monthInNumber)
             ->first();
 
-        $chunkedData = $data->chunk(7);
+        // $chunkedData = $data->chunk(7);
 
         $html = view('technician.lab_dailychecks_report.print', [
-            'chunkedData' => $chunkedData,
+            'data' => $data,
             'labName' => $labName,
             'dataReport' => $dataReport,
+            'lab' => $lab,
             'year' => $year,
             'month' => $month,
             'pageCount' => 0,
-            'headAssistants' => $headAssistants,
+            'monthNumber' => $monthInNumber,
+            'headAssistants' => $headAssistantsUser,
         ])->render();
 
         $options = new Options();

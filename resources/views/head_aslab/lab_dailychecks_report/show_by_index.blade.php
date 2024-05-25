@@ -11,7 +11,6 @@
                   <li class="breadcrumb-item"><a href="#">Laporan</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('headaslab.labdailychecksreport.index') }}">Pemeriksaan Harian Lab</a></li>
                   <li class="breadcrumb-item active"><a href="#"> {{ $month }} {{ $year }}</a></li>
-                  <li class="breadcrumb-item active"><a href="#">{{ $labName }}</a></li>
                </ol>
             </div>
             <h2 class="page-title">
