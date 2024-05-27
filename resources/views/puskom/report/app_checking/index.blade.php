@@ -84,7 +84,7 @@
                      </td>    
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('puskom.appcheckingsreport.show', ['id' => $item->id]) }}"
+                           <a href="{{ route('puskom.appcheckingsreport.show', ['year' => $item->year, 'month' => $item->month]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
@@ -93,7 +93,7 @@
                               <a href="#" class="btn btn-warning">
                                  Cetak
                               </a>
-                           @elseif ($item->isVerified(Auth::user()->role_id))
+                           @elseif ($item->isVerified($item->year, $item->month, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -105,7 +105,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('puskom.appcheckingsreport.verify', ['id' => $item->id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Puskom" name="puskom_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('puskom.appcheckingsreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Puskom" name="puskom_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

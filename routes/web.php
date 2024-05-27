@@ -292,8 +292,8 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
     // App Checking
     Route::get('/report/web-checking', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'index'])->name('puskom.appcheckingsreport.index');    
-    Route::get('/report/web-checking/detail/{id}', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'show'])->name('puskom.appcheckingsreport.show');    
-    Route::post('/report/web-checking/{id}/verify', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'verify'])->name('puskom.appcheckingsreport.verify');
+    Route::get('/report/web-checking/{year}/{month}', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'show'])->name('puskom.appcheckingsreport.show');    
+    Route::post('/report/web-checking/{year}/{month}/verify', [\App\Http\Controllers\Puskom\AppCheckingReportController::class, 'verify'])->name('puskom.appcheckingsreport.verify');
 
     // Web Assignment Report
     Route::get('/report/web-assignment', [\App\Http\Controllers\Puskom\WebAssignmentReportController::class, 'index'])->name('puskom.webassignmentreport.index');    

@@ -16,30 +16,30 @@ class AppChecking extends Model
         return $this->belongsTo(WebApp::class, 'web_app_id');
     }
 
-    public function isVerified($role)
+    public function isVerified($year, $month, $role)
     {
-        // Lakukan pengecekan apakah tanda tangan sesuai dengan peran
-        switch ($role) {
-            case '7':
-                return !is_null($this->puskom_signature);
-                break;
-            case '2':
-                return !is_null($this->kabag_signature);
-                break;
-            case '9':
-                return !is_null($this->wakil_rektor_signature);
-                break;
-            default:
-                return false;
-        }
+        // $monthNum = $this->getMonthNumber($month);
+        
+        $monthlyReport = AppChekingReport::where([
+            'year' => $year,
+            'month' => $month
+        ])->first();
+
+        // Periksa apakah sudah diverifikasi
+        return $monthlyReport ? $monthlyReport->isVerified($role) : false;
     }
 
-    public function allSignaturesExist($itemData)
+    public function allSignaturesExist()
     {
-        if ($itemData) {
-            return !is_null($itemData->puskom_signature) &&
-                !is_null($itemData->kabag_signature) &&
-                !is_null($itemData->wakil_rektor_signature);
+        $monthlyReport = AppChekingReport::where([
+            'year' => $this->year,
+            'month' => $this->month
+        ])->first();
+
+        if ($monthlyReport) {
+            return !is_null($monthlyReport->teknisi_signature) &&
+                !is_null($monthlyReport->kabag_signature) &&
+                !is_null($monthlyReport->wakil_rektor_signature);
         }
 
         return false;
