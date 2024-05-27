@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('app_checkings', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade');
+            $table->foreignId('web_app_id')->constrained('web_apps')->onDelete('cascade')->nullable();
             $table->unsignedInteger('month');
             $table->unsignedInteger('year');
             $table->json('result')->nullable();
-            $table->string('kabag_signature')->nullable();
-            $table->string('wakil_rektor_signature')->nullable();
-            $table->string('puskom_signature')->nullable();
             $table->timestamps();
             
-            $table->unique(['month', 'year']);
+            $table->unique(['month', 'year', 'web_app_id']);
         });
     }
 

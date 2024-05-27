@@ -107,18 +107,19 @@
                      </td>
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('puskom.appchecking.show', ['app_checking' => $item->id]) }}"
+                           <a href="{{ route('puskom.appchecking.showByMonthAndYear', ['month' => $item->month, 'year' => $item->year]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
-                              data-bs-target="#modal-confirm-{{ $item->id }}">
+                              data-bs-target="#modal-confirm-{{ $item->year }}-{{ $item->month }}">
                               Hapus
                            </a>
+
                         </div>
                      </td>
-                     <x-confirm-modal route="{{ route('puskom.appchecking.destroy', ['app_checking' => $item->id]) }}"
-                        method='delete' id='{{ $item->id }}'></x-confirm-modal>
+                     <x-confirm-modal route="{{ route('puskom.appchecking.destroyByMonthAndYear', ['year' => $item->year, 'month' => $item->month]) }}"
+                        method='delete' id='{{ $item->year }}-{{ $item->month }}'></x-confirm-modal>                     
                   </tr>
                   @empty
                   <tr>

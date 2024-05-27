@@ -25,7 +25,7 @@
     <div class="container-xl">
         <div class="card">
             <div class="row row-deck row-cards">
-                <form action="{{ route('puskom.appchecking.update', ['app_checking' => $appChecking]) }}" method="post">
+                <form action="{{ route('puskom.appchecking.updateByMonthAndYear', ['year' => $year, 'month' => $month]) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="col d-flex flex-column">
@@ -35,35 +35,34 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Tahun</label>
-                                        <input type="text" class="form-control" value="{{ $appChecking->year }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ $year }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">Bulan</label>
-                                        <input type="text" class="form-control" value="{{ \Carbon\Carbon::create()->month($appChecking->month)->translatedFormat('F') }}" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" value="{{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }}" autocomplete="off" readonly>
                                     </div>
                                 </div>
 
                                 @php
                                     use Carbon\Carbon;
-                                    $totalDays = Carbon::create($appChecking->year, $appChecking->month)->daysInMonth;
+                                    $totalDays = Carbon::create($year, $month)->daysInMonth;
                                 @endphp
                                 
                                 <div class="col-lg-12">
                                     <div class="card mb-3">
-                                        @foreach ($webApps as $webApp)
-                                            {{-- <h2> Aplikasi {{ $webApp->id }} </h2> --}}
+                                        @foreach ($appChecking as $appItem)
                                             <div class="table-responsive">
                                                 <table class="table table-vcenter card-table" id="computer-table">
                                                     <thead>
                                                         <tr class="text-left">
-                                                            <th class="text-white fs-5" colspan="100">{{ $webApp->name }} 
-                                                                @if ($webApp->url)
+                                                            <th class="text-white fs-5" colspan="100">{{ $appItem->application->name }} 
+                                                                @if ($appItem->application->url)
                                                                 - 
                                                                 <span class="text-muted text-sm">
-                                                                    <a href="{{ $webApp->url }}" class="text-muted" target="_blank">
-                                                                        <small>{{ $webApp->url }}</small>
+                                                                    <a href="{{ $appItem->application->url }}" class="text-muted" target="_blank">
+                                                                        <small>{{ $appItem->application->url }}</small>
                                                                     </a>
                                                                 </span>
                                                                 @endif
@@ -82,20 +81,13 @@
                                                                 <td>{{ $jam }}</td>
                                                                 @for ($day = 1; $day <= $totalDays; $day++)
                                                                     @php
-                                                                        // Buat nama checkbox
-                                                                        $checkboxName = 'app_' . $webApp->id . '_' . $appChecking->year . '-0' . $appChecking->month . '-' . str_pad($day, 2, '0', STR_PAD_LEFT) . '_' . str_replace(':', '', $jam);
-                                                                        
-                                                                        // Dekode hasil laporan dari JSON
-                                                                        $results = json_decode($appChecking->result, true);
-                                                                        
-                                                                        // Buat kunci untuk tanggal dan waktu
-                                                                        $checkboxKey = $appChecking->year . '-0' . $appChecking->month . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-                                                                        $jamKey = 'jam_' . substr(str_replace(':', '', $jam), 0, 2);
-                                                                        
-                                                                        // Periksa apakah checkbox harus dicentang berdasarkan hasil laporan
-                                                                        $isChecked = isset($results['app_' . $webApp->id][$checkboxKey][$jamKey]) && $results['app_' . $webApp->id][$checkboxKey][$jamKey] == 1;
+                                                                        $checkboxName = 'app_' . $appItem->web_app_id . '_day_' . $day . '_jam_' . str_replace(':', '', $jam);
+                                                                        $results = json_decode($appItem->result, true);
+
+                                                                        $isChecked = isset($results[$day]) && isset($results[$day]['jam_' . substr(str_replace(':', '', $jam), 0, 2)]);
                                                                     @endphp
                                                                     <td>
+                                                                        
                                                                         <input class="form-check-input m-0 align-middle" type="checkbox" name="{{ $checkboxName }}" {{ $isChecked ? 'checked' : '' }}>
                                                                     </td>
                                                                 @endfor
@@ -105,8 +97,6 @@
                                                 </table>
                                             </div>
                                         @endforeach
-
-                                   
                                     </div>
                                 </div>
                             </div>

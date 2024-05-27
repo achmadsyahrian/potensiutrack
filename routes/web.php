@@ -243,6 +243,9 @@ Route::prefix('puskom')->middleware('checkRole:7')->group(function () {
 
     //App Check
     Route::resource('/app-checking', \App\Http\Controllers\Puskom\AppCheckingController::class)->names('puskom.appchecking');
+    Route::get('appchecking/{year}/{month}', [\App\Http\Controllers\Puskom\AppCheckingController::class, 'showByMonthAndYear'])->name('puskom.appchecking.showByMonthAndYear');
+    Route::put('/puskom/app-checking/{year}/{month}', [\App\Http\Controllers\Puskom\AppCheckingController::class, 'updateByMonthAndYear'])->name('puskom.appchecking.updateByMonthAndYear');
+    Route::delete('/app-checkings/{year}/{month}', [\App\Http\Controllers\Puskom\AppCheckingController::class, 'destroyByMonthAndYear'])->name('puskom.appchecking.destroyByMonthAndYear');
     
     //Wifi Check
     Route::resource('/wifi-checking', \App\Http\Controllers\Puskom\WifiCheckingController::class)->names('puskom.wifichecking');

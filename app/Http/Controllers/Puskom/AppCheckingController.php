@@ -18,14 +18,19 @@ class AppCheckingController extends Controller
         $query = AppChecking::query();
         $this->applySearchFilter($request, $query);
 
-        $query->orderBy('month', 'desc');
-        $apps = WebApp::all();
-        
+        $query->groupBy('month', 'year');
+        $query->selectRaw('MIN(id) as id, month, year');
+        $query->orderBy('year', 'desc')->orderBy('month', 'desc');
+
         $data = $query->paginate(10);
         $data->appends(['search' => $request->search]);
         
+        $apps = WebApp::all();
         return view('puskom.app_checking.index', compact('data', 'apps'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,22 +50,30 @@ class AppCheckingController extends Controller
             'year' => 'required',
         ]);
 
-        $this->validateUniqueEntry($validated);
-        $this->createAppChecking($validated);
+        
+        $webApps = WebApp::all();
+        
+        foreach ($webApps as $webApp) {
+            $this->validateUniqueEntry($validated['month'], $validated['year'], $webApp->id);
+            $this->createAppChecking($validated['month'], $validated['year'], $webApp->id);
+        }
 
         return redirect()->back()->with('success', 'Laporan berhasil ditambahkan!');
     }
 
 
 
+
     /**
      * Display the specified resource.
      */
-    public function show(AppChecking $appChecking)
+    public function showByMonthAndYear($year, $month)
     {
-        $webApps = WebApp::all();
-        return view('puskom.app_checking.show', compact('appChecking', 'webApps'));
+        $appChecking = AppChecking::where('year', $year)->where('month', $month)->get();
+
+        return view('puskom.app_checking.show', compact('appChecking', 'month', 'year'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -73,29 +86,60 @@ class AppCheckingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AppChecking $appChecking)
+    public function updateByMonthAndYear(Request $request, $year, $month)
     {
         $input = $request->except('_token', '_method');
         $newResults = [];
-
+        
         foreach ($input as $key => $value) {
-            if ($value === 'on') {
+            $parts = explode('_', $key);
+            $appId = $parts[1];
+            $day = $parts[3]; // Ambil day dari input key
+            $time = 'jam_' . substr($parts[5], 0, 2);
 
-                $parts = explode('_', $key);
-                $appId = $parts[1];
-                $date = $parts[2];
-                $time = 'jam_' . substr($parts[3], 0, 2);
-                if (!isset($newResults['app_' . $appId])) {
-                    $newResults['app_' . $appId] = [];
+            if ($value === 'on') {
+                if (!isset($newResults[$appId])) {
+                    $newResults[$appId] = [];
                 }
-                if (!isset($newResults['app_' . $appId][$date])) {
-                    $newResults['app_' . $appId][$date] = [];
+                if (!isset($newResults[$appId][$day])) {
+                    $newResults[$appId][$day] = [];
                 }
-                $newResults['app_' . $appId][$date][$time] = 1;
+                $newResults[$appId][$day][$time] = 1;
+            } 
+        }
+        
+        
+        if (empty($newResults)) {
+            $appCheckings = AppChecking::where('year', $year)
+                ->where('month', $month)
+                ->get();
+
+            foreach ($appCheckings as $app) {
+                $app->update(['result' => null]);
+            }
+
+        } else {
+            foreach ($newResults as $appId => $days) {
+                foreach ($days as $day => $times) {
+                    $existingChecking = AppChecking::where('web_app_id', $appId)
+                        ->where('year', $year)
+                        ->where('month', $month)
+                        ->first();
+
+                    if ($existingChecking) {
+                        $result = json_decode($existingChecking->result, true);
+
+                        foreach ($times as $time => $value) {
+                            $result[$day][$time] = $value;
+                        }
+                        $existingChecking->update(['result' => json_encode($days)]);
+                    }
+                }
             }
         }
 
-        $appChecking->update(['result' => json_encode($newResults)]);
+        return redirect()->route('puskom.appchecking.index')->with('success', 'Laporan berhasil disimpan!');
+
 
         return redirect()->route('puskom.appchecking.index')->with('success', 'Laporan berhasil disimpan!');
     }
@@ -105,10 +149,10 @@ class AppCheckingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AppChecking $appChecking)
+    public function destroyByMonthAndYear($year, $month)
     {
-        $appChecking->delete();
-
+        AppChecking::where('year', $year)->where('month', $month)->delete();
+    
         return redirect()->back()->with('success', 'Laporan berhasil dihapus!');
     }
 
@@ -125,27 +169,29 @@ class AppCheckingController extends Controller
     
     }
 
-    private function validateUniqueEntry($validated)
+    private function validateUniqueEntry($month, $year, $webAppId)
     {
-        $existingEntry = AppChecking::where('month', $validated['month'])
-                        ->where('year', $validated['year'])
+        $existingEntry = AppChecking::where('month', $month)
+                        ->where('year', $year)
+                        ->where('web_app_id', $webAppId) // Tambahkan kondisi untuk ID aplikasi web
                         ->exists();
 
         if ($existingEntry) {
             throw ValidationException::withMessages([
-                'month' => ['Laporan untuk bulan dan tahun yang sama sudah ada!'],
+                'month' => ['Laporan untuk bulan, tahun, dan aplikasi yang sama sudah ada!'],
             ]);
         }
     }
 
-
-    private function createAppChecking($validated)
+    private function createAppChecking($month, $year, $webAppId)
     {
         $appChecking = new AppChecking();
-        $appChecking->month = $validated['month'];
-        $appChecking->year = $validated['year'];
+        $appChecking->month = $month;
+        $appChecking->year = $year;
+        $appChecking->web_app_id = $webAppId;
         $appChecking->save();
     }
+
 
     
 }
