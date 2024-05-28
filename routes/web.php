@@ -110,8 +110,8 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
 
     // App Checking
     Route::get('/web-checkings', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'index'])->name('sectionhead.appcheckingsreport.index');    
-    Route::get('/web-checkings/detail/{id}', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'show'])->name('sectionhead.appcheckingsreport.show');    
-    Route::post('/web-checkings/{id}/verify', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'verify'])->name('sectionhead.appcheckingsreport.verify');
+    Route::get('/web-checkings/{year}/{month}', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'show'])->name('sectionhead.appcheckingsreport.show');    
+    Route::post('/web-checkings/{year}/{month}/verify', [\App\Http\Controllers\SectionHead\AppCheckingReportController::class, 'verify'])->name('sectionhead.appcheckingsreport.verify');
 
     // Web Assignment Verify
     Route::get('/web-assignment', [\App\Http\Controllers\SectionHead\WebAssignmentController::class, 'index'])->name('sectionhead.webassignment.index');
@@ -324,8 +324,8 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
 
         // App Checking
     Route::get('/web-checking', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'index'])->name('vicerector.appcheckingsreport.index');    
-    Route::get('/web-checking/detail/{id}', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'show'])->name('vicerector.appcheckingsreport.show');    
-    Route::post('/web-checking/{id}/verify', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'verify'])->name('vicerector.appcheckingsreport.verify');
+    Route::get('/web-checking/{year}/{month}', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'show'])->name('vicerector.appcheckingsreport.show');    
+    Route::post('/web-checking/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\AppCheckingReportController::class, 'verify'])->name('vicerector.appcheckingsreport.verify');
 
     // Web Maintenance
     Route::get('/web-maintenance', [\App\Http\Controllers\ViceRector\WebMaintenanceReportController::class, 'index'])->name('vicerector.webmaintenancesreport.index');    

@@ -84,11 +84,11 @@
                      </td>    
                      <td>
                         <div class="btn-list justify-content-end flex-nowrap">
-                           <a href="{{ route('vicerector.appcheckingsreport.show', ['id' => $item->id]) }}"
+                           <a href="{{ route('vicerector.appcheckingsreport.show', ['year' => $item->year, 'month' => $item->month]) }}"
                               class="btn btn-outline-info">
                               Lihat
                            </a>
-                           @if ($item->isVerified(Auth::user()->role_id))
+                           @if ($item->isVerified($item->year, $item->month, Auth::user()->role_id))
                               <button class="btn btn-teal">
                                  Sudah Verifikasi
                               </button>
@@ -100,7 +100,7 @@
                            @endif
                         </div>
                      </td>
-                     <x-verify-signature route="{{ route('vicerector.appcheckingsreport.verify', ['id' => $item->id]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 1" name="wakil_rektor_signature"></x-verify-signature>
+                     <x-verify-signature route="{{ route('vicerector.appcheckingsreport.verify', ['year' => $item->year, 'month' => $item->month]) }}" method='post' id='{{ $loop->index }}' title="Paraf Wakil Rektor 1" name="wakil_rektor_signature"></x-verify-signature>
                   </tr>
                   @empty
                   <tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ViceRector;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppChecking;
+use App\Models\AppChekingReport;
 use App\Models\Building;
 use App\Models\WebApp;
 use App\Models\WebMaintenance;
@@ -16,30 +17,35 @@ class AppCheckingReportController extends Controller
 {
     public function index(Request $request)
     {
-        $data = AppChecking::paginate(10);
+        $data = AppChecking::select('year', 'month', DB::raw('ANY_VALUE(id) as id'))
+                            ->groupBy('year', 'month')
+                            ->orderBy('year', 'desc') 
+                            ->orderBy('month', 'desc') 
+                            ->paginate(10);
 
         return view('vice_rector.app_checking_report.index', compact('data'));
     }
 
 
-    public function show(AppChecking $id)
+    public function show($year, $month)
     {
-        $appChecking = $id;
-        $webApps = WebApp::all();
-        return view('vice_rector.app_checking_report.show', compact('appChecking', 'webApps'));
+        $appChecking = AppChecking::where('year', $year)->where('month', $month)->get();
+        return view('vice_rector.app_checking_report.show', compact('appChecking', 'year', 'month'));
     }
 
 
-    public function verify(Request $request, AppChecking $id)
+    public function verify(Request $request, $year, $month)
     {
         $validated = $request->validate([
             'wakil_rektor_signature' => 'required',
         ]);
 
-        $kabagSignature = $this->saveSignature($validated['wakil_rektor_signature']);
+        $signature = $this->saveSignature($validated['wakil_rektor_signature']);
 
-        $id->wakil_rektor_signature = $kabagSignature;
-        $id->save();
+        $monthlyReport = AppChekingReport::updateOrCreate(
+            ['year' => $year, 'month' => $month],
+            ['wakil_rektor_signature' => $signature]
+        );
 
         return redirect()->back()->with('success', 'Laporan bulanan telah diverifikasi.');
     }
