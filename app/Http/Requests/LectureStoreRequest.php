@@ -23,7 +23,7 @@ class LectureStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'nip' => 'required|numeric|integer',
+            'nip' => 'required|string|numeric',
             'email' => 'nullable|email|unique:users,email',
             'username' => 'required|string|unique:users,username',
             'phone' => [

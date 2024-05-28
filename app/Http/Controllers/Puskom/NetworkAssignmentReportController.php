@@ -60,7 +60,7 @@ class NetworkAssignmentReportController extends Controller
             ->whereNotNull('finish_date') 
             ->whereNotNull('engineer_signature') 
             ->whereNotNull('kabag_signature') 
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = NetworkAssignmentReport::where('year', $year)->first();

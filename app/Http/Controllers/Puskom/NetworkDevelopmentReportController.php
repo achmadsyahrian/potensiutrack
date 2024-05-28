@@ -62,7 +62,7 @@ class NetworkDevelopmentReportController extends Controller
     {
 
         $data = NetworkConnectionDevelopment::whereYear('date', $year)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = NetworkDevelopmentReport::where('year', $year)->first();

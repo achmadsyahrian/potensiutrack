@@ -62,7 +62,7 @@ class WebDevelopmentMonthlyReportController extends Controller
     {
 
         $data = WebDevelopmentRequest::whereYear('date', $year)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = WebDevelopmentMonthlyReport::where('year', $year)->first();

@@ -25,7 +25,7 @@ class LectureUpdateRequest extends FormRequest
 
         return [
             'name' => 'required|min:3',
-            'nip' => 'required|numeric|integer',
+            'nip' => 'required|string|numeric',
             'email' => 'nullable|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6',
             'phone' => [

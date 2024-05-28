@@ -63,7 +63,7 @@ class NetworkTroubleshootingMonthlyReportController extends Controller
     {
 
         $data = NetworkTroubleshooting::whereYear('date', $year)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = NetworkTroubleshootingMonthlyReport::where('year', $year)->first();

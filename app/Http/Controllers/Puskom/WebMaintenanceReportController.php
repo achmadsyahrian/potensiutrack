@@ -62,7 +62,7 @@ class WebMaintenanceReportController extends Controller
     {
 
         $data = WebMaintenance::whereYear('date', $year)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = WebMaintenanceReport::where('year', $year)->first();

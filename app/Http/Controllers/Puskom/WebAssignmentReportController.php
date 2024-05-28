@@ -71,7 +71,7 @@ class WebAssignmentReportController extends Controller
             ->whereNotNull('finish_date') 
             ->whereNotNull('programmer_signature') 
             ->whereNotNull('kabag_signature') 
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $dataReport = WebAssignmentReport::where('year', $year)->first();

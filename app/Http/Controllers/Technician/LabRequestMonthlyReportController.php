@@ -77,7 +77,7 @@ class LabRequestMonthlyReportController extends Controller
         $data = LabRequest::whereYear('date', $year)
             ->whereMonth('date', $monthInNumber)
             ->where('lab_id', $lab)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $labName = Lab::where('id', $lab)->pluck('name')->first();

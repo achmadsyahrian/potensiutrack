@@ -73,7 +73,7 @@ class EmployeePcDailyCheckReportController extends Controller
         $data = EmployeePcDailyCheck::whereYear('date', $year)
             ->whereMonth('date', $monthInNumber)
             ->where('division_id', $division)
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->get();
 
         $divisionName = Division::where('id', $division)->pluck('name')->first();
