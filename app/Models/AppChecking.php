@@ -37,7 +37,7 @@ class AppChecking extends Model
         ])->first();
 
         if ($monthlyReport) {
-            return !is_null($monthlyReport->teknisi_signature) &&
+            return !is_null($monthlyReport->puskom_signature) &&
                 !is_null($monthlyReport->kabag_signature) &&
                 !is_null($monthlyReport->wakil_rektor_signature);
         }

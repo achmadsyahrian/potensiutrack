@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Puskom;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppChecking;
+use App\Models\AppChekingReport;
 use App\Models\WebApp;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -58,8 +61,6 @@ class AppCheckingController extends Controller
 
         return redirect()->back()->with('success', 'Laporan berhasil ditambahkan!');
     }
-
-
 
 
     /**
@@ -143,7 +144,6 @@ class AppCheckingController extends Controller
     }
 
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -189,7 +189,6 @@ class AppCheckingController extends Controller
         $appChecking->web_app_id = $webAppId;
         $appChecking->save();
     }
-
 
     
 }
