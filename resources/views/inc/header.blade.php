@@ -220,8 +220,8 @@
                   </div>
                </li>
                @elseif (Auth::user()->role_id == 2)
-               <li class="nav-item {{ request()->routeIs(['sectionhead.webassignment.index']) ? 'active' : ''}}">
-                  <a class="nav-link" href="{{ route('sectionhead.webassignment.index') }}">
+               <li class="nav-item {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show']) ? 'active' : ''}}">
+                  <a class="nav-link" href="{{ route('sectionhead.repairrequests.index') }}">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -234,12 +234,12 @@
                         </svg>
                      </span>
                      <span class="nav-link-title">
-                        Penugasan Web Informasi
+                        Verifikasi Perawatan & Perbaikan &  PC
                      </span>
                   </a>
                </li>
-               <li class="nav-item {{ request()->routeIs(['sectionhead.networkassignment.index']) ? 'active' : ''}}">
-                  <a class="nav-link" href="{{ route('sectionhead.networkassignment.index') }}">
+               <li class="nav-item dropdown {{ request()->routeIs([ 'sectionhead.webassignment.index', 'sectionhead.networkassignment.index' ]) ? 'active' : '' }}">
+                  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -252,14 +252,25 @@
                         </svg>
                      </span>
                      <span class="nav-link-title">
-                        Penugasan Koneksi Jaringan
+                        Penugasan
                      </span>
                   </a>
+                  <div class="dropdown-menu">
+                     <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                           <a class="dropdown-item {{ Request::is('*network-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.networkassignment.index') }}">
+                              Penugasan Web Informasi
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*web-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.webassignment.index') }}">
+                              Penugasan Koneksi Jaringan
+                           </a>
+                        </div>
+                     </div>
+                  </div>
                </li>
                <li class="nav-item dropdown 
                         {{ request()->routeIs(
                            [
-                              'sectionhead.repairrequests.index', 'sectionhead.repairrequests.show', 
                               'sectionhead.employeepcdailychecks.index', 'sectionhead.employeepcdailychecks.showByMonthAndDivision', 'sectionhead.employeepcdailychecks.show', 
                               'sectionhead.labusagesreport.index', 'sectionhead.labusagesreport.showByIndex', 'sectionhead.labusagesreport.show', 
                               'sectionhead.labrequestsreport.index', 'sectionhead.labrequestsreport.showByIndex', 'sectionhead.labrequestsreport.show',
@@ -272,6 +283,7 @@
                               'sectionhead.appcheckingsreport.index', 'sectionhead.appcheckingsreport.showByIndex', 'sectionhead.appcheckingsreport.show',
                               'sectionhead.webassignmentreport.index', 'sectionhead.webassignmentreport.showByIndex', 'sectionhead.webassignmentreport.show',
                               'sectionhead.networkassignmentreport.index', 'sectionhead.networkassignmentreport.showByIndex', 'sectionhead.networkassignmentreport.show',
+                              'sectionhead.repairrequestsreport.index', 'sectionhead.repairrequestsreport.showByIndex', 'sectionhead.repairrequestsreport.show',
                            ]) ? 'active' : '' }}
                      ">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -348,7 +360,7 @@
                                  </a>
                               </div>
                            </div>
-                           <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('sectionhead.repairrequests.index') }}">
+                           <a class="dropdown-item {{ Request::is('*/report/repair-requests*') ? 'active' : '' }}" href="{{ route('sectionhead.repairrequestsreport.index') }}">
                               Perawatan & Perbaikan Pc Staff
                            </a>
                            <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}" href="{{ route('sectionhead.employeepcdailychecks.index') }}">
@@ -422,7 +434,7 @@
                      </div>
                   </div>
                </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['technician.employeepcdailychecksreport.index', 'technician.employeepcdailychecksreport.showByMonthAndDivision', 'technician.employeepcdailychecksreport.show', 'technician.labusagesreport.index', 'technician.labusagesreport.showByIndex', 'technician.labusagesreport.show', 'technician.labrequestsreport.index', 'technician.labrequestsreport.showByIndex', 'technician.labrequestsreport.show', 'technician.labdailychecksreport.index', 'technician.labdailychecksreport.showByIndex', 'technician.labdailychecksreport.show']) ? 'active' : '' }}">
+               <li class="nav-item dropdown {{ request()->routeIs(['technician.employeepcdailychecksreport.index', 'technician.employeepcdailychecksreport.showByMonthAndDivision', 'technician.employeepcdailychecksreport.show', 'technician.labusagesreport.index', 'technician.labusagesreport.showByIndex', 'technician.labusagesreport.show', 'technician.labrequestsreport.index', 'technician.labrequestsreport.showByIndex', 'technician.labrequestsreport.show', 'technician.labdailychecksreport.index', 'technician.labdailychecksreport.showByIndex', 'technician.labdailychecksreport.show', 'technician.repairrequestsreport.index', 'technician.repairrequestsreport.showByIndex', 'technician.repairrequestsreport.show']) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
@@ -448,6 +460,9 @@
                            </a>
                            <a class="dropdown-item {{ Request::is('*lab-usages*') ? 'active' : '' }}" href="{{ route('technician.labusagesreport.index') }}">
                               Penggunaan Lab Komputer
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*report/repair*') ? 'active' : '' }}" href="{{ route('technician.repairrequestsreport.index') }}">
+                              Perawatan & Perbaikan PC
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
@@ -680,7 +695,6 @@
                @elseif (Auth::user()->role_id == 8)
                <li class="nav-item dropdown {{ request()->routeIs(
                   [
-                     'vicerector.repairrequests.index', 'vicerector.repairrequests.show', 
                      'vicerector.employeepcdailychecks.index', 'vicerector.employeepcdailychecks.showByMonthAndDivision', 'vicerector.employeepcdailychecks.show', 
                      'vicerector.labusagesreport.index', 'vicerector.labusagesreport.showByIndex', 'vicerector.labusagesreport.show', 
                      'vicerector.labdailychecksreport.index', 'vicerector.labdailychecksreport.showByIndex', 'vicerector.labdailychecksreport.show',
@@ -688,7 +702,8 @@
                      'vicerector.networktroubleshootingsreport.index', 'vicerector.networktroubleshootingsreport.showByIndex', 'vicerector.networktroubleshootingsreport.show', 
                      'vicerector.webdevelopmentsreport.index', 'vicerector.webdevelopmentsreport.showByIndex', 'vicerector.webdevelopmentsreport.show', 
                      'vicerector.webmaintenancesreport.index', 'vicerector.webmaintenancesreport.showByIndex', 'vicerector.webmaintenancesreport.show',
-                     'vicerector.networkdevreport.index', 'vicerector.networkdevreport.showByIndex', 'vicerector.networkdevreport.show'
+                     'vicerector.networkdevreport.index', 'vicerector.networkdevreport.showByIndex', 'vicerector.networkdevreport.show',
+                     'vicerector.repairrequestsreport.index', 'vicerector.repairrequestsreport.showByIndex', 'vicerector.repairrequestsreport.show'
                   ]
                ) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -738,7 +753,7 @@
                                  </a>
                               </div>
                            </div>
-                           <a class="dropdown-item {{ Request::is('*repair-requests*') ? 'active' : '' }}" href="{{ route('vicerector.repairrequests.index') }}">
+                           <a class="dropdown-item {{ Request::is('*repair*') ? 'active' : '' }}" href="{{ route('vicerector.repairrequestsreport.index') }}">
                               Perawatan & Perbaikan Pc Staff
                            </a>
                            <a class="dropdown-item {{ Request::is('*employee-daily-check*') ? 'active' : '' }}" href="{{ route('vicerector.employeepcdailychecks.index') }}">

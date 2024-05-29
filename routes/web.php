@@ -135,6 +135,13 @@ Route::prefix('sectionhead')->middleware('checkRole:2')->group(function () {
     Route::get('/report/network-assignment/detail/{id}', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'show'])->name('sectionhead.networkassignmentreport.show');    
     Route::post('/report/network-assignment/{year}/verify', [\App\Http\Controllers\SectionHead\NetworkAssignmentReportController::class, 'verify'])->name('sectionhead.networkassignmentreport.verify');
 
+    // Repair Request Report
+    Route::get('/report/repair-request', [\App\Http\Controllers\SectionHead\RepairRequestReportController::class, 'index'])->name('sectionhead.repairrequestsreport.index');    
+    Route::get('/report/repair-request/{year}/{month}', [\App\Http\Controllers\SectionHead\RepairRequestReportController::class, 'showByIndex'])
+            ->name('sectionhead.repairrequestsreport.showByIndex');
+    Route::get('/report/repair-request/{id}', [\App\Http\Controllers\SectionHead\RepairRequestReportController::class, 'show'])->name('sectionhead.repairrequestsreport.show');    
+    Route::post('/report/repair-request/{year}/{month}/verify', [\App\Http\Controllers\SectionHead\RepairRequestReportController::class, 'verify'])->name('sectionhead.repairrequestsreport.verify');
+    
 });
 
 // Asisten Lab
@@ -184,6 +191,14 @@ Route::prefix('technician')->middleware('checkRole:4')->group(function () {
     Route::get('/lab-daily-check/{id}', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'show'])->name('technician.labdailychecksreport.show');    
     Route::post('/lab-daily-check/{year}/{month}/{lab}/verify', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'verify'])->name('technician.labdailychecksreport.verify');
     Route::get('/lab-daily-check/{year}/{month}/{lab}/print', [\App\Http\Controllers\Technician\LabDailyCheckMonthlyReportController::class, 'print'])->name('technician.labdailychecksreport.print');
+
+    // Repair Request Report
+    Route::get('/report/repair-request', [\App\Http\Controllers\Technician\RepairRequestReportController::class, 'index'])->name('technician.repairrequestsreport.index');    
+    Route::get('/report/repair-request/{year}/{month}', [\App\Http\Controllers\Technician\RepairRequestReportController::class, 'showByIndex'])
+            ->name('technician.repairrequestsreport.showByIndex');
+    Route::get('/report/repair-request/{id}', [\App\Http\Controllers\Technician\RepairRequestReportController::class, 'show'])->name('technician.repairrequestsreport.show');    
+    Route::post('/report/repair-request/{year}/{month}/verify', [\App\Http\Controllers\Technician\RepairRequestReportController::class, 'verify'])->name('technician.repairrequestsreport.verify');
+    Route::get('/report/repair-request/{year}/{month}/print', [\App\Http\Controllers\Technician\RepairRequestReportController::class, 'print'])->name('technician.repairrequestsreport.print');
     
 });
 
@@ -374,10 +389,12 @@ Route::prefix('vicerector')->middleware('checkRole:9')->group(function () {
 
 // Wakil Rektor 2
 Route::prefix('vicerector')->middleware('checkRole:8')->group(function () {
-    Route::get('/repair-requests', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'index'])->name('vicerector.repairrequests.index');
-    Route::get('/repair-requests/{id}', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'show'])->name('vicerector.repairrequests.show');
-    Route::patch('/repair-requests/{id}/verify', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'verify'])->name('vicerector.repairrequests.verify');
-    Route::patch('/repair-requests/{id}/reject', [\App\Http\Controllers\SectionHead\RepairRequestController::class, 'reject'])->name('vicerector.repairrequests.reject');
+    // Repair Request Report
+    Route::get('/report/repair-request', [\App\Http\Controllers\ViceRector\RepairRequestReportController::class, 'index'])->name('vicerector.repairrequestsreport.index');    
+    Route::get('/report/repair-request/{year}/{month}', [\App\Http\Controllers\ViceRector\RepairRequestReportController::class, 'showByIndex'])
+            ->name('vicerector.repairrequestsreport.showByIndex');
+    Route::get('/report/repair-request/{id}', [\App\Http\Controllers\ViceRector\RepairRequestReportController::class, 'show'])->name('vicerector.repairrequestsreport.show');    
+    Route::post('/report/repair-request/{year}/{month}/verify', [\App\Http\Controllers\ViceRector\RepairRequestReportController::class, 'verify'])->name('vicerector.repairrequestsreport.verify');
 
     // PC Daily Check
     Route::get('/employee-daily-check', [\App\Http\Controllers\ViceRector\EmployeePcDailyCheckController::class, 'index'])->name('vicerector.employeepcdailychecks.index');    
