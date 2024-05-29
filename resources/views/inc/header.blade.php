@@ -145,9 +145,9 @@
                            <a class="dropdown-item {{ Request::is('*users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                               Akun
                            </a>
-                           <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}" href="{{ route('labs.index') }}">
+                           {{-- <a class="dropdown-item {{ Request::is('*labs*') ? 'active' : '' }}" href="{{ route('labs.index') }}">
                               Lab
-                           </a>
+                           </a> --}}
                            <a class="dropdown-item {{ Request::is('*divisions*') ? 'active' : '' }}" href="{{ route('divisions.index') }}">
                               Divisi
                            </a>
@@ -156,9 +156,9 @@
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
-                           <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}" href="{{ route('computers.index') }}">
+                           {{-- <a class="dropdown-item {{ Request::is('*computers*') ? 'active' : '' }}" href="{{ route('computers.index') }}">
                               Komputer
-                           </a>
+                           </a> --}}
                            <a class="dropdown-item {{ Request::is('*roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">
                               Level
                            </a>
@@ -195,11 +195,14 @@
                            {{-- <a class="dropdown-item {{ Request::is('') ? 'active' : '' }}" href="{{ route('lecturers.index') }}">
                               Wakil Rektor
                            </a> --}}
-                           <a class="dropdown-item {{ Request::is('*section-head*') ? 'active' : '' }}" href="{{ route('accounts.sectionhead.index') }}">
+                           {{-- <a class="dropdown-item {{ Request::is('*section-head*') ? 'active' : '' }}" href="{{ route('accounts.sectionhead.index') }}">
                               Kabag
-                           </a>
+                           </a> --}}
                            <a class="dropdown-item {{ Request::is('*employee*') ? 'active' : '' }}" href="{{ route('accounts.employee.index') }}">
                               Pegawai
+                           </a>
+                           <a class="dropdown-item {{ Request::is('*puskom*') ? 'active' : '' }}" href="{{ route('accounts.puskom.index') }}">
+                              Puskom
                            </a>
                         </div>
                         <div class="dropdown-menu-column">
@@ -212,9 +215,6 @@
                            <a class="dropdown-item {{ Request::is('*lab-assistant*') ? 'active' : '' }}" href="{{ route('accounts.labassistant.index') }}">
                               Assisten Lab
                            </a>
-                           <a class="dropdown-item {{ Request::is('*puskom*') ? 'active' : '' }}" href="{{ route('accounts.puskom.index') }}">
-                              Puskom
-                           </a>
                         </div>
                      </div>
                   </div>
@@ -223,15 +223,7 @@
                <li class="nav-item {{ request()->routeIs(['sectionhead.repairrequests.index', 'sectionhead.repairrequests.show']) ? 'active' : ''}}">
                   <a class="nav-link" href="{{ route('sectionhead.repairrequests.index') }}">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M13 5h8" />
-                           <path d="M13 9h5" />
-                           <path d="M13 15h8" />
-                           <path d="M13 19h5" />
-                           <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                           <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                        </svg>
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg>
                      </span>
                      <span class="nav-link-title">
                         Verifikasi Perawatan & Perbaikan &  PC
@@ -241,15 +233,7 @@
                <li class="nav-item dropdown {{ request()->routeIs([ 'sectionhead.webassignment.index', 'sectionhead.networkassignment.index' ]) ? 'active' : '' }}">
                   <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                      <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-details">
-                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                           <path d="M13 5h8" />
-                           <path d="M13 9h5" />
-                           <path d="M13 15h8" />
-                           <path d="M13 19h5" />
-                           <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                           <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
-                        </svg>
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>
                      </span>
                      <span class="nav-link-title">
                         Penugasan

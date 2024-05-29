@@ -30,7 +30,7 @@ class UserStoreRequest extends FormRequest
                 'regex:/^[0-9]{10,}$/',
                 'unique:users,phone',
             ],
-            // 'role_id' => 'required|exists:roles,id',
+            'role_id' => 'required|exists:roles,id',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }

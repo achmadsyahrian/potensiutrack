@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::whereNotIn('id', [6])->get();
+        $roles = Role::whereNotIn('id', [6, 8, 9, 12])->get();
         $loggedInUserId = Auth::id();
         
         $query = User::whereNotIn('id', [$loggedInUserId]);
