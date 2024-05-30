@@ -9,4 +9,10 @@ class Division extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    public function repairRequest()
+    {
+        return $this->hasOne(RepairRequest::class);
+    }
+    
 }

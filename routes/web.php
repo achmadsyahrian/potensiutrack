@@ -1,11 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Authentication
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('index');
+        if (Auth::user()->role_id == 4) {
+          return app(\App\Http\Controllers\Technician\DashboardController::class)->index();
+        }
+        else if (Auth::user()->role_id == 7) {
+          return app(\App\Http\Controllers\Puskom\DashboardController::class)->index();
+        } else {
+          return app(\App\Http\Controllers\Puskom\DashboardController::class)->index();
+        }
     });
 
     // Profile

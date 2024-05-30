@@ -94,8 +94,10 @@ class DivisionController extends Controller
     public function destroy(Division $division)
     {
         try {
+            if ($division->repairRequest) {
+                $division->repairRequest->delete();
+            }
             $division->delete();
-            
             return redirect()->route('divisions.index')->with('success', 'Divisi berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Divisi tidak dapat dihapus.');

@@ -243,10 +243,10 @@
                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
                            <a class="dropdown-item {{ Request::is('*network-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.networkassignment.index') }}">
-                              Penugasan Web Informasi
+                              Penugasan Koneksi Jaringan
                            </a>
                            <a class="dropdown-item {{ Request::is('*web-assignment*') ? 'active' : '' }}" href="{{ route('sectionhead.webassignment.index') }}">
-                              Penugasan Koneksi Jaringan
+                              Penugasan Web Informasi
                            </a>
                         </div>
                      </div>
