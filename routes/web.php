@@ -6,11 +6,26 @@ use Illuminate\Support\Facades\Route;
 // Authentication
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        if (Auth::user()->role_id == 4) {
+        if (Auth::user()->role_id == 1) {
+          return app(\App\Http\Controllers\Administrator\DashboardController::class)->index();
+        }
+        else if (Auth::user()->role_id == 2) {
+          return app(\App\Http\Controllers\SectionHead\DashboardController::class)->index();
+        }
+        else if (Auth::user()->role_id == 4) {
           return app(\App\Http\Controllers\Technician\DashboardController::class)->index();
+        }
+        else if (Auth::user()->role_id == 5) {
+          return app(\App\Http\Controllers\Employee\DashboardController::class)->index();
         }
         else if (Auth::user()->role_id == 7) {
           return app(\App\Http\Controllers\Puskom\DashboardController::class)->index();
+        }
+        else if (Auth::user()->role_id == 8) {
+          return app(\App\Http\Controllers\ViceRector\DashboardController::class)->index2();
+        }
+        else if (Auth::user()->role_id == 9) {
+          return app(\App\Http\Controllers\ViceRector\DashboardController::class)->index1();
         } else {
           return app(\App\Http\Controllers\Puskom\DashboardController::class)->index();
         }
